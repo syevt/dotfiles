@@ -1,0 +1,5 @@
+imap ;; <Esc>
+vmap ;; <Esc>
+
+set noerrorbells
+set novisualbell
