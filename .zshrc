@@ -68,6 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -88,4 +89,5 @@ eval "$(nodenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 source ~/.bash_aliases
-cd ~/projects
+# cd ~/projects/rtaskman
+# tmux attach -t base || tmux new -s base

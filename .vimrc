@@ -55,6 +55,15 @@ Plug 'vim-airline/vim-airline-themes'
 "/ Quick comment
 Plug 'scrooloose/nerdcommenter'
 
+"/ Seamless moving between vim and tmux panels
+Plug 'christoomey/vim-tmux-navigator'
+
+"/ Dispatch for starting tests in another window
+" Plug 'tpope/vim-dispatch'
+
+"/ Trying to run specs with Tslime
+Plug 'jgdavey/tslime.vim'
+
 call plug#end()
 
 syntax enable
@@ -251,6 +260,12 @@ nmap <Leader>tt :call RunCurrentSpecFile()<cr>
 nmap <Leader>ts :call RunNearestSpec()<cr>
 nmap <Leader>tl :call RunLastSpec()<cr>
 nmap <Leader>ta :call RunAllSpecs()<cr>
+
+"/
+" Dispatch mappings
+"/
+" let g:rspec_command = "Dispatch rspec {spec}"
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 "/
 " LightLine
