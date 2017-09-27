@@ -89,5 +89,4 @@ eval "$(nodenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 source ~/.bash_aliases
-# cd ~/projects/rtaskman
-# tmux attach -t base || tmux new -s base
+source ~/.tmux/gruvbox-dark.sh
