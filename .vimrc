@@ -285,13 +285,12 @@ let g:lightline = {
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
+
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
-  let g:airline_section_x = airline#section#create('%{ALEGetStatusLine()}')
+  let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
 endfunction
 autocmd VimEnter * call AirlineInit()
-"let g:airline_section_b = '%{strftime("%c")}'
-"let g:airline_section_y = 'BN: %{bufnr("%")}'
 
 "/
 " NerdCommenter
