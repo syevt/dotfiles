@@ -4,6 +4,7 @@
 "lan mes uk_UA.cp1251
 set nocompatible
 set encoding=utf-8
+" set termguicolors
 "source $VIMRUNTIME/delmenu.vim
 "source $VIMRUNTIME/menu.vim
 
@@ -14,13 +15,18 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 
+"/ Search and replace
+Plug 'rking/ag.vim'
+" Plug 'skwp/greplace.vim'
+" Plug 'brooth/far.vim'
+Plug 'dkprice/vim-easygrep'
+
 "Plug 'MarcWeber/vim-addon-mw-utils'
 "Plug 'tomtom/tlib_vim'
 "Plug 'garbas/vim-snipmate'
 
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
-Plug 'skwp/greplace.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
@@ -64,6 +70,9 @@ Plug 'christoomey/vim-tmux-navigator'
 "/ Trying to run specs with Tslime
 Plug 'jgdavey/tslime.vim'
 
+"/ Gruvbox theme
+Plug 'morhetz/gruvbox'
+
 call plug#end()
 
 syntax enable
@@ -86,14 +95,13 @@ set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
 
 "---------Visuals-------"
 "set t_Co=256
-"colorscheme tomorrow-night-eighties
-"colorscheme kolor
+" colorscheme Tomorrow-Night-Eighties
 "colorscheme elflor
 colorscheme onedark
-"let g:onedark_termcolors=256
+" colorscheme gruvbox
+let g:onedark_termcolors=256
 "/higlight line length more than 80 chars
 set cc=80
-"let g:onedark_termcolors=256
 set term=screen-256color
 "set guifont=Fira_Mono_for_Powerline:h11
 "set guifont=Fira_Code:h11
@@ -115,17 +123,6 @@ set smartindent
 " Set folding
 set foldmethod=indent
 set nofoldenable
-"short cuts
-" zo -> open fold under cursor
-" zO -> open all folds under cursor
-" zc -> close...
-" zC -> close all ...
-" za -> toggle open/close
-" zA -> toggle all open/close under cursor
-" zm -> increase fold level by 1
-" zM -> close all open folds
-" zr -> decrease fold level by 1
-" zR -> decrease fold level to 0 (all folds open)
 
 " Custom padding from the left
 "hi LineNr guibg=bg
@@ -179,6 +176,11 @@ nmap <Leader>f :tag<space>
 " Show hidden files
 let NERDTreeShowHidden=1
 
+" Bind ctags -R with meaningful excludings
+" nmap <Leader>ct :!ctags -R --exclude .git --exclude log --exclude public --exclude tmp --exclude node_modules<cr>
+nmap <Leader>ct :!ctags -R --exclude .git --exclude log --exclude public --exclude tmp<cr>
+" it could be worth to also have the above started on comitting using git hook
+
 "---------Plugins--------------"
 "/
 "/ CtrlP
@@ -199,10 +201,21 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 "/
+"/ Ag.vim
+"/
+let g:ag_working_path_mode="r"
+
+"/
 "/ Gsearch
 "/
-set grepprg=git\ grep
-let g:grep_cmd_opts = '--line-number'
+" set grepprg=ag
+" let g:grep_cmd_opts = '--line-number'
+
+"/
+"/ Vim-Easygrep
+"/
+let g:EasyGrepCommand="ag"
+" set grepprg=ag\ --nocolor\ --nogroup\ --column
 
 "/
 "/ YouCompleteMe
@@ -283,6 +296,7 @@ let g:lightline = {
 " Vim-Airline
 "/
 let g:airline_theme='badwolf'
+" let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
@@ -309,3 +323,19 @@ augroup END
 " - Press 'zz' to instantly center the line where the cursor is located.
 " - Press 'Ctrl+]' to go to the method's under the cursor definition
 " - Press 'Ctrl+^' to go to the previous cursor position
+"
+" folding shortcuts
+" zo -> open fold under cursor
+" zO -> open all folds under cursor
+" zc -> close...
+" zC -> close all ...
+" za -> toggle open/close
+" zA -> toggle all open/close under cursor
+" zm -> increase fold level by 1
+" zM -> close all open folds
+" zr -> decrease fold level by 1
+" zR -> decrease fold level to 0 (all folds open)
+"
+" ctags quick access
+" Ctrl+] -> go to method/class definition under cursor
+" Ctrl+6 -> go to the previous cursor position after that
