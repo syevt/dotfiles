@@ -89,6 +89,10 @@ set complete=.,w,b,u 	"Set desired autocompletion options
 "nmap ;; <esc>
 imap ;; <esc>
 vmap ;; <esc>
+"
+"---------Inserting new line without entering the insert mode-----------"
+nmap <S-Enter> O<esc>
+nmap <cr> o<esc>
 
 "---------Ignored files and folders---------"
 set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
@@ -339,3 +343,13 @@ augroup END
 " ctags quick access
 " Ctrl+] -> go to method/class definition under cursor
 " Ctrl+6 -> go to the previous cursor position after that
+
+" toggle case
+" ~ -> on visually selected toggles case or toggles current character
+" U -> on visually selected makes it uppercase
+" u -> lower case
+" 3~ -> toggles case of the next 3 chars
+" g~3w -> toggles next 3 words
+" g~iw -> toggles current(inside) word
+" gUU -> current line to uppercase, same as VU
+" guu -> current line to lowercase, same as Vu
