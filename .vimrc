@@ -103,6 +103,7 @@ nmap <cr> o<esc>
 
 "---------Ignored files and folders---------"
 set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
 "set t_Co=256
@@ -197,7 +198,7 @@ nmap <Leader>ct :!ctags -R --exclude .git --exclude log --exclude public --exclu
 "/
 "/ CtrlP
 "/
-let g:ctrlp_custom_ignore = 'node_modules\DS_Store\|git'
+let g:ctrlp_custom_ignore = '\tmp\node_modules\DS_Store\|git'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
 " the next is used to autoreload newly added files
 " i.e. with the help of Rails generators
@@ -311,7 +312,13 @@ let g:lightline = {
 let g:airline_theme='badwolf'
 " let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
