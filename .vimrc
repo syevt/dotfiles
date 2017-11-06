@@ -71,7 +71,14 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'jgdavey/tslime.vim'
 
 "/ Gruvbox theme
+Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
+
+"/ File icons
+Plug 'ryanoasis/vim-devicons'
+
+"/ File icons highlight
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
 
@@ -101,12 +108,13 @@ set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
 "set t_Co=256
 " colorscheme Tomorrow-Night-Eighties
 "colorscheme elflor
-colorscheme onedark
 " colorscheme gruvbox
-let g:onedark_termcolors=256
+" let g:onedark_termcolors=256
+" let g:onedark_termcolors=16
+colorscheme onedark
 "/higlight line length more than 80 chars
 set cc=80
-set term=screen-256color
+" set term=screen-256color
 "set guifont=Fira_Mono_for_Powerline:h11
 "set guifont=Fira_Code:h11
 set guioptions-=e
@@ -201,8 +209,8 @@ let g:ctrlp_use_caching=0
 "/
 let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '▸'
+" let g:NERDTreeDirArrowCollapsible = '▾'
 
 "/
 "/ Ag.vim
@@ -249,7 +257,7 @@ let g:multi_cursor_prev_key='<C-z>'
 hi clear SignColumn
 "Symbols for showing errors/warning are typed like
 "<Ctrl-Q>u<4 unicode symbols>, these are 2326, 25cf, 25b6
-"⌦ ● ▶ 
+"⌦ ● ▶
 
 "let g:ale_sign_column_always=1
 "let g:ale_set_loclist=1
@@ -299,6 +307,7 @@ let g:lightline = {
 "/
 " Vim-Airline
 "/
+" let g:airline_theme='onedark'
 let g:airline_theme='badwolf'
 " let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
@@ -306,6 +315,7 @@ let g:airline#extensions#tabline#enabled=1
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
+  let g:airline_symbols.branch = ''
   let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
 endfunction
 autocmd VimEnter * call AirlineInit()
@@ -315,6 +325,118 @@ autocmd VimEnter * call AirlineInit()
 "/
 " Add one space after comment symbol
 let g:NERDSpaceDelims = 1
+
+"/
+" Vim-devicons
+"/
+let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+"let g:WebDevIconsUnicodeDecorateFolderNodes=1
+"let g:DevIconsEnableFolderOpenClose=1
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+" let g:DevIconsDefaultFolderOpenSymbol = ''
+let g:DevIconsDefaultFolderOpenSymbol = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
+
+"suggesed plugin https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+" really slooooooows down nerdtree
+"so the rest of configuration lines for vim-devicons coloring are taken from
+" https://github.com/ryanoasis/vim-devicons/issues/158 by zeorin and his config
+" https://github.com/zeorin/dotfiles/blob/e01cebf/.vimrc#L864-L900
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
+augroup devicons
+  autocmd!
+  autocmd FileType nerdtree setlocal nolist
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+  autocmd FileType nerdtree setlocal conceallevel=3
+  autocmd FileType nerdtree setlocal concealcursor=nvic
+augroup END
+
+let g:sol = {
+			\"gui": {
+				\"base03": "#002b36",
+				\"base02": "#073642",
+				\"base01": "#586e75",
+				\"base00": "#657b83",
+				\"base0": "#839496",
+				\"base1": "#93a1a1",
+				\"base2": "#eee8d5",
+				\"base3": "#fdf6e3",
+				\"yellow": "#b58900",
+				\"orange": "#cb4b16",
+				\"red": "#dc322f",
+				\"magenta": "#d33682",
+				\"violet": "#6c71c4",
+				\"blue": "#268bd2",
+				\"cyan": "#2aa198",
+				\"green": "#719e07"
+			\},
+			\"cterm": {
+				\"base03": 8,
+				\"base02": 0,
+				\"base01": 10,
+				\"base00": 11,
+				\"base0": 12,
+				\"base1": 14,
+				\"base2": 7,
+				\"base3": 15,
+				\"yellow": 3,
+				\"orange": 9,
+				\"red": 1,
+				\"magenta": 5,
+				\"violet": 13,
+				\"blue": 4,
+				\"cyan": 6,
+				\"green": 2
+			\}
+\}
+
+function! DeviconsColors(config)
+  let colors = keys(a:config)
+  augroup devicons_colors
+    autocmd!
+    for color in colors
+      if color == 'normal'
+        exec 'autocmd FileType nerdtree,startify if &background == ''dark'' | '.
+          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base01.' ctermfg='.g:sol.cterm.base01.' | '.
+          \ 'else | '.
+          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base1.' ctermfg='.g:sol.cterm.base1.' | '.
+          \ 'endif'
+      elseif color == 'emphasize'
+        exec 'autocmd FileType nerdtree,startify if &background == ''dark'' | '.
+          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base1.' ctermfg='.g:sol.cterm.base1.' | '.
+          \ 'else | '.
+          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base01.' ctermfg='.g:sol.cterm.base01.' | '.
+          \ 'endif'
+      else
+        exec 'autocmd FileType nerdtree,startify highlight devicons_'.color.' guifg='.g:sol.gui[color].' ctermfg='.g:sol.cterm[color]
+      endif
+      exec 'autocmd FileType nerdtree,startify syntax match devicons_'.color.' /\v'.join(a:config[color], '|').'/ containedin=ALL'
+    endfor
+  augroup END
+endfunction
+" \'normal': ['', '', '', '', ''],
+let g:devicons_colors = {
+  \'normal': ['', ''],
+  \'emphasize': ['', '', '', '', '', '', '', '', '', '', ''],
+  \'yellow': ['', '', ''],
+  \'orange': ['', '', '', 'λ', '', '', ''],
+  \'red': ['', '', '', '', '', '', '', '', ''],
+  \'magenta': [''],
+  \'violet': ['', '', '', ''],
+  \'blue': ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+  \'cyan': ['', '', '', ''],
+  \'green': ['', '', '', '']
+\}
+call DeviconsColors(g:devicons_colors)
 
 "---------Auto-Commands---------"
 " Automatically source the Vimrc file on save.
