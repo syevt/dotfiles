@@ -17,13 +17,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 "/ Search and replace
 Plug 'rking/ag.vim'
-" Plug 'skwp/greplace.vim'
-" Plug 'brooth/far.vim'
 Plug 'dkprice/vim-easygrep'
-
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
 
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
@@ -33,10 +27,8 @@ Plug 'vim-scripts/loremipsum'
 
 "/ Autocompletion
 Plug 'Valloric/YouCompleteMe'
-"Plug 'ervandew/supertab'           "Made the choice to use YouCompleteMe
 
-"/ ale
-" asynchronous lint engine for show errors/warnings in the gutter
+"/ ale - asynchronous lint engine for show errors/warnings in the gutter
 Plug 'w0rp/ale'
 Plug 'ngmy/vim-rubocop'
 
@@ -70,15 +62,11 @@ Plug 'christoomey/vim-tmux-navigator'
 "/ Trying to run specs with Tslime
 Plug 'jgdavey/tslime.vim'
 
-"/ Gruvbox theme
+"/ Onedark theme
 Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
-
-"/ File icons highlight
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
 
@@ -88,12 +76,11 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set list
 set lcs+=space:·
 let mapleader = ',' "Swaps default backspace leader with comma
-set number	    "Let's activate line numbers
-set complete=.,w,b,u 	"Set desired autocompletion options
+set number      "Let's activate line numbers
+set complete=.,w,b,u  "Set desired autocompletion options
 
 "---------Switching between modes-----------"
 " Switch to normal mode by double ;;
-"nmap ;; <esc>
 imap ;; <esc>
 vmap ;; <esc>
 "
@@ -108,8 +95,6 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
 "---------Visuals-------"
 "set t_Co=256
 " colorscheme Tomorrow-Night-Eighties
-"colorscheme elflor
-" colorscheme gruvbox
 " let g:onedark_termcolors=256
 " let g:onedark_termcolors=16
 colorscheme onedark
@@ -117,7 +102,6 @@ colorscheme onedark
 set cc=80
 " set term=screen-256color
 "set guifont=Fira_Mono_for_Powerline:h11
-"set guifont=Fira_Code:h11
 set guioptions-=e
 "set macligatures
 
@@ -172,9 +156,6 @@ nmap <Leader>ev :tabedit $MYVIMRC<cr>
 nmap <Leader><space> :nohlsearch<cr>
 
 "Map NERDTree easier to toggle"
-"set balloondelay=1
-"setlocal balloonexpr=
-"set noballooneval
 nmap <S-tab> :NERDTreeToggle<cr>
 
 "Map CtrlPBufTag to open"
@@ -217,12 +198,6 @@ let NERDTreeHijackNetrw = 0
 "/ Ag.vim
 "/
 let g:ag_working_path_mode="r"
-
-"/
-"/ Gsearch
-"/
-" set grepprg=ag
-" let g:grep_cmd_opts = '--line-number'
 
 "/
 "/ Vim-Easygrep
@@ -294,31 +269,17 @@ nmap <Leader>ta :call RunAllSpecs()<cr>
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 "/
-" LightLine
-"/
-set laststatus=2
-let g:lightline = {
-  \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
-
-"/
 " Vim-Airline
 "/
-" let g:airline_theme='onedark'
 let g:airline_theme='badwolf'
-" let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+"let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+"let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
@@ -337,9 +298,6 @@ let g:NERDSpaceDelims = 1
 " Vim-devicons
 "/
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-"let g:WebDevIconsUnicodeDecorateFolderNodes=1
-"let g:DevIconsEnableFolderOpenClose=1
-
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 " let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
@@ -349,107 +307,12 @@ let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
 
-"suggesed plugin https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
-" really slooooooows down nerdtree
-"so the rest of configuration lines for vim-devicons coloring are taken from
-" https://github.com/ryanoasis/vim-devicons/issues/158 by zeorin and his config
-" https://github.com/zeorin/dotfiles/blob/e01cebf/.vimrc#L864-L900
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
-augroup devicons
-  autocmd!
-  autocmd FileType nerdtree setlocal nolist
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
-  autocmd FileType nerdtree setlocal conceallevel=3
-  autocmd FileType nerdtree setlocal concealcursor=nvic
-augroup END
-
-let g:sol = {
-			\"gui": {
-				\"base03": "#002b36",
-				\"base02": "#073642",
-				\"base01": "#586e75",
-				\"base00": "#657b83",
-				\"base0": "#839496",
-				\"base1": "#93a1a1",
-				\"base2": "#eee8d5",
-				\"base3": "#fdf6e3",
-				\"yellow": "#b58900",
-				\"orange": "#cb4b16",
-				\"red": "#dc322f",
-				\"magenta": "#d33682",
-				\"violet": "#6c71c4",
-				\"blue": "#268bd2",
-				\"cyan": "#2aa198",
-				\"green": "#719e07"
-			\},
-			\"cterm": {
-				\"base03": 8,
-				\"base02": 0,
-				\"base01": 10,
-				\"base00": 11,
-				\"base0": 12,
-				\"base1": 14,
-				\"base2": 7,
-				\"base3": 15,
-				\"yellow": 3,
-				\"orange": 9,
-				\"red": 1,
-				\"magenta": 5,
-				\"violet": 13,
-				\"blue": 4,
-				\"cyan": 6,
-				\"green": 2
-			\}
-\}
-
-function! DeviconsColors(config)
-  let colors = keys(a:config)
-  augroup devicons_colors
-    autocmd!
-    for color in colors
-      if color == 'normal'
-        exec 'autocmd FileType nerdtree,startify if &background == ''dark'' | '.
-          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base01.' ctermfg='.g:sol.cterm.base01.' | '.
-          \ 'else | '.
-          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base1.' ctermfg='.g:sol.cterm.base1.' | '.
-          \ 'endif'
-      elseif color == 'emphasize'
-        exec 'autocmd FileType nerdtree,startify if &background == ''dark'' | '.
-          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base1.' ctermfg='.g:sol.cterm.base1.' | '.
-          \ 'else | '.
-          \ 'highlight devicons_'.color.' guifg='.g:sol.gui.base01.' ctermfg='.g:sol.cterm.base01.' | '.
-          \ 'endif'
-      else
-        exec 'autocmd FileType nerdtree,startify highlight devicons_'.color.' guifg='.g:sol.gui[color].' ctermfg='.g:sol.cterm[color]
-      endif
-      exec 'autocmd FileType nerdtree,startify syntax match devicons_'.color.' /\v'.join(a:config[color], '|').'/ containedin=ALL'
-    endfor
-  augroup END
-endfunction
-" \'normal': ['', '', '', '', ''],
-let g:devicons_colors = {
-  \'normal': ['', ''],
-  \'emphasize': ['', '', '', '', '', '', '', '', '', '', ''],
-  \'yellow': ['', '', ''],
-  \'orange': ['', '', '', 'λ', '', '', ''],
-  \'red': ['', '', '', '', '', '', '', '', ''],
-  \'magenta': [''],
-  \'violet': ['', '', '', ''],
-  \'blue': ['', '', '', '', '', '', '', '', '', '', '', '', ''],
-  \'cyan': ['', '', '', ''],
-  \'green': ['', '', '', '']
-\}
-call DeviconsColors(g:devicons_colors)
 
 "---------Auto-Commands---------"
 " Automatically source the Vimrc file on save.
 augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
+  autocmd!
+  autocmd BufWritePost .vimrc source %
 augroup END
 
 " Notes and Tips
