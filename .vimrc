@@ -62,8 +62,9 @@ Plug 'christoomey/vim-tmux-navigator'
 "/ Trying to run specs with Tslime
 Plug 'jgdavey/tslime.vim'
 
-"/ Onedark theme
+"/ Themes
 Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -97,7 +98,16 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " colorscheme Tomorrow-Night-Eighties
 " let g:onedark_termcolors=256
 " let g:onedark_termcolors=16
-colorscheme onedark
+" colorscheme onedark
+
+let g:gruvbox_termcolors=256
+let g:gruvbox_contrast_light='hard'
+" let g:gruvbox_contrast_dark='medium'
+" set background=dark
+set background=light
+let gruvbox_sign_column='bg0'
+colorscheme gruvbox
+
 "/higlight line length more than 80 chars
 set cc=80
 " set term=screen-256color
@@ -233,7 +243,7 @@ let g:multi_cursor_prev_key='<C-z>'
 hi clear SignColumn
 "Symbols for showing errors/warning are typed like
 "<Ctrl-Q>u<4 unicode symbols>, these are 2326, 25cf, 25b6
-"⌦ ● ▶
+"⌦ ● ▶ ⚠ ⨉      ⌧ ⌦ ╳       
 
 "let g:ale_sign_column_always=1
 "let g:ale_set_loclist=1
@@ -241,13 +251,9 @@ hi clear SignColumn
 "let g:ale_open_list=1
 nmap <silent> <A-k> <Plug>(ale_previous_wrap)
 nmap <silent> <A-j> <Plug>(ale_next_wrap)
-"let g:ale_sign_error = '⨉'
-let g:ale_sign_error = '●'
-"let g:ale_sign_error = '⌦'
-"let g:ale_sign_warning = '⚠'
-let g:ale_sign_warning = '▶'
-"let g:ale_statusline_format=['⨉ %d', '⚠ %d', 'ok']
-let g:ale_statusline_format=['● %d', '▶ %d', 'ok']
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_statusline_format=[' %d', ' %d', 'ok']
 "/
 " RuboCop
 "/
@@ -271,15 +277,17 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 "/
 " Vim-Airline
 "/
-let g:airline_theme='badwolf'
+"       ⏽
+" let g:airline_theme='badwolf'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
 "let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled=1
 "let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 "let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
 
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
