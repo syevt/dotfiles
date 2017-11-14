@@ -103,9 +103,13 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:gruvbox_termcolors=256
 let g:gruvbox_contrast_light='hard'
 " let g:gruvbox_contrast_dark='medium'
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 let gruvbox_sign_column='bg0'
+let g:gruvbox_invert_selection=0
+" Set bindings for switching dark/light modes
+nmap <Leader>bgl :set background=light<cr>
+nmap <Leader>bgd :set background=dark<cr>
 colorscheme gruvbox
 
 "/higlight line length more than 80 chars
@@ -306,6 +310,8 @@ let g:NERDSpaceDelims = 1
 " Vim-devicons
 "/
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
+"
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 " let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
