@@ -86,9 +86,14 @@ syn match FileLogging         /^\s\+.*\.log$/
 syn match FileSourceJs        /^\s\+.*\.js$/
 syn match FileSourceCoffee    /^\s\+.*\.coffee$/
 syn match FileSourceRuby      /^\s\+.*\.rb$/
+syn match FileSourceRuby      /^\s\+.*config.ru$/
+syn match FileSourceRuby      /^\s\+.*Gemfile$/
+syn match FileSourceRuby      /^\s\+.*Gemfile.lock$/
+syn match FileSourceRuby      /^\s\+.*Rakefile$/
 syn match FileSourcePhp       /^\s\+.*\.php$/
 syn match FileSourcePython    /^\s\+.*\.py$/
 
 syn match FileMarkup          /^\s\+.*\.html$/
 syn match FileMarkup          /^\s\+.*\.haml$/
 syn match FileStyle           /^\s\+.*\.css$/
+syn match FileStyle           /^\s\+.*\.scss$/

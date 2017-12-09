@@ -46,6 +46,9 @@ Plug 'airblade/vim-gitgutter'
 "/ Rspec
 Plug 'thoughtbot/vim-rspec'
 
+"/ Trying to run specs with Tslime
+Plug 'jgdavey/tslime.vim'
+
 "/ Vim status line with git branch support through vim-fugitive
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -58,9 +61,6 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "/ Dispatch for starting tests in another window
 " Plug 'tpope/vim-dispatch'
-
-"/ Trying to run specs with Tslime
-Plug 'jgdavey/tslime.vim'
 
 "/ Themes
 Plug 'joshdick/onedark.vim'
@@ -107,6 +107,9 @@ set background=dark
 " set background=light
 let gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
+let g:gruvbox_italicize_comments=0
+" let g:gruvbox_improved_strings=1
+" let g:gruvbox_improved_warnings=1
 " Set bindings for switching dark/light modes
 nmap <Leader>bgl :set background=light<cr>
 nmap <Leader>bgd :set background=dark<cr>
@@ -229,9 +232,9 @@ let g:ycm_min_num_of_chars_for_completion = 2
 "/
 "nmap <c-;> <Plug>(easymotion-s)
 nmap <Leader>s <Plug>(easymotion-s)
-hi EasyMotionTarget ctermbg=yellow ctermfg=black
-"hi EasyMotionTarget guibg=yellow guifg=black
-"hi link EasyMotionTarget ErrorMsg
+" hi EasyMotionTarget ctermbg=yellow ctermfg=black
+" hi EasyMotionTarget guibg=yellow guifg=black
+hi link EasyMotionTarget ErrorMsg
 
 "/
 " Multiple cursors
@@ -247,7 +250,7 @@ let g:multi_cursor_prev_key='<C-z>'
 hi clear SignColumn
 "Symbols for showing errors/warning are typed like
 "<Ctrl-Q>u<4 unicode symbols>, these are 2326, 25cf, 25b6
-"⌦ ● ▶ ⚠ ⨉      ⌧ ⌦ ╳       
+"⌦ ● ▶ ⚠ ⨉      ⌧ ⌦ ╳          
 
 "let g:ale_sign_column_always=1
 "let g:ale_set_loclist=1
@@ -256,8 +259,8 @@ hi clear SignColumn
 nmap <silent> <A-k> <Plug>(ale_previous_wrap)
 nmap <silent> <A-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_statusline_format=[' %d', ' %d', 'ok']
+let g:ale_sign_warning = ''
+let g:ale_statusline_format=[' %d', ' %d', 'ok']
 "/
 " RuboCop
 "/
@@ -309,6 +312,7 @@ let g:NERDSpaceDelims = 1
 "/
 " Vim-devicons
 "/
+"
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 "
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
@@ -318,8 +322,16 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 " let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['package.json'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gemfile'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gemfile.lock'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['config.ru'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['rakefile'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 
 
 "---------Auto-Commands---------"
