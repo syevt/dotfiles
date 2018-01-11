@@ -126,6 +126,18 @@ colorscheme gruvbox
 set t_ZH=[3m
 set t_ZR=[23m
 "highlight Comment cterm=italic
+hi htmlArg cterm=italic
+" hi Type cterm=italic
+hi Identifier cterm=italic
+" hi Statement cterm=italic
+hi PreProc cterm=italic
+" hi Constant cterm=italic
+" hi Special cterm=italic
+" hi Underlined cterm=italic
+" hi Ignore cterm=italic
+" hi Error cterm=italic
+" hi Todo cterm=italic
+" hi Error cterm=italic
 
 "/higlight line length more than 80 chars
 set cc=80
