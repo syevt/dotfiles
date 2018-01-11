@@ -8,6 +8,11 @@ set encoding=utf-8
 "source $VIMRUNTIME/delmenu.vim
 "source $VIMRUNTIME/menu.vim
 
+if &term =~ '256color'
+	" disable background color erase
+	set t_ut=
+endif
+
 call plug#begin('~/.vim/plugged')
 
 "/ File browsing
@@ -94,7 +99,7 @@ set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
-"set t_Co=256
+" set t_Co=256
 " colorscheme Tomorrow-Night-Eighties
 " let g:onedark_termcolors=256
 " let g:onedark_termcolors=16
@@ -107,17 +112,23 @@ set background=dark
 " set background=light
 let gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
-let g:gruvbox_italicize_comments=0
+"let g:gruvbox_italicize_comments=0
+let g:gruvbox_italic=1
 " let g:gruvbox_improved_strings=1
 " let g:gruvbox_improved_warnings=1
+
 " Set bindings for switching dark/light modes
 nmap <Leader>bgl :set background=light<cr>
 nmap <Leader>bgd :set background=dark<cr>
 colorscheme gruvbox
 
+"---------Enable italics-----------"
+set t_ZH=[3m
+set t_ZR=[23m
+"highlight Comment cterm=italic
+
 "/higlight line length more than 80 chars
 set cc=80
-" set term=screen-256color
 "set guifont=Fira_Mono_for_Powerline:h11
 set guioptions-=e
 "set macligatures

@@ -88,5 +88,6 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export TERM="xterm-256color-italic"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
