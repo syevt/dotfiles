@@ -159,7 +159,8 @@ set smartindent
 
 " Set folding
 set foldmethod=indent
-set nofoldenable
+" set nofoldenable
+set foldlevelstart=1
 
 " Custom padding from the left
 "hi LineNr guibg=bg
@@ -356,6 +357,34 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 
+"--------- Macros---------"
+"/
+" Ruby macros (all in normal mode)
+"/
+"
+"Method stub with @f
+let @f = '^idef ;;oend;;k$'
+
+"Constructor stub with @i
+let @i = 'odef initializeend;;k$'
+
+"Class stub with @c
+let @c = '^iclass ;;oend;;k$'
+
+"Module stub with @m
+let @m = '^imodule ;;oend;;k$'
+
+"Add do...end block with @b
+"cursor in the beginning of the new line inside block
+let @b = 'a doend;;O'
+
+"Add parameterized do...end block with @o
+"cursor inside the pipes
+let @o = 'a doend;;kA ||;;i'
+
+"Add parameterized {...} block with @l
+"cursor inside the pipes
+let @l = 'a { || };;hhi'
 
 "---------Auto-Commands---------"
 " Automatically source the Vimrc file on save.
