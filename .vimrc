@@ -267,6 +267,7 @@ hi link EasyMotionTarget ErrorMsg
 let g:multi_cursor_prev_key='<C-z>'
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<C-;>'
+let g:multi_cursor_quit_key='<C-e>'
 
 "/
 " Ale
@@ -385,6 +386,49 @@ let @o = 'a doend;;kA ||;;i'
 "Add parameterized {...} block with @l
 "cursor inside the pipes
 let @l = 'a { || };;hhi'
+
+"Add string array creator, for instance, to make
+" $some
+" $another
+" $one_more
+" $and_something
+" TO
+"'$some', '$another', '$one_more', '$and_something',
+"WITH 4@a , where 4 means for 4 next lines
+let @a = "I';;Ea',;;kJj"
+
+"Add ruby hash string creator to make
+" key_one value_one
+" key_two value_two
+" key_three value_three
+" TO with 3@h (3 - for three next lines)
+" 'key_one' => 'value_one', 'key_two' => 'value_two', 'key_three' => 'value_three',
+let @h = "I';;Ea' =>;;wi';;Ea',;;kJj"
+
+"Add macro for adding capitalized key to json (for angular-translate)
+"making this
+"some_key
+"to this
+"SOME_KEY": \"", (slash is for escaping inside .vimrc)
+" let @k = 'gUiwi";;Ea": "",;;h'
+" without upper case
+let @k = 'Bi";;Ea": "",;;h'
+
+"Macro for adding a corresponding translation key in a view
+"making this
+"some_key
+"to this
+"{{ 'SOME_KEY' | translate }}
+" let @t = \"gUiwi{{ ';;Ea' | translate }};;"
+" without upper case
+let @t = "Bi{{';;Ea' | translate}};;"
+
+"Macro for adding i18n translation for a key making
+"soMe_KEy
+"to
+"= t('.some_key')
+let @n = "guiwXi= t('.;;A');;"
+
 
 "---------Auto-Commands---------"
 " Automatically source the Vimrc file on save.
