@@ -71,6 +71,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 
+
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
 
@@ -395,7 +396,7 @@ let @l = 'a { || };;hhi'
 " TO
 "'$some', '$another', '$one_more', '$and_something',
 "WITH 4@a , where 4 means for 4 next lines
-let @a = "I';;Ea',;;kJj"
+let @a = "I';;Ea',;;k;;"
 
 "Add ruby hash string creator to make
 " key_one value_one
@@ -403,7 +404,7 @@ let @a = "I';;Ea',;;kJj"
 " key_three value_three
 " TO with 3@h (3 - for three next lines)
 " 'key_one' => 'value_one', 'key_two' => 'value_two', 'key_three' => 'value_three',
-let @h = "I';;Ea' =>;;wi';;Ea',;;kJj"
+let @h = "I';;Ea' =>;;wi';;Ea',;;k;;"
 
 "Add macro for adding capitalized key to json (for angular-translate)
 "making this
@@ -427,7 +428,7 @@ let @t = "Bi{{';;Ea' | translate}};;"
 "soMe_KEy
 "to
 "= t('.some_key')
-let @n = "guiwXi= t('.;;A');;"
+let @n = "guiwBXi= t('.;;A');;"
 
 
 "---------Auto-Commands---------"
