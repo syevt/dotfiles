@@ -72,6 +72,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 
+
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
 
