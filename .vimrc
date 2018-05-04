@@ -43,6 +43,7 @@ Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
+Plug 'Yggdroot/indentLine'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -358,6 +359,13 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 
+"/
+" Indent lines
+"/
+
+" let g:indentLine_char='▏'
+let g:indentLine_char='│'
+
 "--------- Macros---------"
 "/
 " Ruby macros (all in normal mode)
@@ -395,7 +403,7 @@ let @l = 'a { || };;hhi'
 " TO
 "'$some', '$another', '$one_more', '$and_something',
 "WITH 4@a , where 4 means for 4 next lines
-let @a = "I';;Ea',;;kJj"
+let @a = "I';;Ea',;;k;;"
 
 "Add ruby hash string creator to make
 " key_one value_one
@@ -403,7 +411,7 @@ let @a = "I';;Ea',;;kJj"
 " key_three value_three
 " TO with 3@h (3 - for three next lines)
 " 'key_one' => 'value_one', 'key_two' => 'value_two', 'key_three' => 'value_three',
-let @h = "I';;Ea' =>;;wi';;Ea',;;kJj"
+let @h = "I';;Ea' =>;;wi';;Ea',;;k;;"
 
 "Add macro for adding capitalized key to json (for angular-translate)
 "making this
@@ -427,7 +435,7 @@ let @t = "Bi{{';;Ea' | translate}};;"
 "soMe_KEy
 "to
 "= t('.some_key')
-let @n = "guiwXi= t('.;;A');;"
+let @n = "guiwBXi= t('.;;A');;"
 
 
 "---------Auto-Commands---------"
