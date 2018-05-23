@@ -43,6 +43,7 @@ Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
+Plug 'Yggdroot/indentLine'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -70,7 +71,6 @@ Plug 'christoomey/vim-tmux-navigator'
 "/ Themes
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
-
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -359,6 +359,13 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 
+"/
+" Indent lines
+"/
+
+" let g:indentLine_char='▏'
+let g:indentLine_char='│'
+
 "--------- Macros---------"
 "/
 " Ruby macros (all in normal mode)
@@ -375,6 +382,19 @@ let @c = '^iclass ;;oend;;k$'
 
 "Module stub with @m
 let @m = '^imodule ;;oend;;k$'
+
+"Wrap with module macro with @w
+"to make
+"module Some ...  end
+"to
+"module Another
+" module Some ... end
+"end
+let @w = 'Imodule ;;jVG>Goend;;'
+
+"Add parens macro with @p
+"to make method arg1, arg2 to method(arg1, arg2)
+let @p = 'r(A);;'
 
 "Add do...end block with @b
 "cursor in the beginning of the new line inside block
