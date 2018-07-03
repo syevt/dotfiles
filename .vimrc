@@ -331,7 +331,8 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 function! AirlineInit()
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
   let g:airline_symbols.branch = ''
-  let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
+  " let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
+  let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' ', '%{ObsessionStatus('' '', '''')}'])
 endfunction
 autocmd VimEnter * call AirlineInit()
 
