@@ -70,6 +70,16 @@ source $ZSH/oh-my-zsh.sh
 # fi
 export EDITOR='vim'
 
+function vim() {
+  if test $# -gt 0; then
+    env vim "$@"
+  elif test -f Session.vim; then
+    env vim -S
+  else
+    env vim -c Obsession
+  fi
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
