@@ -72,9 +72,11 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 
-
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
+
+"/ Copy lines to buffer with file name and line number
+Plug 'ujihisa/nclipper.vim'
 
 call plug#end()
 
@@ -367,6 +369,11 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 " let g:indentLine_char='▏'
 let g:indentLine_char='│'
 
+"/
+" Nclipper
+"/
+let g:nclipper_nomap = 1
+vmap <c-Y> <Plug>(nclipper-with-filename)
 "--------- Macros---------"
 "/
 " Ruby macros (all in normal mode)
@@ -383,6 +390,19 @@ let @c = '^iclass ;;oend;;k$'
 
 "Module stub with @m
 let @m = '^imodule ;;oend;;k$'
+
+"Wrap with module macro with @w
+"to make
+"module Some ...  end
+"to
+"module Another
+" module Some ... end
+"end
+let @w = 'Imodule ;;jVG>Goend;;'
+
+"Add parens macro with @p
+"to make method arg1, arg2 to method(arg1, arg2)
+let @p = 'r(A);;'
 
 "Add do...end block with @b
 "cursor in the beginning of the new line inside block
