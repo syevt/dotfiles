@@ -78,6 +78,9 @@ Plug 'ryanoasis/vim-devicons'
 "/ Copy lines to buffer with file name and line number
 Plug 'ujihisa/nclipper.vim'
 
+"/ Vim obsession to work with tmux-resurrect
+Plug 'tpope/vim-obsession'
+
 call plug#end()
 
 syntax enable
