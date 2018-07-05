@@ -220,8 +220,8 @@ nmap <Leader>f :tag<space>
 let NERDTreeShowHidden=1
 
 " Bind ctags -R with meaningful excludings
-" nmap <Leader>ct :!ctags -R --exclude .git --exclude log --exclude public --exclude tmp --exclude node_modules<cr>
-nmap <Leader>ct :!ctags -R --exclude .git --exclude log --exclude public --exclude tmp<cr>
+" nmap <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=public --exclude=tmp --exclude=node_modules<cr>
+nmap <Leader>ct :!ctags -R --exclude={.git,log,public,tmp,node_modules}<cr>
 " it could be worth to also have the above started on comitting using git hook
 
 "---------Plugins--------------"
