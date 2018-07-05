@@ -98,8 +98,9 @@ imap ;; <esc>
 vmap ;; <esc>
 "
 "---------Inserting new line without entering the insert mode-----------"
-nmap <S-Enter> O<esc>
-nmap <cr> o<esc>
+" nmap <S-Enter> O<esc>
+" nmap <cr> o<esc>
+nmap <S-Enter> o<esc>
 
 "---------Ignored files and folders---------"
 set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
