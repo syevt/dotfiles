@@ -208,7 +208,7 @@ nmap <Leader><space> :nohlsearch<cr>
 nmap <S-tab> :NERDTreeToggle<cr>
 
 "Map CtrlPBufTag to open"
-nmap <c-R> :CtrlPBufTag<cr>
+" nmap <c-R> :CtrlPBufTag<cr>
 
 "Map CtrlPMRUFiles"
 nmap <c-E> :CtrlPMRUFiles<cr>
