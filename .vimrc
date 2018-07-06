@@ -98,9 +98,10 @@ imap ;; <esc>
 vmap ;; <esc>
 "
 "---------Inserting new line without entering the insert mode-----------"
-" nmap <S-Enter> O<esc>
-" nmap <cr> o<esc>
-nmap <S-Enter> o<esc>
+" nmap <S-Enter> O<esc> " Shift-, Ctrl- and just Enter seem to work as the
+" mere Enter
+" nmap <cr> o<esc> "removed as it interferes opening files in quickfix by
+" Enter
 
 "---------Ignored files and folders---------"
 set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
