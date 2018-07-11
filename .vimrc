@@ -13,6 +13,8 @@ if &term =~ '256color'
 	set t_ut=
 endif
 
+set mouse=a
+
 call plug#begin('~/.vim/plugged')
 
 "/ File browsing
