@@ -83,6 +83,8 @@ Plug 'ujihisa/nclipper.vim'
 "/ Vim obsession to work with tmux-resurrect
 Plug 'tpope/vim-obsession'
 
+"/ Vim md editing live preview in Chrome
+Plug 'iamcco/markdown-preview.vim'
 call plug#end()
 
 syntax enable
@@ -383,6 +385,19 @@ let g:indentLine_char='│'
 "/
 let g:nclipper_nomap = 1
 vmap <c-Y> <Plug>(nclipper-with-filename)
+
+"/
+" Markdown
+"/
+nmap <Leader>mp <Plug>MarkdownPreview
+nmap <Leader>ms <Plug>StopMarkdownPreview
+" let g:mkdp_path_to_chrome = "google-chrome-stable"
+" let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+" let g:mkdp_auto_start = 0
+let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 1
+" let g:mkdp_refresh_slow = 0
+"let g:mkdp_command_for_global = 0
 "--------- Macros---------"
 "/
 " Ruby macros (all in normal mode)
