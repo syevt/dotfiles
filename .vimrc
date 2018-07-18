@@ -83,7 +83,7 @@ Plug 'ujihisa/nclipper.vim'
 Plug 'tpope/vim-obsession'
 
 "/ Vim md editing live preview in Chrome
-" Plug 'iamcco/mathjax-support-for-mkdp'
+" Plug 'iamcco/mathjax-support-for-mkdp' "this one doesn't work :-(
 Plug 'iamcco/markdown-preview.vim'
 
 "/ Evernote with vim-geeknote
@@ -408,7 +408,7 @@ let g:mkdp_auto_close = 0
 " Evernote / Geeknote
 "/
 noremap <Leader>gt :Geeknote<cr>
-autocmd FileType geeknote setlocal nonumber
+" autocmd FileType geeknote setlocal nonumber
 noremap <Leader>gcb :GeeknoteCreateNotebook
 noremap <Leader>gcn :GeeknoteCreateNote
 noremap <Leader>gr :GeeknoteSync<cr>
