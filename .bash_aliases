@@ -1,5 +1,6 @@
 alias rc='rails c'
 alias rs='rails s'
+alias geeknote='python2 ~/.local/bin/geeknote'
 # alias tmux='tmux -2'
 alias mux='tmuxinator'
 # alias tmux='TERM=screen-256-color-bce tmux'

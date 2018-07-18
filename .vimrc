@@ -16,7 +16,6 @@ endif
 set mouse=a
 
 call plug#begin('~/.vim/plugged')
-
 "/ File browsing
 "Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
@@ -84,7 +83,12 @@ Plug 'ujihisa/nclipper.vim'
 Plug 'tpope/vim-obsession'
 
 "/ Vim md editing live preview in Chrome
+" Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+
+"/ Evernote with vim-geeknote
+Plug 'neilagabriel/vim-geeknote'
+
 call plug#end()
 
 syntax enable
@@ -244,10 +248,11 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/
 "/ NERDTree
 "/
+"▶▼契
 let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
-" let g:NERDTreeDirArrowExpandable = '▸'
-" let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:NERDTreeDirArrowExpandable = '契'
+let g:NERDTreeDirArrowCollapsible = ''
 
 "/
 "/ Ag.vim
@@ -394,10 +399,26 @@ nmap <Leader>ms <Plug>StopMarkdownPreview
 " let g:mkdp_path_to_chrome = "google-chrome-stable"
 " let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
 " let g:mkdp_auto_start = 0
-let g:mkdp_auto_open = 1
-let g:mkdp_auto_close = 1
+" let g:mkdp_auto_open = 1
+let g:mkdp_auto_close = 0
 " let g:mkdp_refresh_slow = 0
 "let g:mkdp_command_for_global = 0
+
+"/
+" Evernote / Geeknote
+"/
+noremap <Leader>gt :Geeknote<cr>
+autocmd FileType geeknote setlocal nonumber
+noremap <Leader>gcb :GeeknoteCreateNotebook
+noremap <Leader>gcn :GeeknoteCreateNote
+noremap <Leader>gr :GeeknoteSync<cr>
+noremap <Leader>gs :GeeknoteSearch
+
+" do not use this!!! content may be lost
+" by default geeknote uses plain text - that's the trade-off for
+" using evernote with vim
+" let g:GeeknoteFormat="markdown"
+"
 "--------- Macros---------"
 "/
 " Ruby macros (all in normal mode)
@@ -407,7 +428,7 @@ let g:mkdp_auto_close = 1
 let @f = '^idef ;;oend;;k$'
 
 "Constructor stub with @i
-let @i = 'odef initializeend;;k$'
+let @i = 'odef initialize end;;k$'
 
 "Class stub with @c
 let @c = '^iclass ;;oend;;k$'
@@ -430,11 +451,11 @@ let @p = 'r(A);;'
 
 "Add do...end block with @b
 "cursor in the beginning of the new line inside block
-let @b = 'a doend;;O'
+let @b = 'a do end;;O'
 
 "Add parameterized do...end block with @o
 "cursor inside the pipes
-let @o = 'a doend;;kA ||;;i'
+let @o = 'a do end;;kA ||;;i'
 
 "Add parameterized {...} block with @l
 "cursor inside the pipes

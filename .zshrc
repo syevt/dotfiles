@@ -89,5 +89,6 @@ eval "$(nodenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export TERM="xterm-256color-italic"
+export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
