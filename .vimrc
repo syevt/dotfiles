@@ -91,6 +91,27 @@ Plug 'neilagabriel/vim-geeknote'
 
 call plug#end()
 
+" Set cursor shape depending on mode
+
+"this will higlight the whole line
+" autocmd InsertEnter,InsertLeave * set cul!
+
+let &t_SI = "\e[1 q"
+let &t_EI = "\e[2 q"
+" optional reset cursor on start:
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+" Other options (replace the number after \e[):
+" Ps = 0  -> blinking block.
+" Ps = 1  -> blinking block (default).
+" Ps = 2  -> steady block.
+" Ps = 3  -> blinking underline.
+" Ps = 4  -> steady underline.
+" Ps = 5  -> blinking bar (xterm).
+" Ps = 6  -> steady bar (xterm).
+
 syntax enable
 "set listchars+=space:␣
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -329,8 +350,8 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 " Vim-Airline
 "/
 "       ⏽
-" let g:airline_theme='badwolf'
-let g:airline_theme='gruvbox'
+let g:airline_theme='badwolf'
+" let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
 "let g:airline_right_sep = ''
@@ -408,11 +429,12 @@ let g:mkdp_auto_close = 0
 " Evernote / Geeknote
 "/
 noremap <Leader>gt :Geeknote<cr>
+let g:GeeknoteMaxExplorerWidth=60
 " autocmd FileType geeknote setlocal nonumber
-noremap <Leader>gcb :GeeknoteCreateNotebook
-noremap <Leader>gcn :GeeknoteCreateNote
+noremap <Leader>gcb :GeeknoteCreateNotebook<space>
+noremap <Leader>gcn :GeeknoteCreateNote<space>
 noremap <Leader>gr :GeeknoteSync<cr>
-noremap <Leader>gs :GeeknoteSearch
+noremap <Leader>gs :GeeknoteSearch<space>
 
 " do not use this!!! content may be lost
 " by default geeknote uses plain text - that's the trade-off for
