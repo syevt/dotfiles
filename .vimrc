@@ -295,7 +295,7 @@ let g:ycm_min_num_of_chars_for_completion = 2
 "/ EasyMotion
 "/
 "nmap <c-;> <Plug>(easymotion-s)
-nmap <Leader>s <Plug>(easymotion-s)
+nmap <Leader>s <Plug>(easymotion-s2)
 " hi EasyMotionTarget ctermbg=yellow ctermfg=black
 " hi EasyMotionTarget guibg=yellow guifg=black
 hi link EasyMotionTarget ErrorMsg
