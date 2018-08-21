@@ -13,11 +13,14 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version rbenv time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs rbenv node_version time)
 POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=true
+POWERLEVEL9K_RUBY_ICON=$'\uE791'
+POWERLEVEL9K_NODE_ICON=$'\uE617'
+POWERLEVEL9K_TIME_ICON=$'\uF017'
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Uncomment the following line to use case-sensitive completion.
