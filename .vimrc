@@ -94,14 +94,14 @@ call plug#end()
 " Set cursor shape depending on mode
 
 "this will higlight the whole line
-" autocmd InsertEnter,InsertLeave * set cul!
+autocmd InsertEnter,InsertLeave * set cul!
 
-let &t_SI = "\e[1 q"
-let &t_EI = "\e[2 q"
+let &t_SI = "\e[3 q"
+let &t_EI = "\e[1 q"
 " optional reset cursor on start:
 augroup myCmds
 au!
-autocmd VimEnter * silent !echo -ne "\e[2 q"
+autocmd VimEnter * silent !echo -ne "\e[1 q"
 augroup END
 " Other options (replace the number after \e[):
 " Ps = 0  -> blinking block.
@@ -295,7 +295,8 @@ let g:ycm_min_num_of_chars_for_completion = 2
 "/ EasyMotion
 "/
 "nmap <c-;> <Plug>(easymotion-s)
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>s <Plug>(easymotion-s)
+nmap <Leader>z <Plug>(easymotion-s2)
 " hi EasyMotionTarget ctermbg=yellow ctermfg=black
 " hi EasyMotionTarget guibg=yellow guifg=black
 hi link EasyMotionTarget ErrorMsg
