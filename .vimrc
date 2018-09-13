@@ -72,6 +72,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "/ Themes
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
+Plug 'dylanaraps/wal.vim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -133,8 +134,8 @@ vmap ;; <esc>
 " Enter
 
 "---------Ignored files and folders---------"
-set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.zip,*.exe  " Windows
-set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.log,*.zip,*.exe  " Windows
+set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
 " set t_Co=256
@@ -159,6 +160,7 @@ let g:gruvbox_italic=1
 nmap <Leader>bgl :set background=light<cr>
 nmap <Leader>bgd :set background=dark<cr>
 colorscheme gruvbox
+" colorscheme wal
 
 "---------Enable italics-----------"
 set t_ZH=[3m
@@ -284,6 +286,7 @@ let g:ag_working_path_mode="r"
 "/ Vim-Easygrep
 "/
 let g:EasyGrepCommand="ag"
+" let g:EasyGrepFilesToExclude='*.swp,*.log,*~'
 " set grepprg=ag\ --nocolor\ --nogroup\ --column
 
 "/
