@@ -88,8 +88,7 @@ Plug 'tpope/vim-obsession'
 Plug 'iamcco/markdown-preview.vim'
 
 "/ Evernote with vim-geeknote
-" do not install untill geeknote works!!!
-" Plug 'neilagabriel/vim-geeknote'
+Plug 'neilagabriel/vim-geeknote'
 
 call plug#end()
 
