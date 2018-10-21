@@ -84,7 +84,7 @@ Plug 'ujihisa/nclipper.vim'
 Plug 'tpope/vim-obsession'
 
 "/ Vim md editing live preview in Chrome
-" Plug 'iamcco/mathjax-support-for-mkdp' "this one doesn't work :-(
+Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 
 "/ Evernote with vim-geeknote
@@ -221,7 +221,6 @@ set ignorecase smartcase                "For case-insensitive search
 "---------Split Management---------"
 set splitbelow
 set splitright
-
 
 nmap <C-j> <C-w><C-j>
 nmap <C-k> <C-w><C-k>
@@ -454,7 +453,7 @@ noremap <Leader>gs :GeeknoteSearch<space>
 let @f = '^idef ;;oend;;k$'
 
 "Constructor stub with @i
-let @i = 'odef initialize end;;k$'
+let @i = 'odef initialize;;oend;;k$'
 
 "Class stub with @c
 let @c = '^iclass ;;oend;;k$'
