@@ -1,5 +1,4 @@
 [options]
-#font = Operator Mono 10
 font = Iosevka Term Slab Medium 10
 scroll_on_output = false
 scroll_on_keystroke = true
@@ -13,7 +12,6 @@ scrollback_lines = 10000
 search_wrap = true
 icon_name = terminal
 geometry = 1280x1024
-#geometry = 900x600
 cursor_blink = on
 cursor_shape = block
 browser = firefox

@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/evtik/.oh-my-zsh
+  export ZSH=/home/syevt/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -110,12 +110,14 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export TERM="xterm-256color-italic"
 export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
-export XDG_CONFIG_HOME="/home/evtik"
+eval $(keychain -q --eval id_rsa)
+#export XDG_CONFIG_HOME="/home/syevt"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
