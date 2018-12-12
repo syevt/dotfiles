@@ -33,6 +33,8 @@ Plug 'vim-scripts/loremipsum'
 
 "/ Autocompletion
 Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "/ ale - asynchronous lint engine for show errors/warnings in the gutter
 Plug 'w0rp/ale'
@@ -292,6 +294,9 @@ let g:EasyGrepCommand="ag"
 "/ YouCompleteMe
 "/
 let g:ycm_min_num_of_chars_for_completion = 2
+let g:UltiSnipsExpandTrigger           = '<c-z>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
 "/
 "/ EasyMotion
@@ -421,6 +426,7 @@ vmap <c-Y> <Plug>(nclipper-with-filename)
 nmap <Leader>mp <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>StopMarkdownPreview
 " let g:mkdp_path_to_chrome = "google-chrome-stable"
+let g:mkdp_path_to_chrome = "palemoon"
 " let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
 " let g:mkdp_auto_start = 0
 " let g:mkdp_auto_open = 1
