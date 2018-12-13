@@ -1,0 +1,14 @@
+{
+	"scripts": {
+		"test": "xo"
+	},
+	"devDependencies": {
+		"xo": "^0.23.0"
+	},
+	"xo": {
+    "space": true,
+    "rules": {
+      "capitalized-comments": ["error", "never"]
+    }
+	}  
+}
