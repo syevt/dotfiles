@@ -193,11 +193,22 @@ set guioptions-=r
 set guioptions-=R
 
 " Set indentation
+" by default, the indent is 2 spaces. 
 set shiftwidth=2
+set softtabstop=2
 set tabstop=2
 set smarttab
 set expandtab
 set smartindent
+
+" for html/rb files, 2 spaces
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
+" for js/coffee/jade files, 4 spaces
+autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+" autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
+" autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
 " Set folding
 set foldmethod=indent
