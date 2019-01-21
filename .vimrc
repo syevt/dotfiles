@@ -47,6 +47,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
 Plug 'Yggdroot/indentLine'
+Plug 'elzr/vim-json'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -424,6 +425,8 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 
 " let g:indentLine_char='▏'
 let g:indentLine_char='│'
+" not to let vim-json hide quotes in the current line
+let g:indentLine_concealcursor=""
 
 "/
 " Nclipper
