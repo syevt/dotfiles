@@ -5,10 +5,16 @@
 	"devDependencies": {
 		"xo": "^0.23.0"
 	},
-	"xo": {
-    "space": true,
+  "xo": {
+    "space": 4,
     "rules": {
-      "capitalized-comments": ["error", "never"]
-    }
-	}  
+      "capitalized-comments": [
+          "error",
+          "never"
+      ]
+    },
+    "globals": [
+      "document"
+    ]
+  }
 }
