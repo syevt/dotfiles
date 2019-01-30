@@ -27,6 +27,7 @@ Plug 'dkprice/vim-easygrep'
 
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
@@ -309,6 +310,13 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:UltiSnipsExpandTrigger           = '<c-z>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+"
+"/
+"/ Vim-repeat
+"/
+silent! call repeat#set("\<Plug>Dsurround", v:count)
+silent! call repeat#set("\<Plug>Csurround", v:count)
+silent! call repeat#set("\<Plug>Yssurround", v:count)
 
 "/
 "/ EasyMotion
@@ -572,6 +580,25 @@ augroup END
 " zM -> close all open folds
 " zr -> decrease fold level by 1
 " zR -> decrease fold level to 0 (all folds open)
+"
+"
+" vim-surround
+" "Hello world!" -> cs"' -> 'Hello world!'
+" -> cs'<q> -> <q>Hello world!</q>
+" -> cst" -> "Hello world!" ('t' - means 'tag'?)
+" -> ds" -> Hello world!
+" with the cursor on "Hello" -> ysiw] (iw is a text object) -> [Hello] world!
+" make that braces and add some space (use } instead of { for no space):
+" -> cs]{ -> { Hello } world!
+" wrap the entire line in parentheses with -> yssb or yss) -> ({ Hello } world!)
+" revert to the original text -> ds{ds) -> Hello world!
+" emphasize hello: -> ysiw<em> -> <em>Hello</em> world!
+" visual mode: Press a capital V (for linewise visual mode)
+" followed by -> S<p class="important"> gives
+" <p class="important">
+  " <em>Hello</em> world!
+" </p>
+" THE SAME APPLIES TO ANY SELECTED TEXT, NOT NECESSARILY FOR A LINE
 "
 " ctags quick access
 " Ctrl+] -> go to method/class definition under cursor
