@@ -47,6 +47,8 @@ Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 Plug 'slim-template/vim-slim'
+" Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
 
@@ -286,6 +288,7 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/ NERDTree
 "/
 "▶▼契
+let g:NERDTreeWinSize=35
 let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
 " let g:NERDTreeDirArrowExpandable = '契'
@@ -310,6 +313,11 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:UltiSnipsExpandTrigger           = '<c-z>'
 let g:UltiSnipsJumpForwardTrigger      = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+" Typescript
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 "
 "/
 "/ Vim-repeat
@@ -336,6 +344,11 @@ let g:multi_cursor_prev_key='<C-z>'
 "let g:multi_cursor_skip_key='<C-x>'
 "let g:multi_cursor_quit_key='<C-;>'
 let g:multi_cursor_quit_key='<C-e>'
+
+"/
+" TypeScript syntax
+"/
+let g:typescript_ignore_browserwords=0
 
 "/
 " Ale
