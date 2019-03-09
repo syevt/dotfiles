@@ -211,6 +211,7 @@ autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " for js/coffee/jade files, 4 spaces
 autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
+autocmd Filetype typescript setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
@@ -318,6 +319,9 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_echo_current_diagnostic = 0
 "
 "/
 "/ Vim-repeat
@@ -367,6 +371,10 @@ nmap <silent> <A-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_statusline_format=[' %d', ' %d', 'ok']
+" let g:ale_linters_ignore = {'typescript': ['eslint', 'tsilnt', 'typecheck']}
+" let g:ale_linters_ignore = {'typescript': ['tslint', 'eslint']}
+" let g:ale_typescript_tsserver_executable=".nodenv/shims/tsserver"
+" let g:ale_typescript_tsserver_use_global=1
 "/
 " RuboCop
 "/
