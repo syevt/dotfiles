@@ -118,6 +118,7 @@ eval "$(rbenv init -)"
 export TERM="xterm-256color-italic"
 export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 eval $(keychain -q --eval id_rsa)
-#export XDG_CONFIG_HOME="/home/syevt"
+export XDG_CONFIG_HOME="/home/syevt"
+export FZF_DEFAULT_COMMAND='fd --type f'
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh

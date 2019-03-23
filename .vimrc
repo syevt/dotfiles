@@ -20,6 +20,9 @@ call plug#begin('~/.vim/plugged')
 "Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'qpkorr/vim-bufkill'
 
 "/ Search and replace
 Plug 'rking/ag.vim'
@@ -284,6 +287,14 @@ let g:ctrlp_use_caching=0
 let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
 
 "/
+"/ fzf
+"/
+nmap ; :Buffers<CR>
+" nmap <Leader>p :Files<CR>
+" nmap ; :call fzf#vim#buffers('', fzf#vim#with_preview('right'))<CR>
+nmap <Leader>p :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+
+"/
 "/ NERDTree
 "/
 "▶▼契
@@ -317,10 +328,16 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+
+" this one is still needed
+" let g:ycm_filetype_specific_completion_to_disable = {'typescript':1}
+
 " disable showing quickfix window on completion
 set completeopt-=preview
+
 "disable ycm errors in the gutter
 let g:ycm_show_diagnostics_ui = 0
+
 " let g:ycm_enable_diagnostic_highlighting = 0
 " let g:ycm_echo_current_diagnostic = 0
 "
