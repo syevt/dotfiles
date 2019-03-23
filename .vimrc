@@ -150,7 +150,7 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 " let g:onedark_termcolors=16
 " colorscheme onedark
 
-let g:gruvbox_termcolors=256
+" let g:gruvbox_termcolors=256
 let g:gruvbox_contrast_light='hard'
 " let g:gruvbox_contrast_dark='medium'
 set background=dark
@@ -205,13 +205,11 @@ set smarttab
 set expandtab
 set smartindent
 
-" for html/rb files, 2 spaces
-autocmd Filetype html setlocal ts=2 sw=2 expandtab
+" for rb files, 2 spaces
 autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
-" for js/coffee/jade files, 4 spaces
-autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
-autocmd Filetype typescript setlocal ts=4 sw=4 sts=0 expandtab
+" for js/ts/html/css/scss files, 4 spaces
+autocmd Filetype javascript,typescript,html,css,scss setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
