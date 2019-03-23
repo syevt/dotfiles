@@ -317,6 +317,9 @@ if !exists("g:ycm_semantic_triggers")
   let g:ycm_semantic_triggers = {}
 endif
 let g:ycm_semantic_triggers['typescript'] = ['.']
+" disable showing quickfix window on completion
+set completeopt-=preview
+"disable ycm errors in the gutter
 let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
 " let g:ycm_echo_current_diagnostic = 0
