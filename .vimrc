@@ -54,6 +54,8 @@ Plug 'slim-template/vim-slim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mustache/vim-mustache-handlebars'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -97,7 +99,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 
 "/ Evernote with vim-geeknote
-Plug 'neilagabriel/vim-geeknote'
+" Plug 'neilagabriel/vim-geeknote'
 
 call plug#end()
 
@@ -268,6 +270,8 @@ nmap <Leader>f :tag<space>
 
 " Show hidden files
 let NERDTreeShowHidden=1
+
+let NERDTreeRespectWildIgnore=1
 
 " Bind ctags -R with meaningful excludings
 " nmap <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=public --exclude=tmp --exclude=node_modules<cr>
