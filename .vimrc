@@ -431,14 +431,31 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = ''
 "let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
+call airline#parts#define_minwidth('branch', 50)
+" call airline#parts#define_minwidth('file', 90)
+call airline#parts#define_minwidth('filetype', 100)
+call airline#parts#define_minwidth('ffenc', 100)
+" let g:airline#extensions#default#section_truncate_width = {
+    " \ 'x': 90,
+    " \ 'y': 90,
+    " \ 'warning': 90,
+    " \ 'error': 90,
+    " \ }
+" let g:airline#extensions#default#layout = [
+    " \ [ 'a', 'b'],
+    " \ [ 'z', 'error', 'warning' ]
+    " \ ]
 
 function! AirlineInit()
+  let g:airline_skip_empty_sections = 1
   let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
   let g:airline_symbols.branch = ''
   " let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
   let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' ', '%{ObsessionStatus('' '', '''')}'])
 endfunction
-autocmd VimEnter * call AirlineInit()
+
+autocmd User AirlineAfterInit call AirlineInit()
+" autocmd VimEnter * call AirlineInit()
 
 "/
 " NerdCommenter
