@@ -2,7 +2,9 @@
 	co = checkout
 	br = branch
 	ci = commit
+  aci = !git add -A && git commit
 	st = status
+  dog = log --all --decorate --oneline --graph
 [user]
 	email = serhiy.yevtushenko@gmail.com
 	name = Serhiy Yevtushenko
