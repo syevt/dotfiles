@@ -8,6 +8,8 @@ set encoding=utf-8
 "source $VIMRUNTIME/delmenu.vim
 "source $VIMRUNTIME/menu.vim
 
+set clipboard=unnamed
+
 if &term =~ '256color'
 	" disable background color erase
 	set t_ut=
@@ -19,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 "/ File browsing
 "Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -99,7 +102,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 
 "/ Evernote with vim-geeknote
-" Plug 'neilagabriel/vim-geeknote'
+Plug 'neilagabriel/vim-geeknote'
 
 call plug#end()
 
@@ -271,7 +274,7 @@ nmap <Leader>f :tag<space>
 " Show hidden files
 let NERDTreeShowHidden=1
 
-let NERDTreeRespectWildIgnore=1
+let NERDTreeRespectWildIgnore=0
 
 " Bind ctags -R with meaningful excludings
 " nmap <Leader>ct :!ctags -R --exclude=.git --exclude=log --exclude=public --exclude=tmp --exclude=node_modules<cr>
