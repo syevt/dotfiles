@@ -35,6 +35,13 @@
  " Git{Hub,Lab} git clone via SSH yank
  bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 
+ " Find
+ "bind <C-/> find
+ "bind ? find -1
+ "bind n findnext
+ "bind N findnext -1
+ "unbind <C-f>
+
  " I like wikiwand but I don't like the way it changes URLs
  " bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
 
@@ -59,6 +66,11 @@
  " set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.org/en/v1.0%20
  set searchurls.tr https://translate.google.com/#view=home&op=translate&sl=en&tl=uk&text=%s
  set searchurls.tru https://translate.google.com/#view=home&op=translate&sl=uk&tl=en&text=%s
+
+ set searchurls.my_google https://www.google.com/search?q=%s+-inurl:ru+-inurl:.ru+-inurl:.by+-inurl:vk.com
+ set searchurls.g https://www.google.com/search?q=%s
+
+ set searchengine my_google
 
  colors shydactyl
 
