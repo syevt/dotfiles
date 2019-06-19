@@ -396,6 +396,7 @@ nmap <silent> <A-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_statusline_format=[' %d', ' %d', 'ok']
+nmap <Leader>afp :ALEFix prettier<cr>
 " let g:ale_linters_ignore = {'typescript': ['eslint', 'tsilnt', 'typecheck']}
 " let g:ale_linters_ignore = {'typescript': ['tslint', 'eslint']}
 " let g:ale_typescript_tsserver_executable=".nodenv/shims/tsserver"
