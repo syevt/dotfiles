@@ -57,8 +57,10 @@ Plug 'slim-template/vim-slim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'mustache/vim-mustache-handlebars'
+" Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'mustache/vim-mustache-handlebars'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -161,6 +163,7 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 " let g:gruvbox_termcolors=256
 let g:gruvbox_contrast_light='hard'
 " let g:gruvbox_contrast_dark='medium'
+" let g:gruvbox_contrast_dark='soft'
 set background=dark
 " set background=light
 let gruvbox_sign_column='bg0'
@@ -182,11 +185,11 @@ set t_ZR=[23m
 "highlight Comment cterm=italic
 hi htmlArg cterm=italic
 " hi Type cterm=italic
-hi Identifier cterm=italic
-" hi Statement cterm=italic
-hi PreProc cterm=italic
+" hi Identifier cterm=italic
+hi Statement cterm=italic
+" hi PreProc cterm=italic
 " hi Constant cterm=italic
-" hi Special cterm=italic
+hi Special cterm=italic
 " hi Underlined cterm=italic
 " hi Ignore cterm=italic
 " hi Error cterm=italic
@@ -214,10 +217,10 @@ set expandtab
 set smartindent
 
 " for rb files, 2 spaces
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+" autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 " for js/ts/html/css/scss files, 4 spaces
-autocmd Filetype javascript,typescript,html,css,scss setlocal ts=4 sw=4 sts=0 expandtab
+" autocmd Filetype javascript,typescript,html,css,scss setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype coffeescript setlocal ts=4 sw=4 sts=0 expandtab
 " autocmd Filetype jade setlocal ts=4 sw=4 sts=0 expandtab
 
@@ -347,6 +350,24 @@ let g:ycm_show_diagnostics_ui = 0
 
 " let g:ycm_enable_diagnostic_highlighting = 0
 " let g:ycm_echo_current_diagnostic = 0
+"
+"/
+"/ Vim-fugitive
+"/
+noremap <Leader>gb :Gblame<cr>
+noremap <Leader>gd :Gdiff<cr>
+noremap <Leader>ge :Gedit<cr>
+noremap <Leader>gw :Gwrite<cr>
+noremap <Leader>gwf :Gwrite!<cr>
+noremap <Leader>gr :Gread<cr>
+noremap <Leader>ge :Gedit<cr>
+noremap <Leader>gu :Gdiffupdate<cr>
+autocmd User fugitive 
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+autocmd BufReadPost fugitive://* set bufhidden=delete
+"
 "
 "/
 "/ Vim-repeat
@@ -523,13 +544,13 @@ let g:mkdp_auto_close = 0
 "/
 " Evernote / Geeknote
 "/
-noremap <Leader>gt :Geeknote<cr>
+noremap <Leader>nt :Geeknote<cr>
 let g:GeeknoteMaxExplorerWidth=60
 " autocmd FileType geeknote setlocal nonumber
-noremap <Leader>gcb :GeeknoteCreateNotebook<space>
-noremap <Leader>gcn :GeeknoteCreateNote<space>
-noremap <Leader>gr :GeeknoteSync<cr>
-noremap <Leader>gs :GeeknoteSearch<space>
+noremap <Leader>ncb :GeeknoteCreateNotebook<space>
+noremap <Leader>ncn :GeeknoteCreateNote<space>
+noremap <Leader>nr :GeeknoteSync<cr>
+noremap <Leader>ns :GeeknoteSearch<space>
 
 " do not use this!!! content may be lost
 " by default geeknote uses plain text - that's the trade-off for
