@@ -61,6 +61,7 @@ Plug 'elzr/vim-json'
 " Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'posva/vim-vue'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -354,8 +355,9 @@ let g:ycm_show_diagnostics_ui = 0
 "/
 "/ Vim-fugitive
 "/
+noremap <Leader>gs :Gstatus<cr>
 noremap <Leader>gb :Gblame<cr>
-noremap <Leader>gd :Gdiff<cr>
+noremap <Leader>gd :Gvdiff<cr>
 noremap <Leader>ge :Gedit<cr>
 noremap <Leader>gw :Gwrite<cr>
 noremap <Leader>gwf :Gwrite!<cr>
@@ -399,6 +401,11 @@ let g:multi_cursor_quit_key='<C-e>'
 " TypeScript syntax
 "/
 let g:typescript_ignore_browserwords=0
+
+"/
+" Vue syntax
+"/
+let g:vue_pre_processors = 'detect_on_enter'
 
 "/
 " Ale
