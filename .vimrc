@@ -26,6 +26,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'qpkorr/vim-bufkill'
+Plug 'ronakg/quickr-preview.vim'
 
 "/ Search and replace
 Plug 'rking/ag.vim'
@@ -326,6 +327,16 @@ let g:ag_working_path_mode="r"
 let g:EasyGrepCommand="ag"
 " let g:EasyGrepFilesToExclude='*.swp,*.log,*~'
 " set grepprg=ag\ --nocolor\ --nogroup\ --column
+nmap <Leader>vg :Grep<space>
+
+"/
+"/ QuickFix Preview
+"/
+let g:quickr_preview_keymaps = 0
+let g:quickr_preview_line_hl = "Underlined"
+let g:quickr_preview_on_cursor = 1
+let g:quickr_preview_exit_on_enter = 1
+let g:quickr_preview_position = 'below'
 
 "/
 "/ YouCompleteMe
