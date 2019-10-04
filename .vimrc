@@ -40,7 +40,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
 
 "/ Autocompletion
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'zxqfl/tabnine-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
