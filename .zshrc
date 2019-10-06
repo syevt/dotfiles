@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
+export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/syevt/.oh-my-zsh
+export ZSH=/Users/syevt/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -11,9 +11,9 @@
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vi_mode vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version rbenv time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version rbenv go_version time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
@@ -33,6 +33,10 @@ POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='magenta'
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='<<<'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='red'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='black'
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Uncomment the following line to use case-sensitive completion.
@@ -77,7 +81,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,12 +117,18 @@ export EDITOR='vim'
 
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export TERM="xterm-256color-italic"
+export GOPATH=$HOME/go
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#eval "$(rbenv init -)"
+#export TERM="xterm-256color-italic"
 export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
-eval $(keychain -q --eval id_rsa)
-export XDG_CONFIG_HOME="/home/syevt"
-export FZF_DEFAULT_COMMAND='fd --type f'
+#eval $(keychain -q --eval id_rsa)
+#export XDG_CONFIG_HOME="/home/syevt"
+#export FZF_DEFAULT_COMMAND='fd --type f'
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
