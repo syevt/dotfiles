@@ -13,13 +13,14 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vi_mode vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version rbenv go_version time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version java_version rbenv go_version time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=true
 POWERLEVEL9K_RUBY_ICON=$'\uE791'
 POWERLEVEL9K_NODE_ICON=$'\uE617'
+POWERLEVEL9K_JAVA_ICON=$'\uE738'
 POWERLEVEL9K_TIME_ICON=$'\uF017'
 POWERLEVEL9K_NODE_VERSION_FOREGROUND='black'
 # POWERLEVEL9K_NODE_VERSION_BACKGROUND='blue'
@@ -129,6 +130,7 @@ export PATH="$GOPATH/bin:$PATH"
 export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 #eval $(keychain -q --eval id_rsa)
 #export XDG_CONFIG_HOME="/home/syevt"
-#export FZF_DEFAULT_COMMAND='fd --type f'
+# export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_DEFAULT_COMMAND='rg --files'
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
