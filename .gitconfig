@@ -2,9 +2,10 @@
 	co = checkout
 	br = branch
 	ci = commit
-  aci = !git add -A && git commit
 	st = status
-  dog = log --all --decorate --oneline --graph
+  graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+  aci = !git add -A && git commit
+  hist = "log --pretty=format:'%C(yellow)%h%Creset %ad %C(green)%s%Creset%C(red)%d%Creset %C(blue)[%an]' --graph --decorate --date=short"
 [user]
 	email = serhiy.yevtushenko@gmail.com
 	name = Serhiy Yevtushenko
