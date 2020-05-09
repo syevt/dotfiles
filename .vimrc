@@ -334,6 +334,7 @@ let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
 " let g:NERDTreeDirArrowExpandable = '契'
 let g:NERDTreeDirArrowCollapsible = ''
+nmap <Leader>nf :NERDTreeFind<cr>
 
 "/
 "/ Ag.vim
