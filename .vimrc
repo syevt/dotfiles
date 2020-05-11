@@ -11,8 +11,8 @@ set encoding=utf-8
 set clipboard=unnamed
 
 if &term =~ '256color'
-	" disable background color erase
-	set t_ut=
+  " disable background color erase
+  set t_ut=
 endif
 
 set mouse=a
@@ -153,8 +153,8 @@ set complete=.,w,b,u  "Set desired autocompletion options
 
 "---------Switching between modes-----------"
 " Switch to normal mode by double ;;
-imap ;; <esc>
-vmap ;; <esc>
+imap << <esc>
+vmap << <esc>
 "
 "---------Inserting new line without entering the insert mode-----------"
 " nmap <S-Enter> O<esc> " Shift-, Ctrl- and just Enter seem to work as the
@@ -173,9 +173,9 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 " let g:onedark_termcolors=16
 " colorscheme onedark
 
-" let g:gruvbox_termcolors=256
-let g:gruvbox_contrast_light='hard'
-" let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_termcolors=256
+" let g:gruvbox_contrast_light='hard'
+let g:gruvbox_contrast_dark='medium'
 " let g:gruvbox_contrast_dark='soft'
 set background=dark
 " set background=light
@@ -272,11 +272,15 @@ nmap <C-l> <C-w><C-l>
 " Make it easy to edit the Vimrc file.
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
+" Format json document in the current buffer
+nmap <Leader>fj :%!jq<cr>
+
 "Add simple highlight remover"
 nmap <Leader><space> :nohlsearch<cr>
 
 "Map NERDTree easier to toggle"
 nmap <S-tab> :NERDTreeToggle<cr>
+nmap <Leader>nf :NERDTreeFind<cr>
 
 "Map CtrlPBufTag to open"
 " nmap <c-R> :CtrlPBufTag<cr>
@@ -285,7 +289,7 @@ nmap <S-tab> :NERDTreeToggle<cr>
 nmap <c-E> :CtrlPMRUFiles<cr>
 
 "Map ,f to show ctags search"
-nmap <Leader>f :tag<space>
+" nmap <Leader>f :tag<space>
 
 " Show hidden files
 let NERDTreeShowHidden=1
@@ -352,9 +356,8 @@ let g:quickr_preview_position = 'below'
 "/
 "/ Lsp
 "/
-" nmap <Leader>lgd :LspDefinition<cr>
 nmap gd :LspDefinition<cr>
-nmap gpd :LspPeekDefinition<cr>
+nmap <Leader>gpd :LspPeekDefinition<cr>
 nmap <Leader>lnd :LspNextDiagnostic<cr>
 nmap <Leader>lpd :LspPreviousDiagnostic<cr>
 nmap <Leader>lh :LspHover<cr>
@@ -646,6 +649,8 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = ''
 "let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#fnamemod = ':p:~'
+let g:airline#extensions#tabline#fnamecollapse = 0
 call airline#parts#define_minwidth('branch', 50)
 " call airline#parts#define_minwidth('file', 90)
 call airline#parts#define_minwidth('filetype', 100)
