@@ -320,6 +320,8 @@ nmap ; :Buffers<CR>
 " nmap <Leader>p :Files<CR>
 " nmap ; :call fzf#vim#buffers('', fzf#vim#with_preview('right'))<CR>
 nmap <Leader>p :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+" copy current buffer file path to the clipboard
+nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
 
 "/
 "/ NERDTree
