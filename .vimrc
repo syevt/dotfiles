@@ -319,7 +319,7 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 " nmap ; :Buffers<CR>
 " nmap <Leader>p :Files<CR>
 " nmap ; :call fzf#vim#buffers('', fzf#vim#with_preview('right'))<CR>
-nmap ; :call fzf#vim#buffers('')<CR>
+nmap ; :call fzf#vim#buffers()<CR>
 nmap <Leader>p :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
 nmap <Leader>fh :History:<CR>
 " copy current buffer file path to the clipboard
@@ -643,7 +643,8 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 " Vim-Airline
 "/
 "       ⏽
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
+let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
