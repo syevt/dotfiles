@@ -39,31 +39,33 @@ Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
 
-"/ Autocompletion
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'zxqfl/tabnine-vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
 "/ Typescript
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'ryanolsonx/vim-lsp-typescript'
-Plug 'ryanolsonx/vim-lsp-javascript'
+Plug 'mattn/vim-lsp-settings'
+" Plug 'ryanolsonx/vim-lsp-typescript'
+
+"/ Autocompletion
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'zxqfl/tabnine-vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+" Plug 'khanghoang/coc.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 "/ ale - asynchronous lint engine for show errors/warnings in the gutter
 Plug 'w0rp/ale'
 " Plug 'ngmy/vim-rubocop'
 
 "/ Syntax support
-" Plug 'kchmck/vim-coffee-script'
-" Plug 'noc7c9/vim-iced-coffee-script'
-" Plug 'digitaltoad/vim-pug'
-" Plug 'wavded/vim-stylus'
-" Plug 'slim-template/vim-slim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'noc7c9/vim-iced-coffee-script'
+Plug 'digitaltoad/vim-pug'
+Plug 'wavded/vim-stylus'
+Plug 'slim-template/vim-slim'
 " Plug 'leafgarland/typescript-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Yggdroot/indentLine'
@@ -72,15 +74,18 @@ Plug 'elzr/vim-json'
 " Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-" Plug 'posva/vim-vue'
-Plug 'andreshazard/vim-freemarker'
+Plug 'posva/vim-vue'
+Plug 'heavenshell/vim-jsdoc'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
+"/ Tests
+Plug 'janko/vim-test'
+
 "/ Rspec
-Plug 'thoughtbot/vim-rspec'
+" Plug 'thoughtbot/vim-rspec'
 
 "/ Trying to run specs with Tslime
 Plug 'jgdavey/tslime.vim'
@@ -97,6 +102,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "/ Dispatch for starting tests in another window
 " Plug 'tpope/vim-dispatch'
+" Plug 'kassio/neoterm'
+" Plug 'neomake/neomake'
+" Plug 'reinh/vim-makegreen'
 
 "/ Themes
 Plug 'joshdick/onedark.vim'
@@ -335,6 +343,7 @@ let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
 " let g:NERDTreeDirArrowExpandable = '契'
 let g:NERDTreeDirArrowCollapsible = ''
+nmap <Leader>nf :NERDTreeFind<cr>
 
 "/
 "/ Ag.vim
@@ -362,7 +371,6 @@ let g:quickr_preview_position = 'below'
 "/ Lsp
 "/
 nmap gd :LspDefinition<cr>
-nmap <Leader>gpd :LspPeekDefinition<cr>
 nmap <Leader>lnd :LspNextDiagnostic<cr>
 nmap <Leader>lpd :LspPreviousDiagnostic<cr>
 nmap <Leader>lh :LspHover<cr>
@@ -541,14 +549,12 @@ let g:ycm_show_diagnostics_ui = 0
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list.
 " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 "/
 "/ Vim-fugitive
 "/
 noremap <Leader>gs :Gstatus<cr>
 noremap <Leader>gb :Gblame<cr>
-" noremap <Leader>gd :Gvdiff<Space>
-noremap <Leader>gd :Gvdiffsplit!<Space>
+noremap <Leader>gd :Gvdiff<cr>
 noremap <Leader>ge :Gedit<cr>
 noremap <Leader>gw :Gwrite<cr>
 noremap <Leader>gwf :Gwrite!<cr>
@@ -599,6 +605,13 @@ let g:typescript_ignore_browserwords=0
 let g:vue_pre_processors = 'detect_on_enter'
 
 "/
+" JSDoc
+"/
+nmap <silent> <Leader>jd <Plug>(jsdoc)
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_enable_es6=1
+
+"/
 " Ale
 "/
 hi clear SignColumn
@@ -620,25 +633,43 @@ nmap <Leader>afp :ALEFix prettier<cr>
 " let g:ale_linters_ignore = {'typescript': ['tslint', 'eslint']}
 " let g:ale_typescript_tsserver_executable=".nodenv/shims/tsserver"
 " let g:ale_typescript_tsserver_use_global=1
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'html': ['prettier'],
+\   'css': ['prettier'],
+\   'scss': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+"
+"/
+" Vim-test
+"/
+nmap <Leader>tn :TestNearest<CR>
+nmap <Leader>tf :TestFile<CR>
+nmap <Leader>ts :TestSuite<CR>
+nmap <Leader>tl :TestLast<CR>
+nmap <Leader>tv :TestVisit<CR>
+let test#strategy = "tslime"
+
 "/
 " RuboCop
 "/
-nmap <Leader>r :RuboCop<cr>
+" nmap <Leader>r :RuboCop<cr>
 "let g:vimrubocop_config = '%USERPROFILE%/rubocop.yml'
 
 "/
 " RSpec.vim mappings
 "/
-nmap <Leader>tt :call RunCurrentSpecFile()<cr>
-nmap <Leader>ts :call RunNearestSpec()<cr>
-nmap <Leader>tl :call RunLastSpec()<cr>
-nmap <Leader>ta :call RunAllSpecs()<cr>
+" nmap <Leader>tt :call RunCurrentSpecFile()<cr>
+" nmap <Leader>ts :call RunNearestSpec()<cr>
+" nmap <Leader>tl :call RunLastSpec()<cr>
+" nmap <Leader>ta :call RunAllSpecs()<cr>
 
 "/
 " Dispatch mappings
 "/
 " let g:rspec_command = "Dispatch rspec {spec}"
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 "/
 " Vim-Airline
