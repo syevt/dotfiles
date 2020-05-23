@@ -10,19 +10,20 @@ export ZSH=/Users/syevt/.oh-my-zsh
 # ZSH_THEME="agnoster"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel10k/powerlevel01k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vi_mode vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version java_version rbenv go_version time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version go_version time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=true
-POWERLEVEL9K_RUBY_ICON=$'\uE791'
-POWERLEVEL9K_NODE_ICON=$'\uE617'
-POWERLEVEL9K_JAVA_ICON=$'\uE738'
-POWERLEVEL9K_TIME_ICON=$'\uF017'
-POWERLEVEL9K_NODE_VERSION_FOREGROUND='black'
+POWERLEVEL9K_RUBY_ICON="\uE791"
+POWERLEVEL9K_NODE_ICON="\uE617"
+POWERLEVEL9K_JAVA_ICON="\uE738"
+POWERLEVEL9K_TIME_ICON="\uF017"
+POWERLEVEL9K_NODE_VERSION_FOREGROUND="black"
 # POWERLEVEL9K_NODE_VERSION_BACKGROUND='blue'
 # POWERLEVEL9K_RBENV_FOREGROUND='blue'
 # POWERLEVEL9K_RBENV_BACKGROUND='yellow'
@@ -115,15 +116,24 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
-export GOPATH=$HOME/go
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
+# for lsp
+# PATH=”/usr/local/bin:$PATH”
+
+# NODENV
+# export PATH="$HOME/.nodenv/bin:$PATH"
+# eval "$(nodenv init -)"
+
+# export GOPATH=$HOME/go
+# export GOENV_ROOT="$HOME/.goenv"
+# export PATH="$GOENV_ROOT/bin:$PATH"
+# eval "$(goenv init -)"
+# export PATH="$GOROOT/bin:$PATH"
+# export PATH="$GOPATH/bin:$PATH"
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 #export TERM="xterm-256color-italic"
@@ -132,5 +142,9 @@ export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 #export XDG_CONFIG_HOME="/home/syevt"
 # export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS='--layout reverse'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+export BAT_THEME="base16"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh

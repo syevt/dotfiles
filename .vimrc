@@ -11,8 +11,8 @@ set encoding=utf-8
 set clipboard=unnamed
 
 if &term =~ '256color'
-	" disable background color erase
-	set t_ut=
+  " disable background color erase
+  set t_ut=
 endif
 
 set mouse=a
@@ -181,9 +181,9 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 " let g:onedark_termcolors=16
 " colorscheme onedark
 
-" let g:gruvbox_termcolors=256
-let g:gruvbox_contrast_light='hard'
-" let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_termcolors=256
+" let g:gruvbox_contrast_light='hard'
+let g:gruvbox_contrast_dark='medium'
 " let g:gruvbox_contrast_dark='soft'
 set background=dark
 " set background=light
@@ -280,11 +280,15 @@ nmap <C-l> <C-w><C-l>
 " Make it easy to edit the Vimrc file.
 nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
+" Format json document in the current buffer
+nmap <Leader>fj :%!jq<cr>
+
 "Add simple highlight remover"
 nmap <Leader><space> :nohlsearch<cr>
 
 "Map NERDTree easier to toggle"
 nmap <S-tab> :NERDTreeToggle<cr>
+nmap <Leader>nf :NERDTreeFind<cr>
 
 "Map CtrlPBufTag to open"
 " nmap <c-R> :CtrlPBufTag<cr>
@@ -293,7 +297,7 @@ nmap <S-tab> :NERDTreeToggle<cr>
 nmap <c-E> :CtrlPMRUFiles<cr>
 
 "Map ,f to show ctags search"
-nmap <Leader>f :tag<space>
+" nmap <Leader>f :tag<space>
 
 " Show hidden files
 let NERDTreeShowHidden=1
@@ -320,10 +324,15 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/
 "/ fzf
 "/
-nmap ; :Buffers<CR>
+" nmap ; :Buffers<CR>
 " nmap <Leader>p :Files<CR>
 " nmap ; :call fzf#vim#buffers('', fzf#vim#with_preview('right'))<CR>
-nmap <Leader>p :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+nmap ; :call fzf#vim#buffers()<CR>
+nmap <Leader>p :Files!<CR>
+" nmap <Leader>p :call fzf#vim#files!('', fzf#vim#with_preview('right'))<CR>
+nmap <Leader>fh :History:<CR>
+" copy current buffer file path to the clipboard
+nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
 
 "/
 "/ NERDTree
@@ -666,7 +675,8 @@ let test#strategy = "tslime"
 " Vim-Airline
 "/
 "       ⏽
-let g:airline_theme='badwolf'
+" let g:airline_theme='badwolf'
+let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
@@ -676,6 +686,8 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = ''
 "let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
+let g:airline#extensions#tabline#fnamemod = ':p:~'
+let g:airline#extensions#tabline#fnamecollapse = 0
 call airline#parts#define_minwidth('branch', 50)
 " call airline#parts#define_minwidth('file', 90)
 call airline#parts#define_minwidth('filetype', 100)

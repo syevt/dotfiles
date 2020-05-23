@@ -7,7 +7,21 @@
   aci = !git add -A && git commit
   hist = "log --pretty=format:'%C(yellow)%h%Creset %ad %C(green)%s%Creset%C(red)%d%Creset %C(blue)[%an]' --graph --decorate --date=short"
 [user]
-	email = serhiy.yevtushenko@gmail.com
+	; email = serhiy.yevtushenko@gmail.com
+	email = syevtushenko@atlassian.com
 	name = Serhiy Yevtushenko
+[merge]
+tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  ; cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+[diff]
+  tool = vimdiff
 [core]
-	editor = vim
+  pager = delta -w=variable --theme='base16'
+[interactive]
+    diffFilter = delta --color-only
