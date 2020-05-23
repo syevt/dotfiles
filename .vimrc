@@ -320,7 +320,8 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 " nmap <Leader>p :Files<CR>
 " nmap ; :call fzf#vim#buffers('', fzf#vim#with_preview('right'))<CR>
 nmap ; :call fzf#vim#buffers()<CR>
-nmap <Leader>p :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+nmap <Leader>p :Files!<CR>
+" nmap <Leader>p :call fzf#vim#files!('', fzf#vim#with_preview('right'))<CR>
 nmap <Leader>fh :History:<CR>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>

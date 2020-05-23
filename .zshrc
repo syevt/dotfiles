@@ -143,6 +143,8 @@ export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 # export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='--layout reverse'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+export BAT_THEME="base16"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
-source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
