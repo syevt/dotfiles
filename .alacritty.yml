@@ -10,7 +10,7 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: alacritty
+  TERM: alacritty
 
 #window:
   # Window dimensions (changes require restart)
@@ -60,10 +60,10 @@ env:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: Maximized
+  startup_mode: SimpleFullscreen
 
   # Window title
-  #title: Alacritty
+  title: Terminal
 
   # Window class (Linux/BSD only):
   #class:
@@ -96,11 +96,13 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: 'Operator Mono'
-    # family: 'Blex Mono Nerd Font'
+    # family: 'Operator Mono'
+    family: 'BlexMono Nerd Font Mono'
+    # family: 'Victor Mono'
+    # family: 'Iosevka Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
+    # style:
 
   # Bold font face
   #bold:
@@ -136,20 +138,20 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10
+  size: 13
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
+  # offset:
+    # x: -1
   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
+  # glyph_offset:
+   # x: 30
+   # y: 3
 
   # Thin stroke font rendering (macOS only)
   #
@@ -165,25 +167,30 @@ font:
   #
   # This is a global setting and will require a log out or restart to take
   # effect.
-  #use_thin_strokes: true
+  use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-draw_bold_text_with_bright_colors: false
+# draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
-    background: '#1d2021'
-    foreground: '#ffffff'
+    # foreground: '#ffffff'
+    background: '#202020'
+    # foreground: '#ebdbb2'
+    # hard contrast: background = '#1d2021'
+    # background: '#282828'
+    # soft contrast: background = '#32302f'
+    foreground: '#ebdbb2'
 
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#9a9a9a'
-    #bright_foreground: '#ffffff'
+    # dim_foreground: '#1d1d1d'
+    # bright_foreground: '#1d1d1d'
 
   # Cursor colors
   #
@@ -212,7 +219,8 @@ colors:
 
   # Normal colors
   normal:
-   black:   '#1d2021'
+   black:   '#272727'
+   black:   '#1d1d1d'
    red:     '#cc241d'
    green:   '#427b58'
    yellow:  '#ffaf00'
@@ -222,21 +230,30 @@ colors:
    white:   '#a89984'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#ff3334'
-  #  green:   '#9ec400'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#b77ee0'
-  #  cyan:    '#54ced6'
-  #  white:   '#ffffff'
+  bright:
+   black:   '#928373'
+   red:     '#fb4833'
+   green:   '#b8ba25'
+   yellow:  '#cc241d'
+   blue:    '#83a597'
+   magenta: '#d3859a'
+   cyan:    '#8ec07b'
+   white:   '#ebdbb2'
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
+  # dim:
+   # black:   '#1b1b1b'
+   # black:   '#928373'
+   # red:     '#fb4833'
+   # green:   '#b8ba25'
+   # yellow:  '#cc241d'
+   # blue:    '#83a597'
+   # magenta: '#d3859a'
+   # cyan:    '#8ec07b'
+   # white:   '#ebdbb2'
   #  black:   '#000000'
   #  red:     '#8c3336'
   #  green:   '#7a8530'
@@ -254,7 +271,24 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   #
-  #indexed_colors: []
+  # indexed_colors: [
+    # { index: 0, color: '#1d2021' },
+    # { index: 1, color: '#cc241d' },
+    # { index: 2, color: '#427b58' },
+    # { index: 3, color: '#ffaf00' },
+    # { index: 4, color: '#076678' },
+    # { index: 5, color: '#b16286' },
+    # { index: 6, color: '#689d6a' },
+    # { index: 7, color: '#a89984' },
+    # { index: 8, color: '#928373' },
+    # { index: 9, color: '#fb4833' },
+    # { index: 10, color: '#b8ba25' },
+    # { index: 11, color: '#cc241d' },
+    # { index: 12, color: '#83a597' },
+    # { index: 13, color: '#d3859a' },
+    # { index: 14, color: '#8ec07b' },
+    # { index: 15, color: '#ebdbb2' }
+  # ]
 
 # Visual Bell
 #
@@ -286,7 +320,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+  background_opacity: 0.7
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -320,7 +354,7 @@ colors:
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  #thickness: 0.15
+  thickness: 1
 
 # Live config reload (changes require restart)
 #live_config_reload: true
