@@ -12,7 +12,8 @@
 alias vim='nvim'
 alias svim='nvim -S .git/Session.vim'
 alias fvim='nvim -o `fzp`'
-alias fzp="fzf --layout reverse --preview='head {}' --preview-window=down --preview 'bat --style=numbers --theme=base16 --color=always {} | head -500'"
+# alias fzp="fzf --layout reverse --preview='head {}' --preview-window=down --preview 'bat --style=numbers --theme=base16 --color=always {} | head -500'"
+alias fzp="rg --files --hidden | fzf --layout reverse --preview='head {}' --preview-window=down --preview 'bat --style=numbers --color=always {} | head -500'"
 alias geeknote='/usr/local/bin/geeknote'
 alias wttr='curl "v2.wttr.in/Dnipro?lang=uk"'
 
