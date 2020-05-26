@@ -224,6 +224,8 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/
 "/ fzf
 "/
+" hello macos :( without the next line it just doesn't work
+set rtp+=/usr/local/opt/fzf
 nmap ; :call fzf#vim#buffers()<CR>
 nmap <Leader>p :Files!<CR>
 nmap <Leader>fh :History:<CR>
