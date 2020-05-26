@@ -26,11 +26,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'qpkorr/vim-bufkill'
-Plug 'ronakg/quickr-preview.vim'
+" Plug 'ronakg/quickr-preview.vim'
 
 "/ Search and replace
-Plug 'rking/ag.vim'
-Plug 'dkprice/vim-easygrep'
+" Plug 'rking/ag.vim'
+" Plug 'dkprice/vim-easygrep'
+Plug 'dyng/ctrlsf.vim'
 
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
@@ -357,6 +358,17 @@ let g:EasyGrepCommand="ag"
 " let g:EasyGrepFilesToExclude='*.swp,*.log,*~'
 " set grepprg=ag\ --nocolor\ --nogroup\ --column
 nmap <Leader>vg :Grep<space>
+
+"/
+"/ CtrlSF
+"/
+nmap <Leader>vg :CtrlSF<space>
+nmap <Leader>vt :CtrlSFToggle<cr>
+let g:ctrlsf_auto_focus = {
+    \ "at": "start"
+    \ }
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_preview = 1
 
 "/
 "/ QuickFix Preview
