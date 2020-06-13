@@ -68,6 +68,7 @@ Plug 'morhetz/gruvbox'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 "/ Copy lines to buffer with file name and line number
 Plug 'ujihisa/nclipper.vim'
@@ -76,11 +77,11 @@ Plug 'ujihisa/nclipper.vim'
 Plug 'tpope/vim-obsession'
 
 "/ Vim md editing live preview in Chrome
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 "/ Evernote with vim-geeknote
 Plug 'neilagabriel/vim-geeknote'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -225,7 +226,8 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/ fzf
 "/
 " hello macos :( without the next line it just doesn't work
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 nmap ; :call fzf#vim#buffers()<CR>
 nmap <Leader>p :Files!<CR>
 nmap <Leader>fh :History:<CR>
@@ -404,8 +406,11 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
+
 " let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+
 " let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
@@ -438,9 +443,9 @@ vmap <c-Y> <Plug>(nclipper-with-filename)
 " Markdown
 "/
 nmap <Leader>mp <Plug>MarkdownPreview
-nmap <Leader>ms <Plug>StopMarkdownPreview
-let g:mkdp_path_to_chrome = "palemoon"
-let g:mkdp_auto_close = 0
+nmap <Leader>ms <Plug>MarkdownPreviewStop
+let g:mkdp_command_for_global = 1
+let g:mkdp_browser = 'falkon'
 
 "/
 " Evernote / Geeknote
@@ -451,6 +456,25 @@ noremap <Leader>ncb :GeeknoteCreateNotebook<space>
 noremap <Leader>ncn :GeeknoteCreateNote<space>
 noremap <Leader>nr :GeeknoteSync<cr>
 noremap <Leader>ns :GeeknoteSearch<space>
+
+"/
+" VimWiki
+"/
+filetype plugin on
+syntax on
+autocmd FileType vimwiki set ft=markdown
+let wiki_private = {}
+let wiki_private.path = '~/projects/wiki_private'
+let wiki_private.syntax = 'markdown'
+let wiki_private.ext = '.md'
+
+let wiki = {}
+let wiki.path = '~/projects/wiki'
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+
+let g:vimwiki_list = [wiki_private, wiki]
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 
 "--------- Macros---------"
 "Add macro for adding capitalized key to json (for angular-translate)
