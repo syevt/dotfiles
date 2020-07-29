@@ -685,7 +685,7 @@ vmap <c-Y> <Plug>(nclipper-with-filename)
 nmap <Leader>mp <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
 let g:mkdp_command_for_global = 1
-let g:mkdp_browser = 'falkon'
+" let g:mkdp_browser = 'falkon'
 
 "/
 " Evernote / Geeknote
@@ -715,6 +715,7 @@ let wiki.ext = '.md'
 
 let g:vimwiki_list = [wiki_private, wiki]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:vimwiki_table_mappings=0
 
 "--------- Macros---------"
 "Add macro for adding capitalized key to json (for angular-translate)
