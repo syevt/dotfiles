@@ -12,6 +12,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'junegunn/fzf'
+set rtp+=~/.fzf
 Plug 'junegunn/fzf.vim'
 if has('nvim')
   Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -759,6 +760,10 @@ hi typescriptExport cterm=italic
 " this is not needed being set by 'hi Statement cterm=italic
 " hi typescriptStatementKeyword ctermfg=red cterm=italic
 hi tsxAttrib cterm=italic ctermfg=magenta
+set t_ZH=[3m
+set t_ZR=[23m
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
