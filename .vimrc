@@ -51,12 +51,11 @@ Plug 'iamcco/coc-tailwindcss'
 Plug 'w0rp/ale'
 
 "/ Syntax support
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
+Plug 'jparise/vim-graphql'        " GraphQL syntax
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -92,6 +91,7 @@ Plug 'neilagabriel/vim-geeknote'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
+map <Leader>zzz :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
 " Set cursor shape depending on mode
 
@@ -155,9 +155,6 @@ colorscheme gruvbox
 "---------Enable italics-----------"
 set t_ZH=[3m
 set t_ZR=[23m
-hi htmlArg cterm=italic
-hi Statement cterm=italic
-hi Special cterm=italic
 
 "/higlight line length more than 80 chars
 set cc=80
@@ -295,7 +292,6 @@ call denite#custom#var('buffer', 'date_format', '')
 " 'prompt': '',
 let s:denite_options = {'default' : {
 \ 'split': 'floating',
-\ 'auto_resize': 1,
 \ 'source_names': 'short',
 \ 'prompt': '? ',
 \ 'highlight_matched_char': 'QuickFixLine',
@@ -749,6 +745,20 @@ augroup autosourcing
   autocmd!
   autocmd BufWritePost .vimrc source %
 augroup END
+
+"---------Custom Syntax Highlights---------"
+hi htmlArg cterm=italic
+hi Statement cterm=italic
+" this one makes js function args be in italic
+" hi Special cterm=italic
+" these are TS specific: my personal preference is that 'import', 'export' and
+" 'return' should pop up from the code, so giving 'em italic explicitly
+" without changing the syntax plugin file
+hi typescriptImport cterm=italic
+hi typescriptExport cterm=italic
+" this is not needed being set by 'hi Statement cterm=italic
+" hi typescriptStatementKeyword ctermfg=red cterm=italic
+hi tsxAttrib cterm=italic ctermfg=magenta
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
