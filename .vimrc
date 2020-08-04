@@ -90,6 +90,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 "/ Evernote with vim-geeknote
 Plug 'neilagabriel/vim-geeknote'
 Plug 'vimwiki/vimwiki'
+Plug 'chazy/dirsettings'
 
 call plug#end()
 map <Leader>zzz :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
@@ -699,6 +700,9 @@ nmap <Leader>mp <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
 let g:mkdp_command_for_global = 1
 " let g:mkdp_browser = 'falkon'
+" Enable spellcheck for markdown and gitcommit files
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal spell
 
 "/
 " Evernote / Geeknote
