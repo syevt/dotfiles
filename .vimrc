@@ -328,6 +328,7 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+
 "/
 "/ CtrlSF
 "/
@@ -728,6 +729,8 @@ let wiki.ext = '.md'
 let g:vimwiki_list = [wiki_private, wiki]
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_table_mappings=0
+nmap <Leader>wnl <Plug>VimwikiNextLink
+nmap <Leader>wpl <Plug>VimwikiPrevLink
 
 "--------- Macros---------"
 "Add macro for adding capitalized key to json (for angular-translate)
