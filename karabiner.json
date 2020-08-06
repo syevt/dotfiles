@@ -1,7 +1,7 @@
 {
   "global": {
     "check_for_updates_on_startup": true,
-    "show_in_menu_bar": true,
+    "show_in_menu_bar": false,
     "show_profile_name_in_menu_bar": false
   },
   "profiles": [
@@ -16,10 +16,28 @@
         },
         "rules": [
           {
+            "description": "launchpad",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "right_command"
+                    ]
+                  }
+                },
+                "to": {
+                  "key_code": "launchpad"
+                },
+                "type": "basic"
+              }
+            ]
+          },
+          {
             "description": "Switch to language",
             "manipulators": [
               {
-                "type": "basic",
                 "from": {
                   "key_code": "8",
                   "modifiers": {
@@ -35,10 +53,10 @@
                       "language": "uk"
                     }
                   }
-                ]
+                ],
+                "type": "basic"
               },
               {
-                "type": "basic",
                 "from": {
                   "key_code": "7",
                   "modifiers": {
@@ -54,10 +72,10 @@
                       "language": "en"
                     }
                   }
-                ]
+                ],
+                "type": "basic"
               },
               {
-                "type": "basic",
                 "from": {
                   "key_code": "6",
                   "modifiers": {
@@ -72,10 +90,10 @@
                       "language": "en"
                     }
                   }
-                ]
+                ],
+                "type": "basic"
               },
               {
-                "type": "basic",
                 "from": {
                   "key_code": "9",
                   "modifiers": {
@@ -90,7 +108,8 @@
                       "language": "ru"
                     }
                   }
-                ]
+                ],
+                "type": "basic"
               }
             ]
           }
