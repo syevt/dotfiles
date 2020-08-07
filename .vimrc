@@ -52,7 +52,8 @@ Plug 'iamcco/coc-tailwindcss'
 Plug 'w0rp/ale'
 
 "/ Syntax support
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
@@ -118,9 +119,12 @@ augroup END
 
 syntax enable
 "set listchars+=space:␣
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+" I guess, setting '...,space:...' here makes 'set lcs+=space:...' obsolete
+" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set listchars=tab:>·,trail:~,extends:>,precedes:<
 set list
-set lcs+=space:·
+" this one shows spaces with dots
+" set lcs+=space:·
 let mapleader = ',' "Swaps default backspace leader with comma
 set number      "Let's activate line numbers
 set complete=.,w,b,u  "Set desired autocompletion options
@@ -597,6 +601,9 @@ nmap <silent> <A-j> <Plug>(ale_next_wrap)
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_statusline_format=[' %d', ' %d', 'ok']
+" let g:ale_linters = {
+" \  'javascript': ['xo'],
+" \}
 nmap <Leader>afp :ALEFix prettier<cr>
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
@@ -686,7 +693,9 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 let g:indentLine_char='│'
 " not to let vim-json hide quotes in the current line
 let g:indentLine_concealcursor=""
-
+set ts=2 sw=2 et
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
 "/
 " Nclipper
 "/
@@ -699,7 +708,7 @@ vmap <c-Y> <Plug>(nclipper-with-filename)
 nmap <Leader>mp <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
 let g:mkdp_command_for_global = 1
-" let g:mkdp_browser = 'falkon'
+let g:mkdp_browser = 'vivaldi'
 " Enable spellcheck for markdown and gitcommit files
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
