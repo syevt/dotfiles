@@ -52,8 +52,8 @@ Plug 'iamcco/coc-tailwindcss'
 Plug 'w0rp/ale'
 
 "/ Syntax support
-" Plug 'Yggdroot/indentLine'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
@@ -690,12 +690,18 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 "/
 
 " let g:indentLine_char='▏'
-let g:indentLine_char='│'
+" let g:indentLine_char='│'
+" let g:indentLine_char_list = ['', '', '﫦', '⏽', '│', '|', '¦', '┆', '┊', '', '†', '‡', '', '', '', '', '', '', '', '', '', '']
+" let g:indentLine_char_list = ['│', '|', '¦','']
+let g:indentLine_char_list = ['₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₀']
+" let g:indentLine_char_list = ['⏽', '', '﫦', '']
 " not to let vim-json hide quotes in the current line
 let g:indentLine_concealcursor=""
-set ts=2 sw=2 et
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_start_level = 2
+
+" this is for kinda rainbow indent plugin 'nathanaelkane/vim-indent-guides'
+" set ts=2 sw=2 et
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_start_level = 2
 "/
 " Nclipper
 "/
