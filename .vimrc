@@ -11,16 +11,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'junegunn/fzf'
-set rtp+=~/.fzf
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-if has('nvim')
-  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/denite.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'qpkorr/vim-bufkill'
 
 "/ Search and replace
@@ -89,8 +82,8 @@ Plug 'tpope/vim-obsession'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
 "/ Evernote with vim-geeknote
-Plug 'neilagabriel/vim-geeknote'
-Plug 'vimwiki/vimwiki'
+" Plug 'neilagabriel/vim-geeknote'
+" Plug 'vimwiki/vimwiki'
 Plug 'chazy/dirsettings'
 
 call plug#end()
@@ -237,13 +230,21 @@ let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %
 "/ fzf
 "/
 " hello macos :( without the next line it just doesn't work
-set rtp+=/usr/local/opt/fzf
+" set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 " nmap ; :call fzf#vim#buffers()<CR>
-nmap ; :Denite buffer<cr>
 nmap <Leader>p :Files!<CR>
 nmap <Leader>fh :History:<CR>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
+
+"/
+"/ Vim Clap
+"/
+nmap ; :Clap buffers<CR>
+nmap <Leader>cg :Clap grep<CR>
+nmap <Leader>cg2 :Clap grep2<CR>
+let g:clap_layout = { 'relative': 'editor' }
 
 "/
 "/ NERDTree
@@ -255,84 +256,6 @@ let NERDTreeHijackNetrw = 0
 " let g:NERDTreeDirArrowExpandable = '契'
 let g:NERDTreeDirArrowCollapsible = ''
 nmap <Leader>nf :NERDTreeFind<cr>
-
-"/
-"/ Denite
-"/
-" Use ripgrep for searching current directory for files
-" By default, ripgrep will respect rules in .gitignore
-"   --files: Print each file that would be searched (but don't search)
-"   --glob:  Include or exclues files for searching that match the given glob
-"            (aka ignore .git files)
-"
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-
-" Use ripgrep in place of "grep"
-call denite#custom#var('grep', 'command', ['rg'])
-
-" Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
-"   --hidden:   Search hidden directories and files
-"   --heading:  Show the file name above clusters of matches from each file
-"   --S:        Search case insensitively if the pattern is all lowercase
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-
-" Recommended defaults for ripgrep via Denite docs
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-
-" Remove date from buffer list
-call denite#custom#var('buffer', 'date_format', '')
-
-" Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
-"   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-"   prompt_highlight        - Specify color of prompt
-"   highlight_matched_char  - Matched characters highlight
-"   highlight_matched_range - matched range highlight
-" 'prompt': '',
-let s:denite_options = {'default' : {
-\ 'split': 'floating',
-\ 'source_names': 'short',
-\ 'prompt': '? ',
-\ 'highlight_matched_char': 'QuickFixLine',
-\ 'highlight_matched_range': 'Visual',
-\ 'highlight_filter_background': 'DiffAdd',
-\ 'winrow': 10,
-\ 'vertical_preview': 1
-\ }}
-" Loop through denite options and enable them
-function! s:profile(opts) abort
-  for l:fname in keys(a:opts)
-    for l:dopt in keys(a:opts[l:fname])
-      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
-
 
 "/
 "/ CtrlSF
