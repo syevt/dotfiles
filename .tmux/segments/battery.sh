@@ -2,24 +2,30 @@
 
 runSegment() {
   # get battery level
-
-  # this was for MacOS
-  battery=$(pmset -g batt | egrep "([0-9]+\%).*" -o | cut -f1 -d';')
-  level=${battery%?} # removing last char '%'
-
-  # check if on ac or battery power
-  # this is for MacOS
   charging=""
-  if [[ $(pmset -g ps | head -1) =~ "AC Power" ]]
-  then
-    charging=""
-  fi
+  icon=""
+  left=""
+
+  # this is for MacOS
+  # charging=""
+  # if [[ $(pmset -g ps | head -1) =~ "AC Power" ]]
+  # then
+    # charging=""
+  # fi
   # level=$(acpi | cut -d ' ' -f 4)
   # battery=$(pmset -g batt | egrep "([0-9]+\%).*" -o | cut -f1 -d';')
 
-  icon=""
   # percentage=$(acpi | cut -d ' ' -f 4):0:2
   # level=$((($battery:0:2) + 0))
+
+  # this for linux
+  if [[ $(acpi -a) =~ "on-line" ]]
+  then
+    charging=""
+    left=$(acpi | cut -d ' ' -f 5)
+  fi
+  battery=$(acpi -b | egrep -o "[0-9]+%")
+  level=${battery%?} # removing last char '%'
 
   # case $level in
   if ((0<=level && level<=20))
@@ -37,19 +43,5 @@ runSegment() {
   else
     icon=""
   fi
-  echo -n "${charging} ${icon} ${level}%"
-
-  # 
-
-  # this for linux
-  # if [[ $(acpi) =~ "charged" ]]; then
-    # # if on ac
-    # charging=$(acpi | cut -d ' ' -f 4-6 | sed 's/until/до повної/')
-    # # echo -n " ${level:0:2} ${charging}"
-    # echo -n " ${charging}"
-  # else
-    # # if on battery
-    # battery=$(acpi | cut -d ' ' -f 4-6 | sed 's/remaining/лишилося/')
-    # echo -n " ${battery}"
-  # fi
+  echo -n "${charging} ${icon} ${level}% ${left}"
 }
