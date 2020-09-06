@@ -22,9 +22,9 @@ runSegment() {
   if [[ $(acpi -a) =~ "on-line" ]]
   then
     charging=""
-    left=$(acpi | cut -d ' ' -f 5)
+    left=$(acpi | head -n 1 | cut -d ' ' -f 5)
   fi
-  battery=$(acpi -b | egrep -o "[0-9]+%")
+  battery=$(acpi -b | head -n 1 | egrep -o "[0-9]+%")
   level=${battery%?} # removing last char '%'
 
   # case $level in
