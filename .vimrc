@@ -460,6 +460,7 @@ autocmd TextChanged,CursorMoved * call EasyMotionCoc()
 "/ Vim-fugitive
 "/
 noremap <Leader>gs :Gstatus<cr>
+noremap <Leader>gco :Git checkout<space>
 noremap <Leader>gb :Gblame<cr>
 noremap <Leader>gd :Gvdiff<Space>
 noremap <Leader>ge :Gedit<cr>
