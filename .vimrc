@@ -224,7 +224,7 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
 " i.e. with the help of Rails generators
 " no need to press F5
 let g:ctrlp_use_caching=0
-let g:ctrlp_user_command = 'ag --nogroup --nobreak --noheading --nocolor -g "" %s '
+let g:ctrlp_user_command = 'rg -HS --no-heading --vimgrep'
 
 "/
 "/ fzf
