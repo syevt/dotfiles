@@ -245,6 +245,8 @@ nmap ; :Clap buffers<CR>
 nmap <Leader>cg :Clap grep<CR>
 nmap <Leader>cg2 :Clap grep2<CR>
 let g:clap_layout = { 'relative': 'editor' }
+" g:clap_provider_grep_executable, Default: `'rg'`
+let g:clap_provider_grep_opts = '-HUS --no-heading --vimgrep'
 
 "/
 "/ NERDTree
@@ -267,6 +269,9 @@ let g:ctrlsf_auto_focus = {
     \ }
 let g:ctrlsf_search_mode = 'async'
 " let g:ctrlsf_auto_preview = 1
+let g:ctrlsf_extra_backend_args = {
+    \ 'rg': '-U'
+    \ }
 
 "/
 "/ Lsp
