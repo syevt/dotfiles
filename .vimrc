@@ -19,6 +19,8 @@ Plug 'qpkorr/vim-bufkill'
 "/ Search and replace
 Plug 'dyng/ctrlsf.vim'
 
+Plug 'enomsg/vim-haskellConcealPlus'
+
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -55,6 +57,7 @@ Plug 'jparise/vim-graphql'        " GraphQL syntax
 "/ Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'APZelos/blamer.nvim'
 
 "/ Vim status line with git branch support through vim-fugitive
 Plug 'vim-airline/vim-airline'
@@ -481,6 +484,18 @@ autocmd User fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 "/
+"/ Git blamer
+"/
+noremap <Leader>gbt :BlamerToggle<cr>
+let g:blamer_template = '<author>, <committer-time> - <summary>'
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = '>>> '
+let g:blamer_date_format = '%d.%m.%y %H:%M'
+
+
+"/
 "/ Vim-repeat
 "/
 silent! call repeat#set("\<Plug>Dsurround", v:count)
@@ -730,6 +745,7 @@ set t_ZH=[3m
 set t_ZR=[23m
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
+hi! Blamer cterm=italic ctermfg=magenta
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
