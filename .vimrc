@@ -471,6 +471,7 @@ noremap <Leader>gs :Gstatus<cr>
 noremap <Leader>gco :Git checkout<space>
 noremap <Leader>gb :Gblame<cr>
 noremap <Leader>gd :Gvdiff<Space>
+noremap <Leader>gd3 :Gdiffsplit!<cr>
 noremap <Leader>ge :Gedit<cr>
 noremap <Leader>gw :Gwrite<cr>
 noremap <Leader>gwf :Gwrite!<cr>
