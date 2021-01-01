@@ -143,7 +143,9 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 "---------Visuals-------"
 
 let g:gruvbox_termcolors=256
-let g:gruvbox_contrast_dark='medium'
+" let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='soft'
 set background=dark
 let gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
@@ -747,6 +749,8 @@ set t_ZR=[23m
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 hi! Blamer cterm=italic ctermfg=magenta
+" this is to make coc nvim gutter background the same as vim's
+hi! SignColumn ctermbg=NONE
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
