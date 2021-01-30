@@ -19,8 +19,6 @@ Plug 'qpkorr/vim-bufkill'
 "/ Search and replace
 Plug 'dyng/ctrlsf.vim'
 
-Plug 'enomsg/vim-haskellConcealPlus'
-
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -53,6 +51,7 @@ Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'neovimhaskell/haskell-vim'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -181,7 +180,8 @@ set smartindent
 
 " Set folding
 set foldmethod=indent
-set foldlevelstart=1
+set nofoldenable
+" set foldlevelstart=1
 
 "---------Search---------"
 set hlsearch
@@ -256,12 +256,16 @@ let g:clap_provider_grep_opts = '-HUS --no-heading --vimgrep'
 "/
 "/ NERDTree
 "/
-"▶▼契
+"▶▼契     洛
 let g:NERDTreeWinSize=35
 let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
-" let g:NERDTreeDirArrowExpandable = '契'
-let g:NERDTreeDirArrowCollapsible = ''
+" let g:NERDTreeDirArrowExpandable = '洛'
+" let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowExpandable = ''
+" let g:NERDTreeDirArrowCollapsible = ''
+" let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeDirArrowCollapsible = ''
 nmap <Leader>nf :NERDTreeFind<cr>
 
 "/
@@ -522,6 +526,12 @@ let g:multi_cursor_quit_key='<C-e>'
 " TypeScript syntax
 "/
 let g:typescript_ignore_browserwords=0
+
+"/
+" Haskell syntax
+"/
+let g:haskell_classic_highlighting=1
+let g:haskell_indent_disable=1
 
 "/
 " Vue syntax
