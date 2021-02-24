@@ -240,6 +240,7 @@ set rtp+=~/.fzf
 " nmap ; :call fzf#vim#buffers()<CR>
 nmap <Leader>p :Files!<CR>
 nmap <Leader>fh :History:<CR>
+nmap <Leader>rg :Rg<space>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
 
@@ -671,7 +672,7 @@ vmap <c-Y> <Plug>(nclipper-with-filename)
 nmap <Leader>mp <Plug>MarkdownPreview
 nmap <Leader>ms <Plug>MarkdownPreviewStop
 let g:mkdp_command_for_global = 1
-let g:mkdp_browser = 'vivaldi'
+let g:mkdp_browser = 'vivaldi-stable'
 " Enable spellcheck for markdown and gitcommit files
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell

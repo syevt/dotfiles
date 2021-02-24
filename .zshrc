@@ -14,7 +14,7 @@ ZSH_THEME="powerlevel10k/powerlevel01k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vi_mode vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs node_version go_version time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history root_indicator background_jobs nodenv go_version time)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
@@ -24,6 +24,8 @@ POWERLEVEL9K_NODE_ICON="\uE617"
 POWERLEVEL9K_JAVA_ICON="\uE738"
 POWERLEVEL9K_TIME_ICON="\uF017"
 POWERLEVEL9K_NODE_VERSION_FOREGROUND="black"
+POWERLEVEL9K_NODENV_FOREGROUND="black"
+POWERLEVEL9K_NODENV_BACKGROUND="green"
 # POWERLEVEL9K_NODE_VERSION_BACKGROUND='blue'
 # POWERLEVEL9K_RBENV_FOREGROUND='blue'
 # POWERLEVEL9K_RBENV_BACKGROUND='yellow'
@@ -83,7 +85,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions vi-mode)
+plugins=(docker-compose git vi-mode yarn zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -92,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -117,16 +119,20 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+#
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # for lsp
 # PATH=”/usr/local/bin:$PATH”
 
 # NODENV
-# export PATH="$HOME/.nodenv/bin:$PATH"
-# eval "$(nodenv init -)"
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
+
+# npx
+# source <(npx --shell-auto-fallback zsh)
 
 # export GOPATH=$HOME/go
 # export GOENV_ROOT="$HOME/.goenv"
@@ -137,14 +143,14 @@ export NVM_DIR="$HOME/.nvm"
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 #export TERM="xterm-256color-italic"
-export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
+#export EVERNOTE_DEV_TOKEN=$(cat $HOME/.evernote_dev_token)
 #eval $(keychain -q --eval id_rsa)
 #export XDG_CONFIG_HOME="/home/syevt"
 # export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='--layout reverse'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-export BAT_THEME="ansi-dark"
+export BAT_THEME="gruvbox"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
