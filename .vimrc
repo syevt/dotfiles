@@ -13,7 +13,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'qpkorr/vim-bufkill'
 
 "/ Search and replace
@@ -32,8 +31,7 @@ Plug 'vim-scripts/loremipsum'
 " Plug 'prabirshrestha/asyncomplete.vim'
 " Plug 'prabirshrestha/asyncomplete-lsp.vim'
 " Plug 'mattn/vim-lsp-settings'
-
-" " Plug 'ryanolsonx/vim-lsp-typescript'
+" Plug 'ryanolsonx/vim-lsp-typescript'
 
 "/ Autocompletion
 " Plug 'Valloric/YouCompleteMe'
@@ -51,7 +49,6 @@ Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
-Plug 'neovimhaskell/haskell-vim'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -68,7 +65,6 @@ Plug 'scrooloose/nerdcommenter'
 "/ Seamless moving between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 
 "/ File icons
@@ -83,9 +79,6 @@ Plug 'tpope/vim-obsession'
 "/ Vim md editing live preview in Chrome
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 
-"/ Evernote with vim-geeknote
-" Plug 'neilagabriel/vim-geeknote'
-" Plug 'vimwiki/vimwiki'
 Plug 'chazy/dirsettings'
 
 call plug#end()
@@ -243,16 +236,6 @@ nmap <Leader>fh :History:<CR>
 nmap <Leader>rg :Rg<space>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
-
-"/
-"/ Vim Clap
-"/
-nmap ; :Clap buffers<CR>
-nmap <Leader>cg :Clap grep<CR>
-nmap <Leader>cg2 :Clap grep2<CR>
-let g:clap_layout = { 'relative': 'editor' }
-" g:clap_provider_grep_executable, Default: `'rg'`
-let g:clap_provider_grep_opts = '-HUS --no-heading --vimgrep'
 
 "/
 "/ NERDTree
@@ -676,38 +659,6 @@ let g:mkdp_browser = 'vivaldi-stable'
 " Enable spellcheck for markdown and gitcommit files
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
-
-"/
-" Evernote / Geeknote
-"/
-noremap <Leader>nt :Geeknote<cr>
-let g:GeeknoteMaxExplorerWidth=60
-noremap <Leader>ncb :GeeknoteCreateNotebook<space>
-noremap <Leader>ncn :GeeknoteCreateNote<space>
-noremap <Leader>nr :GeeknoteSync<cr>
-noremap <Leader>ns :GeeknoteSearch<space>
-
-"/
-" VimWiki
-"/
-filetype plugin on
-syntax on
-autocmd FileType vimwiki set ft=markdown
-let wiki_private = {}
-let wiki_private.path = '~/projects/wiki_private'
-let wiki_private.syntax = 'markdown'
-let wiki_private.ext = '.md'
-
-let wiki = {}
-let wiki.path = '~/projects/wiki'
-let wiki.syntax = 'markdown'
-let wiki.ext = '.md'
-
-let g:vimwiki_list = [wiki_private, wiki]
-let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_table_mappings=0
-nmap <Leader>wnl <Plug>VimwikiNextLink
-nmap <Leader>wpl <Plug>VimwikiPrevLink
 
 "--------- Macros---------"
 "Add macro for adding capitalized key to json (for angular-translate)
