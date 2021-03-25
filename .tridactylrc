@@ -68,9 +68,10 @@
  set searchurls.tru https://translate.google.com/#view=home&op=translate&sl=uk&tl=en&text=%s
 
  set searchurls.my_google https://www.google.com/search?q=%s+-inurl:ru+-inurl:.ru+-inurl:.by+-inurl:vk.com
+ set searchurls.my_duckduckgo https://duckduckgo.com/?q=%s+-site:.ru+-site:.by
  set searchurls.g https://www.google.com/search?q=%s
 
- set searchengine my_google
+ set searchengine my_duckduckgo
 
  colors shydactyl
 
