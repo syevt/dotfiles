@@ -24,6 +24,7 @@ Plug 'tpope/vim-repeat'
 Plug 'easymotion/vim-easymotion'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
+Plug 'mattn/emmet-vim'
 
 "/ Typescript
 " Plug 'prabirshrestha/async.vim'
@@ -60,7 +61,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "/ Quick comment
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
+
+"/ Annotations
+Plug 'khorser/vim-qfnotes'
 
 "/ Seamless moving between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
@@ -211,6 +215,7 @@ nmap <c-E> :CtrlPMRUFiles<cr>
 " Show hidden files
 let NERDTreeShowHidden=1
 let NERDTreeRespectWildIgnore=0
+let NERDTreeWinSize=150
 
 "---------Plugins--------------"
 "/
@@ -230,7 +235,7 @@ let g:ctrlp_user_command = 'rg -HS --no-heading --vimgrep'
 " hello macos :( without the next line it just doesn't work
 " set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
-" nmap ; :call fzf#vim#buffers()<CR>
+nmap ; :call fzf#vim#buffers()<CR>
 nmap <Leader>p :Files!<CR>
 nmap <Leader>fh :History:<CR>
 nmap <Leader>rg :Rg<space>
@@ -553,6 +558,7 @@ let g:ale_fixers = {
 \   'scss': ['prettier'],
 \}
 let g:ale_fix_on_save = 0
+let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 
 "/
 " Vim-test
@@ -601,6 +607,12 @@ autocmd User AirlineAfterInit call AirlineInit()
 "/
 " Add one space after comment symbol
 let g:NERDSpaceDelims = 1
+
+"/
+" Annotations
+"/
+let g:QFXDefaultFileName = '~/efs/projects/annotations'
+" let g:QFXUseDialog = 1
 
 "/
 " Vim-devicons
