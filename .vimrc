@@ -752,6 +752,7 @@ hi Statement guifg=#fd5773
 " hi Normal guibg=#011627
 " to make 'return's be the same color as 'null's in night-owl theme
 hi ColorColumn guibg=#181818
+hi Error guibg=none guifg=red
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
