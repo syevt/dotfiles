@@ -589,7 +589,8 @@ let test#strategy = "tslime"
 " let g:airline_theme='badwolf'
 " let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
-let g:airline_theme='onedark'
+" let g:airline_theme='onedark'
+let g:airline_theme='night_owl'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
 "let g:airline_right_sep = ''
@@ -722,7 +723,7 @@ augroup END
 
 "---------Custom Syntax Highlights---------"
 " hi htmlArg cterm=italic
-" hi Statement cterm=italic
+hi Statement guifg=#fd5773
 
 " this one makes js function args be in italic
 " hi Special cterm=italic
@@ -749,8 +750,8 @@ augroup END
 
 " highlight ColorColumn guibg=gray
 " hi Normal guibg=#011627
+" to make 'return's be the same color as 'null's in night-owl theme
 hi ColorColumn guibg=#181818
-" hi Normal guibg=#888888
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
