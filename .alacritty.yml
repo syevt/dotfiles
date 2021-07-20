@@ -10,7 +10,8 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
+  # TERM: alacritty
+  TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -96,9 +97,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: 'Operator Mono'
-    family: 'BlexMono Nerd Font Mono'
-    # family: 'Victor Mono'
+    family: 'Operator Mono'
+    # family: 'FiraCode Nerd Font Mono'
+    # family: 'VictorMono Nerd Font'
     # family: 'Iosevka Nerd Font Mono'
 
     # The `style` can be specified to pick a specific face.
@@ -116,12 +117,14 @@ font:
     #style: Bold
 
   # Italic font face
-  #italic:
+  italic:
     # Font family
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    family: 'Operator Mono'
+    # family: 'Script12 BT'
+    # family: 'VictonMono Nerd Font'
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
@@ -138,20 +141,28 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 13
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+
+  # x offset for Fira
   # offset:
-    # x: -1
+   # x: -2
   #  y: 0
+
+# x offset for Operator
+  offset:
+   x: -1
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
-  # glyph_offset:
-   # x: 30
-   # y: 3
+
+  # x glyph_offset for Fira
+  glyph_offset:
+    x: -1
+   # y: -1
 
   # Thin stroke font rendering (macOS only)
   #

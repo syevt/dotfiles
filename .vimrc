@@ -1,9 +1,9 @@
 set nocompatible
 set encoding=utf-8
 set clipboard=unnamed
-if &term =~ '256color'
-  set t_ut=
-endif
+" if &term =~ '256color'
+  " set t_ut=
+" endif
 set mouse=a
 
 call plug#begin('~/.vim/plugged')
@@ -70,6 +70,8 @@ Plug 'khorser/vim-qfnotes'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
+Plug 'charliesbot/night-owl.vim'
+" Plug 'haishanh/night-owl.vim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -137,20 +139,30 @@ set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.log,*.zip,*.exe  " Windows
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
+" if (has("termguicolors"))
+ set termguicolors
+" endif
+" if exists('+termguicolors')
+  " let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  " let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  " set termguicolors
+" endif
 
-let g:gruvbox_termcolors=256
-" let g:gruvbox_contrast_dark='medium'
-let g:gruvbox_contrast_dark='hard'
-" let g:gruvbox_contrast_dark='soft'
-set background=dark
-let gruvbox_sign_column='bg0'
-let g:gruvbox_invert_selection=0
-let g:gruvbox_italic=1
+" let g:gruvbox_termcolors=256
+" " let g:gruvbox_contrast_dark='medium'
+" let g:gruvbox_contrast_dark='hard'
+" " let g:gruvbox_contrast_dark='soft'
+" set background=dark
+" let gruvbox_sign_column='bg0'
+" let g:gruvbox_invert_selection=0
+" let g:gruvbox_italic=1
 
-" Set bindings for switching dark/light modes
-nmap <Leader>bgl :set background=light<cr>
-nmap <Leader>bgd :set background=dark<cr>
-colorscheme gruvbox
+" " Set bindings for switching dark/light modes
+" nmap <Leader>bgl :set background=light<cr>
+" nmap <Leader>bgd :set background=dark<cr>
+" colorscheme gruvbox
+
+colorscheme night-owl
 
 "---------Enable italics-----------"
 set t_ZH=[3m
@@ -575,8 +587,9 @@ let test#strategy = "tslime"
 "/
 "       ⏽
 " let g:airline_theme='badwolf'
-let g:airline_theme='deus'
+" let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts=1
 "let g:airline_left_sep = ''
 "let g:airline_right_sep = ''
@@ -613,6 +626,8 @@ let g:NERDSpaceDelims = 1
 "/
 let g:QFXDefaultFileName = '~/efs/projects/annotations'
 " let g:QFXUseDialog = 1
+" :cw     Open quickfix it if there are errors
+" :ccl    Close it
 
 "/
 " Vim-devicons
@@ -706,25 +721,36 @@ augroup autosourcing
 augroup END
 
 "---------Custom Syntax Highlights---------"
-hi htmlArg cterm=italic
-hi Statement cterm=italic
+" hi htmlArg cterm=italic
+" hi Statement cterm=italic
+
 " this one makes js function args be in italic
 " hi Special cterm=italic
 " these are TS specific: my personal preference is that 'import', 'export' and
 " 'return' should pop up from the code, so giving 'em italic explicitly
 " without changing the syntax plugin file
-hi typescriptImport cterm=italic
-hi typescriptExport cterm=italic
+
+" hi typescriptImport cterm=italic
+" hi typescriptExport cterm=italic
+
 " this is not needed being set by 'hi Statement cterm=italic
 " hi typescriptStatementKeyword ctermfg=red cterm=italic
-hi tsxAttrib cterm=italic ctermfg=magenta
-set t_ZH=[3m
-set t_ZR=[23m
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE
-hi! Blamer cterm=italic ctermfg=magenta
+
+" hi tsxAttrib cterm=italic ctermfg=magenta
+" set t_ZH=[3m
+" set t_ZR=[23m
+" hi! Normal ctermbg=NONE guibg=NONE
+" hi! NonText ctermbg=NONE guibg=NONE
+" hi! Blamer cterm=italic ctermfg=magenta
+
 " this is to make coc nvim gutter background the same as vim's
-hi! SignColumn ctermbg=NONE
+
+" hi! SignColumn ctermbg=NONE
+
+" highlight ColorColumn guibg=gray
+" hi Normal guibg=#011627
+hi ColorColumn guibg=#181818
+" hi Normal guibg=#888888
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
