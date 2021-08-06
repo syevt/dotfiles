@@ -21,7 +21,7 @@ Plug 'dyng/ctrlsf.vim'
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'easymotion/vim-easymotion'
+Plug 'phaazon/hop.nvim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
 Plug 'mattn/emmet-vim'
@@ -455,21 +455,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-" This one is for EasyMotion compatibility
-" https://github.com/neoclide/coc.nvim/issues/110
-let g:easymotion#is_active = 0
-function! EasyMotionCoc() abort
-  if EasyMotion#is_active()
-    let g:easymotion#is_active = 1
-    CocDisable
-  else
-    if g:easymotion#is_active == 1
-      let g:easymotion#is_active = 0
-      CocEnable
-    endif
-  endif
-endfunction
-autocmd TextChanged,CursorMoved * call EasyMotionCoc()
 
 "/
 "/ Vim-fugitive
@@ -512,11 +497,14 @@ silent! call repeat#set("\<Plug>Csurround", v:count)
 silent! call repeat#set("\<Plug>Yssurround", v:count)
 
 "/
-"/ EasyMotion
+"/ Hop (EasyMotion)
 "/
-nmap <Leader>s <Plug>(easymotion-s)
-nmap <Leader>z <Plug>(easymotion-s2)
-hi link EasyMotionTarget ErrorMsg
+nmap <Leader>s :HopChar1<cr>
+nmap <Leader>z :HopChar2<cr>
+
+hi link HopNextKey WarningMsg
+hi link HopNextKey1 WarningMsg
+hi link HopNextKey2 WarningMsg
 
 "/
 " Multiple cursors
