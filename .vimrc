@@ -56,6 +56,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
 
+"/ Test
+Plug 'vim-test/vim-test'
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+
 "/ Vim status line with git branch support through vim-fugitive
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -488,6 +492,24 @@ let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = '>>> '
 let g:blamer_date_format = '%d.%m.%y %H:%M'
 
+"/
+"/ Vim Ultest
+"/
+noremap <Leader>tf :Ultest<cr>
+noremap <Leader>tn :UltestNearest<cr>
+noremap <Leader>ts :UltestSummary<cr>
+nmap ]t <Plug>(ultest-next-fail)
+nmap [t <Plug>(ultest-prev-fail)
+let test#javascript#jest#options = "--color=always"
+let g:ultest_pass_sign = "✅"
+let g:ultest_fail_sign = "❌"
+let g:ultest_summary_width=80
+hi UltestPass ctermfg=Green guifg=#96F291
+hi UltestFail ctermfg=Red guifg=#F70067
+augroup UltestRunner
+    au!
+    au BufWritePost * UltestNearest
+augroup END
 
 "/
 "/ Vim-repeat
@@ -560,16 +582,6 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 0
 let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
-
-"/
-" Vim-test
-"/
-nmap <Leader>tn :TestNearest<CR>
-nmap <Leader>tf :TestFile<CR>
-nmap <Leader>ts :TestSuite<CR>
-nmap <Leader>tl :TestLast<CR>
-nmap <Leader>tv :TestVisit<CR>
-let test#strategy = "tslime"
 
 "/
 " Vim-Airline
