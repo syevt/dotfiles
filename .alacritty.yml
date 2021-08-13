@@ -97,8 +97,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: 'Operator Mono'
     # family: 'FiraCode Nerd Font Mono'
+    # family: 'Noto Sans'
+    family: 'Operator Mono'
     # family: 'VictorMono Nerd Font'
     # family: 'Iosevka Nerd Font Mono'
 
@@ -122,6 +123,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
+    # family: 'FiraCode Nerd Font Mono'
+    # family: 'Noto Sans Mono'
     family: 'Operator Mono'
     # family: 'Script12 BT'
     # family: 'VictonMono Nerd Font'
@@ -154,14 +157,15 @@ font:
 # x offset for Operator
   offset:
    x: -1
+   y: -2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upwards.
 
   # x glyph_offset for Fira
-  glyph_offset:
-    x: -1
+  # glyph_offset:
+    # x: -1
    # y: -1
 
   # Thin stroke font rendering (macOS only)
@@ -342,14 +346,17 @@ colors:
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true
 
-#cursor:
+cursor:
   # Cursor style
   #
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
+  style:
+    shape: Block
+    blinking: Always
+    blink_interval: 500
 
   # Vi mode cursor style
   #
@@ -357,15 +364,16 @@ colors:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  vi_mode_style:
+    shape: Beam
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  unfocused_hollow: true
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  thickness: 1
+  thickness: 0.3
 
 # Live config reload (changes require restart)
 #live_config_reload: true
