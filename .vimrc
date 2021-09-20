@@ -1,22 +1,15 @@
 set nocompatible
 set encoding=utf-8
 set clipboard=unnamed
-" if &term =~ '256color'
-  " set t_ut=
-" endif
 set mouse=a
 
 call plug#begin('~/.vim/plugged')
 "/ File browsing
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'qpkorr/vim-bufkill'
-
-"/ Search and replace
-Plug 'dyng/ctrlsf.vim'
 
 "/ Faster editing tools
 Plug 'tpope/vim-surround'
@@ -26,17 +19,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/loremipsum'
 Plug 'mattn/emmet-vim'
 
-"/ Typescript
-" Plug 'prabirshrestha/async.vim'
-" Plug 'prabirshrestha/vim-lsp'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'mattn/vim-lsp-settings'
-" Plug 'ryanolsonx/vim-lsp-typescript'
-
-"/ Autocompletion
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'codota/tabnine-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/coc-tailwindcss'
 
@@ -45,11 +27,13 @@ Plug 'w0rp/ale'
 
 "/ Syntax support
 Plug 'Yggdroot/indentLine'
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
+
+"/ Formatters
+Plug 'sbdchd/neoformat'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -67,15 +51,11 @@ Plug 'vim-airline/vim-airline-themes'
 "/ Quick comment
 Plug 'preservim/nerdcommenter'
 
-"/ Annotations
-Plug 'khorser/vim-qfnotes'
-
 "/ Seamless moving between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
 Plug 'charliesbot/night-owl.vim'
-" Plug 'haishanh/night-owl.vim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -131,42 +111,17 @@ set complete=.,w,b,u  "Set desired autocompletion options
 " Switch to normal mode by double ;;
 imap << <esc>
 vmap << <esc>
-"
-"---------Inserting new line without entering the insert mode-----------"
-" nmap <S-Enter> O<esc> " Shift-, Ctrl- and just Enter seem to work as the
-" mere Enter
-" nmap <cr> o<esc> "removed as it interferes opening files in quickfix by
-" Enter
 
 "---------Ignored files and folders---------"
 set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.log,*.zip,*.exe  " Windows
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
-" if (has("termguicolors"))
  set termguicolors
-" endif
-" if exists('+termguicolors')
-  " let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  " let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  " set termguicolors
-" endif
 
-" let g:gruvbox_termcolors=256
-" " let g:gruvbox_contrast_dark='medium'
-" let g:gruvbox_contrast_dark='hard'
-" " let g:gruvbox_contrast_dark='soft'
-" set background=dark
-" let gruvbox_sign_column='bg0'
-" let g:gruvbox_invert_selection=0
-" let g:gruvbox_italic=1
-
-" " Set bindings for switching dark/light modes
-" nmap <Leader>bgl :set background=light<cr>
-" nmap <Leader>bgd :set background=dark<cr>
-" colorscheme gruvbox
-
-colorscheme night-owl
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
+" colorscheme night-owl
 
 "---------Enable italics-----------"
 set t_ZH=[3m
@@ -235,17 +190,6 @@ let NERDTreeWinSize=150
 
 "---------Plugins--------------"
 "/
-"/ CtrlP
-"/
-let g:ctrlp_custom_ignore = '\tmp\node_modules\DS_Store\|git'
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:30,results:30'
-" the next is used to autoreload newly added files
-" i.e. with the help of Rails generators
-" no need to press F5
-let g:ctrlp_use_caching=0
-let g:ctrlp_user_command = 'rg -HS --no-heading --vimgrep'
-
-"/
 "/ fzf
 "/
 " hello macos :( without the next line it just doesn't work
@@ -265,43 +209,9 @@ nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
 let g:NERDTreeWinSize=35
 let NERDTreeHijackNetrw = 0
 "Change +/~ toggle dir content to arrows
-" let g:NERDTreeDirArrowExpandable = '洛'
-" let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowExpandable = ''
-" let g:NERDTreeDirArrowCollapsible = ''
-" let g:NERDTreeDirArrowCollapsible = ''
 let g:NERDTreeDirArrowCollapsible = ''
 nmap <Leader>nf :NERDTreeFind<cr>
-
-"/
-"/ CtrlSF
-"/
-nmap <Leader>vg :CtrlSF<space>
-nmap <Leader>vt :CtrlSFToggle<cr>
-let g:ctrlsf_auto_focus = {
-    \ "at": "start"
-    \ }
-let g:ctrlsf_search_mode = 'async'
-" let g:ctrlsf_auto_preview = 1
-let g:ctrlsf_extra_backend_args = {
-    \ 'rg': '-U'
-    \ }
-
-"/
-"/ Lsp
-"/
-" nmap gd :LspDefinition<cr>
-" nmap <Leader>lnd :LspNextDiagnostic<cr>
-" nmap <Leader>lpd :LspPreviousDiagnostic<cr>
-" nmap <Leader>lh :LspHover<cr>
-" nmap <Leader>la :LspCodeAction<cr>
-" let g:lsp_signs_error = {'text': ''}
-" let g:lsp_signs_warning = {'text': ''}
-" let g:lsp_signs_hint = {'text': ''}
-" let g:lsp_diagnostics_echo_cursor = 1
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 
 "/
 "/ Coc
@@ -461,6 +371,16 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "/
+"/ Neoformat
+"/
+" let g:neoformat_enabled_typescript = ['prettier']
+let g:neoformat_enabled_haskell = ['brittany']
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+"/
 "/ Vim-fugitive
 "/
 " noremap <Leader>gs :Gstatus<cr>
@@ -525,6 +445,9 @@ nmap <Leader>s :HopChar1<cr>
 nmap <Leader>z :HopChar2<cr>
 
 hi link HopNextKey WarningMsg
+" hi HopNextKey guifg=Red guibg=Grey
+" hi link HopNextKey1 ctermbg=red ctermfg=yellow
+" hi link HopNextKey2 ctermbg=red ctermfg=yellow
 hi link HopNextKey1 WarningMsg
 hi link HopNextKey2 WarningMsg
 
@@ -576,12 +499,16 @@ let g:ale_statusline_format=[' %d', ' %d', 'ok']
 nmap <Leader>afp :ALEFix prettier<cr>
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
+\   'typescript': ['prettier'],
 \   'html': ['prettier'],
 \   'css': ['prettier'],
 \   'scss': ['prettier'],
 \}
-let g:ale_fix_on_save = 0
+" let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
+let g:ale_cursor_detail=1
+let g:ale_floating_preview=1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
 "/
 " Vim-Airline
@@ -589,16 +516,12 @@ let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 "       ⏽
 " let g:airline_theme='badwolf'
 " let g:airline_theme='deus'
-" let g:airline_theme='gruvbox'
+let g:airline_theme='gruvbox'
 " let g:airline_theme='onedark'
-let g:airline_theme='night_owl'
+" let g:airline_theme='night_owl'
 let g:airline_powerline_fonts=1
-"let g:airline_left_sep = ''
-"let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled=1
-"let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
-"let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#fnamemod = ':p:~'
 let g:airline#extensions#tabline#fnamecollapse = 0
@@ -624,33 +547,17 @@ autocmd User AirlineAfterInit call AirlineInit()
 let g:NERDSpaceDelims = 1
 
 "/
-" Annotations
-"/
-let g:QFXDefaultFileName = '~/efs/projects/annotations'
-" let g:QFXUseDialog = 1
-" :cw     Open quickfix it if there are errors
-" :ccl    Close it
-
-"/
 " Vim-devicons
 "/
-"
 let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-"
 let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
 let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-" let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:DevIconsDefaultFolderOpenSymbol = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['package.json'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gemfile'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['gemfile.lock'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['config.ru'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['rakefile'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
@@ -659,23 +566,15 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 " Indent lines
 "/
 
-" let g:indentLine_char='▏'
-" let g:indentLine_char='│'
 " let g:indentLine_char_list = ['', '', '﫦', '⏽', '│', '|', '¦', '┆', '┊', '', '†', '‡', '', '', '', '', '', '', '', '', '', '']
-" let g:indentLine_char_list = ['│', '|', '¦','']
 let g:indentLine_char_list = ['₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₀']
-" let g:indentLine_char_list = ['⏽', '', '﫦', '']
 " not to let vim-json hide quotes in the current line
 let g:indentLine_concealcursor=""
 
-" this is for kinda rainbow indent plugin 'nathanaelkane/vim-indent-guides'
-" set ts=2 sw=2 et
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_start_level = 2
 "/
 " Nclipper
 "/
-let g:nclipper_nomap = 1
+" let g:nclipper_nomap = 1
 vmap <c-Y> <Plug>(nclipper-with-filename)
 
 "/
@@ -689,32 +588,6 @@ let g:mkdp_browser = 'vivaldi-stable'
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
 
-"--------- Macros---------"
-"Add macro for adding capitalized key to json (for angular-translate)
-"making this
-"some_key
-"to this
-"SOME_KEY": \"", (slash is for escaping inside .vimrc)
-" let @k = 'gUiwi";;Ea": "",;;h'
-" without upper case
-let @k = 'Bi";;Ea": "",;;h'
-
-"Macro for adding a corresponding translation key in a view
-"making this
-"some_key
-"to this
-"{{ 'SOME_KEY' | translate }}
-" let @t = \"gUiwi{{ ';;Ea' | translate }};;"
-" without upper case
-let @t = "Bi{{';;Ea' | translate}};;"
-
-"Macro for adding i18n translation for a key making
-"soMe_KEy
-"to
-"= t('.some_key')
-let @n = "guiwBXi= t('.;;A');;"
-
-
 "---------Auto-Commands---------"
 " Automatically source the Vimrc file on save.
 augroup autosourcing
@@ -723,37 +596,23 @@ augroup autosourcing
 augroup END
 
 "---------Custom Syntax Highlights---------"
-" hi htmlArg cterm=italic
-hi Statement guifg=#fd5773
+" 'gui=italic' or 'cterm=italic'
+" 'guifg', 'guibg', 'ctermfg', 'ctermbg'
 
-" this one makes js function args be in italic
-" hi Special cterm=italic
-" these are TS specific: my personal preference is that 'import', 'export' and
+" This is for `gruvbox`, comment out for any other theme. 'night-owl',
+" for instance, have those italics out of the box.
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+hi htmlArg gui=italic
+
 " 'return' should pop up from the code, so giving 'em italic explicitly
 " without changing the syntax plugin file
+hi Statement gui=italic guifg=red
 
-" hi typescriptImport cterm=italic
-" hi typescriptExport cterm=italic
-
-" this is not needed being set by 'hi Statement cterm=italic
-" hi typescriptStatementKeyword ctermfg=red cterm=italic
-
-" hi tsxAttrib cterm=italic ctermfg=magenta
-" set t_ZH=[3m
-" set t_ZR=[23m
-" hi! Normal ctermbg=NONE guibg=NONE
-" hi! NonText ctermbg=NONE guibg=NONE
-" hi! Blamer cterm=italic ctermfg=magenta
-
-" this is to make coc nvim gutter background the same as vim's
-
-" hi! SignColumn ctermbg=NONE
-
-" highlight ColorColumn guibg=gray
-" hi Normal guibg=#011627
-" to make 'return's be the same color as 'null's in night-owl theme
-hi ColorColumn guibg=#181818
-hi Error guibg=none guifg=red
+hi typescriptImport gui=italic guifg=#458588
+hi typescriptExport gui=italic guifg=#458588
+hi tsxAttrib gui=italic guifg=#fabd2f
+hi Comment gui=italic
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
