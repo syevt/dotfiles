@@ -120,6 +120,8 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
  set termguicolors
 
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_bold=0
+let g:gruvbox_sign_column='bg0'
 colorscheme gruvbox
 " colorscheme night-owl
 
@@ -613,14 +615,6 @@ hi typescriptImport gui=italic guifg=#458588
 hi typescriptExport gui=italic guifg=#458588
 hi tsxAttrib gui=italic guifg=#fabd2f
 hi Comment gui=italic
-
-" had to set it manually :-| for ALE and GitGutter
-hi ALEErrorSign guibg=none guifg=red
-hi ALEWarningSign guibg=#1d2021 guifg=yellow
-hi GitGutterAdd    guibg=#1d2021
-hi GitGutterChange guibg=#1d2021
-hi GitGutterDelete guibg=#1d2021
-
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " Notes and Tips
