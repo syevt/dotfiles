@@ -599,8 +599,9 @@ augroup END
 " 'gui=italic' or 'cterm=italic'
 " 'guifg', 'guibg', 'ctermfg', 'ctermbg'
 
-" This is for `gruvbox`, comment out for any other theme. 'night-owl',
-" for instance, have those italics out of the box.
+" This is for `gruvbox`, comment out for any other theme. 'night-owl', for
+" instance, have those italics out of the box and doesn't need the tweaks
+" below.
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 hi htmlArg gui=italic
 
@@ -612,6 +613,14 @@ hi typescriptImport gui=italic guifg=#458588
 hi typescriptExport gui=italic guifg=#458588
 hi tsxAttrib gui=italic guifg=#fabd2f
 hi Comment gui=italic
+
+" had to set it manually :-| for ALE and GitGutter
+hi ALEErrorSign guibg=none guifg=red
+hi ALEWarningSign guibg=#1d2021 guifg=yellow
+hi GitGutterAdd    guibg=#1d2021
+hi GitGutterChange guibg=#1d2021
+hi GitGutterDelete guibg=#1d2021
+
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " Notes and Tips
@@ -630,7 +639,6 @@ hi Comment gui=italic
 " zM -> close all open folds
 " zr -> decrease fold level by 1
 " zR -> decrease fold level to 0 (all folds open)
-"
 "
 " vim-surround
 " "Hello world!" -> cs"' -> 'Hello world!'
