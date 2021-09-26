@@ -122,6 +122,7 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold=0
 let g:gruvbox_sign_column='bg0'
+let g:gruvbox_invert_selection=0
 colorscheme gruvbox
 " colorscheme night-owl
 
@@ -508,8 +509,8 @@ let g:ale_fixers = {
 \}
 " let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
-let g:ale_cursor_detail=1
-let g:ale_floating_preview=1
+" let g:ale_cursor_detail=1
+" let g:ale_floating_preview=1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
 "/
