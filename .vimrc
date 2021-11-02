@@ -509,8 +509,9 @@ let g:ale_fixers = {
 \}
 " let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
-" let g:ale_cursor_detail=1
-" let g:ale_floating_preview=1
+let g:ale_cursor_detail=1
+let g:ale_close_preview_on_insert=1
+let g:ale_floating_preview=1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
 "/
@@ -598,6 +599,12 @@ augroup autosourcing
   autocmd BufWritePost .vimrc source %
 augroup END
 
+"---------Using night-owl theme---------"
+" specifically for Markdown
+" doesn't wok :(
+" autocmd BufEnter * colorscheme default
+" autocmd BufEnter *.md colorscheme night-owl
+
 "---------Custom Syntax Highlights---------"
 " 'gui=italic' or 'cterm=italic'
 " 'guifg', 'guibg', 'ctermfg', 'ctermbg'
@@ -617,6 +624,7 @@ hi typescriptExport gui=italic guifg=#458588
 hi tsxAttrib gui=italic guifg=#fabd2f
 hi Comment gui=italic
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+hi Normal guibg=NONE ctermbg=NONE
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
