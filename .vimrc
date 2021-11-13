@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
 Plug 'qpkorr/vim-bufkill'
 
 "/ Faster editing tools
@@ -198,9 +199,15 @@ let NERDTreeWinSize=150
 " hello macos :( without the next line it just doesn't work
 " set rtp+=/usr/local/opt/fzf
 set rtp+=~/.fzf
-nmap ; :call fzf#vim#buffers()<CR>
-nmap <Leader>p :Files!<CR>
-nmap <Leader>fh :History:<CR>
+" nmap ; :call fzf#vim#buffers()<CR>
+nmap ; :FzfPreviewAllBuffersRpc<CR>
+
+" nmap <Leader>p :Files!<CR>
+nmap <Leader>p :FzfPreviewProjectFilesRpc<CR>
+nmap <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
+nmap <Leader>prw :FzfPreviewProjectMrwFilesRpc<CR>
+" nmap <Leader>fh :History:<CR>
+nmap <Leader>fh :FzfPreviewCommandPaletteRpc<CR>
 nmap <Leader>rg :Rg<space>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
@@ -387,7 +394,8 @@ augroup END
 "/ Vim-fugitive
 "/
 " noremap <Leader>gs :Gstatus<cr>
-noremap <Leader>gs :Git<cr>
+" noremap <Leader>gs :Git<cr>
+noremap <Leader>gs :FzfPreviewGitStatusRpc<cr>
 noremap <Leader>gco :Git checkout<space>
 noremap <Leader>gb :Gblame<cr>
 noremap <Leader>gd :Gvdiff<Space>
