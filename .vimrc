@@ -633,6 +633,12 @@ hi tsxAttrib gui=italic guifg=#fabd2f
 hi Comment gui=italic
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 hi Normal guibg=NONE ctermbg=NONE
+" hi GruvboxBg0 guibg=NONE ctermbg=NONE
+hi GruvboxGreenSign guibg=NONE ctermbg=NONE
+hi GruvboxAquaSign guibg=NONE ctermbg=NONE
+hi GruvboxRedSign guibg=NONE ctermbg=NONE
+hi GruvboxYellowSign guibg=NONE ctermbg=NONE
+hi GruvboxBlueSign guibg=NONE ctermbg=NONE
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
