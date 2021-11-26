@@ -709,22 +709,45 @@ end)
 -- client.connect_signal("mouse::enter", function(c)
     -- c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
-
-client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
 -- beautiful.useless_gap = 5
 -- beautiful.wibar_bg = "#ff0000"
 -- beautiful.wibar_stretch = false
 -- beautiful.bg_normal = "#ff000011"
 
-awful.spawn.with_shell("picom --vsync --backend=glx")
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+screen.connect_signal("arrange", function (s)
+    local only_one = #s.tiled_clients == 1
+    for _, c in pairs(s.clients) do
+        if only_one or c.class == "Gis-weather.py" then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
+
+-- awful.spawn.with_shell("picom --vsync --backend=glx")
+-- awful.spawn.with_shell("picom --vsync --backend=xrender")
+awful.spawn.with_shell("picom --config  $HOME/.config/awesome/my_picom.conf")
 awful.spawn.with_shell("setxkbmap us -variant dvorak")
 awful.spawn.with_shell("setxkbmap -option caps:swapescape")
 awful.spawn.with_shell("xset -dpms && xset s off")
+awful.spawn.with_shell("nm-applet")
 awful.spawn.with_shell("easystroke")
 awful.spawn.with_shell("flameshot")
 awful.spawn.with_shell("indicator-bulletin")
 awful.spawn.with_shell("workrave")
 awful.spawn.with_shell("gis-weather")
+
+-- run nm-applet
+-- #run caffeine
+-- run pamac-tray
+-- run variety
+-- run xfce4-power-manager
+-- run blueberry-tray
+-- run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+-- run numlockx on
+-- run volumeicon
 -- }}}
