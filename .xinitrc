@@ -12,6 +12,3 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 xrdb -merge ~/.Xresources
-
-# `$ xrandr` to get the names and values, `--left-of` means `to the left of this one`
-xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 60.00 --output VGA-1 --mode 1360x768 --rate 60.02 --left-of HDMI-1
