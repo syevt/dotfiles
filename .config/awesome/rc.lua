@@ -459,17 +459,17 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"}),
     awful.key({ "Control" }, "7",
         function ()
-          awful.spawn.with_shell("setxkbmap -layout us -variant dvorak")
+          awful.spawn.with_shell("setxkbmap -layout us -variant dvorak && setxkbmap -option caps:swapescape")
         end ,
         {description = "switch keyboard layout to us dvorak", group = "client"}),
     awful.key({ "Control" }, "8",
         function ()
-          awful.spawn.with_shell("setxkbmap ua")
+          awful.spawn.with_shell("setxkbmap ua && setxkbmap -option caps:swapescape")
         end ,
         {description = "switch keyboard layout to uk", group = "client"}),
     awful.key({ "Control" }, "9",
         function ()
-          awful.spawn.with_shell("setxkbmap ru")
+          awful.spawn.with_shell("setxkbmap ru && setxkbmap -option caps:swapescape")
         end ,
         {description = "switch keyboard layout to ru", group = "client"})
 )
@@ -728,19 +728,23 @@ screen.connect_signal("arrange", function (s)
     end
 end)
 
--- awful.spawn.with_shell("picom --vsync --backend=glx")
--- awful.spawn.with_shell("picom --vsync --backend=xrender")
-awful.spawn.with_shell("picom --config  $HOME/.config/awesome/my_picom.conf")
-awful.spawn.with_shell("xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 60.00 --output VGA-1 --mode 1360x768 --rate 60.02 --left-of HDMI-1")
-awful.spawn.with_shell("setxkbmap us -variant dvorak")
-awful.spawn.with_shell("setxkbmap -option caps:swapescape")
-awful.spawn.with_shell("xset -dpms && xset s off")
-awful.spawn.with_shell("nm-applet")
-awful.spawn.with_shell("easystroke")
-awful.spawn.with_shell("flameshot")
-awful.spawn.with_shell("indicator-bulletin")
-awful.spawn.with_shell("workrave")
-awful.spawn.with_shell("gis-weather")
+commands = {
+  "picom --config  $HOME/.config/awesome/my_picom.conf",
+  "xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 60.00 --output VGA-1 --mode 1360x768 --rate 60.02 --left-of HDMI-1",
+  "setxkbmap us -variant dvorak",
+  "setxkbmap -option caps:swapescape",
+  "xset -dpms && xset s off",
+  "nm-applet",
+  "easystroke",
+  "flameshot",
+  "indicator-bulletin",
+  "workrave",
+  "gis-weather"
+}
+
+for _, command in ipairs(commands) do
+  awful.spawn.with_shell(command)
+end
 
 -- run nm-applet
 -- #run caffeine
