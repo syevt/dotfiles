@@ -137,6 +137,7 @@ mymainmenu = awful.menu({ items = {
     { "Media", mymedia, newaita_cats_path .. "org.gnome.Podcasts.svg" },
     { "Docs", mydocs, newaita_cats_path .. "text-editor.svg" },
     { "open terminal", terminal, newaita_cats_path .. "tilix.svg" },
+    { "Solitaire", "kpat", newaita_path .. "kpatience.svg" },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end },
   }
@@ -233,10 +234,6 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons,
-        -- style   = {
-          -- shape = gears.shape.powerline,
-          -- bg_normal = '#00ff0055',
-        -- },
     }
 
     -- Create a tasklist widget
@@ -244,10 +241,7 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
-        -- style = {
-          -- opacity = 0.95,
-          -- bg_normal = '#00ff00',
-        -- }
+        bg_focus = "#242424"
     }
 
     -- Create the wibox
@@ -256,7 +250,7 @@ awful.screen.connect_for_each_screen(function(s)
       screen = s,
       width = '99%',
       border_width = dpi(3),
-      opacity = 0.95,
+      opacity = 0.9,
       shape = function(cr, w, h)
         gears.shape.rounded_rect(cr, w, h, 8)
       end,
@@ -607,10 +601,42 @@ awful.rules.rules = {
 
     -- Set no border for gis-weather
     -- { rule = { type = "utility" },
+
+    { rule = { class = "firefox" },
+      properties = {
+        tag = "2"
+    } },
+
+    { rule = { class = "Slack" },
+      properties = {
+        tag = "3"
+    } },
+
+    { rule = { class = "Microsoft Teams - Preview" },
+      properties = {
+        tag = "4"
+    } },
+
     { rule = { class = "Gis-weather.py" },
       properties = {
         border_width = 0,
-        -- tag = 5
+        tag = "5"
+    } },
+
+    { rule = { class = "Audacious" },
+      properties = {
+        border_width = 0,
+        tag = "5"
+    } },
+
+    { rule = { class = "zoom" },
+      properties = {
+        tag = "6"
+    } },
+
+    { rule = { class = "Google-chrome" },
+      properties = {
+        tag = "9"
     } },
 
     -- Set no border for the maximized windows
