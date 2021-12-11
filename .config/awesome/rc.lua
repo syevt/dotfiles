@@ -15,7 +15,12 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local dpi   = require("beautiful.xresources").apply_dpi
--- local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -108,6 +113,7 @@ myinet = {
   { "Chrome", "google-chrome-stable", newaita_path .. "google-chrome.svg" },
   { "Falkon", "falkon", newaita_path .. "falkon.svg" },
   { "Qbittorrent", "qbittorrent", newaita_path .. "qbittorrent.svg" },
+  { "Postman", "postman", newaita_path .. "postman.svg" },
 }
 
 mymeetings = {
@@ -136,8 +142,9 @@ mymainmenu = awful.menu({ items = {
     { "Messengers", mymessengers, newaita_cats_path .. "pidgin.svg" },
     { "Media", mymedia, newaita_cats_path .. "org.gnome.Podcasts.svg" },
     { "Docs", mydocs, newaita_cats_path .. "text-editor.svg" },
-    { "open terminal", terminal, newaita_cats_path .. "tilix.svg" },
+    { "Alacritty", terminal, newaita_cats_path .. "tilix.svg" },
     { "Solitaire", "kpat", newaita_path .. "kpatience.svg" },
+    { "Dolphin", "dolphin", newaita_path .. "system-file-manager.svg" },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end },
   }
@@ -156,6 +163,20 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+
+local cw = calendar_widget({
+    -- theme = 'outrun',
+    placement = 'top_right',
+    -- start_sunday = true,
+    radius = 8,
+    previous_month_button = 1,
+    next_month_button = 3,
+})
+
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -249,7 +270,7 @@ awful.screen.connect_for_each_screen(function(s)
       position = "top",
       screen = s,
       width = '99%',
-      border_width = dpi(3),
+      border_width = dpi(2),
       opacity = 0.9,
       shape = function(cr, w, h)
         gears.shape.rounded_rect(cr, w, h, 8)
@@ -263,33 +284,45 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             -- mylauncher,
             s.mytaglist,
-            -- weather_widget({
-              -- api_key='bdd9af221e866a77b8a7160eb8a3a33a',
-              -- coordinates = {48.4679, 35.0413},
-              -- time_format_12h = true,
-              -- units = 'imperial',
-              -- both_units_widget = true,
-              -- font_name = 'Carter One',
-              -- icons = 'VitalyGorbachev',
-              -- icons_extension = '.svg',
-              -- show_hourly_forecast = true,
-              -- show_daily_forecast = true,
-            -- }),
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            -- wibox.widget.textbox("Some 2 text"),
             mykeyboardlayout,
+            weather_widget({
+              api_key='ef1b4bda42764ceb3d76460a00b02117',
+              coordinates = {48.4679,35.0413},
+              -- time_format_12h = true,
+              -- units = 'imperial',
+              -- both_units_widget = true,
+              -- font_name = 'PT Sans Narrow',
+              icons = 'VitalyGorbachev',
+              -- for VitalyGorbachev's icons you need to set `svg`
+              icons_extension = '.svg',
+              -- icons = 'weather-underground-icons',
+              show_hourly_forecast = true,
+              show_daily_forecast = true,
+            }),
+            ram_widget{
+              color_used = beautiful.bg_normal
+            },
+            cpu_widget(),
+            -- wibox.widget.textbox("Some 3 text"),
             wibox.widget.systray(),
             mytextclock,
+            volume_widget{
+              -- widget_type = 'arc'
+              widget_type = 'icon_and_text'
+              -- widget_type = 'icon'
+              -- widget_type = 'horizontal_bar'
+            },
+            logout_menu_widget(),
             s.mylayoutbox,
         },
     }
 end)
-
--- awful.wibar.opacity = 0.52
--- }}}
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
@@ -639,6 +672,12 @@ awful.rules.rules = {
         tag = "9"
     } },
 
+    -- { rule = { class = "dolphin" },
+      -- properties = {
+        -- screen = "HDMI-1",
+        -- tag = "7"
+    -- } },
+
     -- Set no border for the maximized windows
     -- no luck...
     { rule = { maximized = true},
@@ -757,8 +796,7 @@ end)
 commands = {
   "picom --config  $HOME/.config/awesome/my_picom.conf",
   "xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 60.00 --output VGA-1 --mode 1360x768 --rate 60.02 --left-of HDMI-1",
-  "setxkbmap us -variant dvorak",
-  "setxkbmap -option caps:swapescape",
+  "setxkbmap us -variant dvorak && setxkbmap -option caps:swapescape",
   "xset -dpms && xset s off",
   "nm-applet",
   "easystroke",
