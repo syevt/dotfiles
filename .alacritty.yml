@@ -97,9 +97,9 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: 'FiraCode Nerd Font Mono'
     # family: 'Noto Sans'
     family: 'Operator Mono'
+    # family: 'FiraCode Nerd Font Mono'
     # family: 'VictorMono Nerd Font'
     # family: 'Iosevka Nerd Font Mono'
 
@@ -130,7 +130,7 @@ font:
     # family: 'VictonMono Nerd Font'
 
     # The `style` can be specified to pick a specific face.
-    #style: Italic
+    # style: Italic
 
   # Bold italic font face
   #bold_italic:
@@ -151,13 +151,13 @@ font:
 
   # x offset for Fira
   # offset:
-   # x: -2
-  #  y: 0
+   # x: -1
+   # y: -3
 
 # x offset for Operator
   offset:
-   x: -1
-   y: -2
+    x: -1
+    y: -2
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -165,8 +165,8 @@ font:
 
   # x glyph_offset for Fira
   # glyph_offset:
-    # x: -1
-   # y: -1
+    # x: 0
+    # y: 0
 
   # Thin stroke font rendering (macOS only)
   #
@@ -335,7 +335,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-  background_opacity: 0.7
+background_opacity: 0.95
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
