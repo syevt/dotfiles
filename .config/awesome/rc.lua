@@ -20,6 +20,7 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+local mpris_widget = require("awesome-wm-widgets.mpris-widget")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -74,9 +75,9 @@ awful.screen.set_auto_dpi_enabled( true )
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    -- awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile,
+    -- awful.layout.suit.floating,
+    awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
@@ -84,7 +85,7 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -144,7 +145,7 @@ mymainmenu = awful.menu({ items = {
     { "Docs", mydocs, newaita_cats_path .. "text-editor.svg" },
     { "Alacritty", terminal, newaita_cats_path .. "tilix.svg" },
     { "Solitaire", "kpat", newaita_path .. "kpatience.svg" },
-    { "Dolphin", "dolphin", newaita_path .. "system-file-manager.svg" },
+    { "Thunar", "thunar", newaita_path .. "system-file-manager.svg" },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end },
   }
@@ -269,6 +270,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibox = awful.wibar({
       position = "top",
       screen = s,
+      -- screen = 'HDMI-0',
       width = '99%',
       border_width = dpi(2),
       opacity = 0.9,
@@ -293,7 +295,11 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             weather_widget({
               api_key='ef1b4bda42764ceb3d76460a00b02117',
-              coordinates = {48.4679,35.0413},
+              -- api_key = readFile(os.getenv('HOME' .. '/owm_api_key')),
+              -- api_key = readAll(os.getenv('HOME' .. '/owm_api_key')),
+              -- api_key = os.getenv('OWM_API_KEY'),
+              -- api_key = owm_api_key,
+              coordinates = {48.4323,35.0255},
               -- time_format_12h = true,
               -- units = 'imperial',
               -- both_units_widget = true,
@@ -304,20 +310,25 @@ awful.screen.connect_for_each_screen(function(s)
               -- icons = 'weather-underground-icons',
               show_hourly_forecast = true,
               show_daily_forecast = true,
+              timeout = 600,
             }),
-            ram_widget{
-              color_used = beautiful.bg_normal
-            },
-            cpu_widget(),
-            -- wibox.widget.textbox("Some 3 text"),
-            wibox.widget.systray(),
-            mytextclock,
+            -- ram_widget{
+              -- color_used = beautiful.bg_normal
+            -- },
+            -- cpu_widget(),
             volume_widget{
-              -- widget_type = 'arc'
-              widget_type = 'icon_and_text'
-              -- widget_type = 'icon'
+              -- widget_type = 'arc',
+              thickness = 1,
+              -- size = 25,
+              -- widget_type = 'icon_and_text'
+              widget_type = 'icon'
               -- widget_type = 'horizontal_bar'
             },
+            mpris_widget(),
+            -- wibox.widget.textbox("Some 3 text"),
+            -- wibox.widget.textbox(os.getenv('SHELL')),
+            wibox.widget.systray(),
+            mytextclock,
             logout_menu_widget(),
             s.mylayoutbox,
         },
@@ -614,6 +625,7 @@ awful.rules.rules = {
           "Gpick",
           "Kruler",
           "MessageWin",  -- kalarm.
+          "Nm-openconnect-auth-dialog",
           "Sxiv",
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
@@ -795,15 +807,15 @@ end)
 
 commands = {
   "picom --config  $HOME/.config/awesome/my_picom.conf",
-  "xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 60.00 --output VGA-1 --mode 1360x768 --rate 60.02 --left-of HDMI-1",
+  "xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 60.00 --output VGA-0 --mode 1360x768 --rate 60.02 --left-of HDMI-0",
   "setxkbmap us -variant dvorak && setxkbmap -option caps:swapescape",
   "xset -dpms && xset s off",
   "nm-applet",
   "easystroke",
   "flameshot",
-  "indicator-bulletin",
   "workrave",
-  "gis-weather"
+  "gis-weather",
+  "indicator-bulletin",
 }
 
 for _, command in ipairs(commands) do
