@@ -44,6 +44,7 @@ Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'APZelos/blamer.nvim'
 
 "/ Test
 Plug 'vim-test/vim-test'
@@ -421,9 +422,21 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 "/ Git signs
 "/
 lua require('gitsigns').setup({
-\  current_line_blame = true,
-\  numhl = true,
+\  current_line_blame = false,
+\  numhl = false,
 \})
+
+"/
+"/ Git blamer
+"/
+noremap <Leader>gbt :BlamerToggle<cr>
+let g:blamer_template = '<author>, <committer-time> - <summary>'
+let g:blamer_enabled = 1
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_show_in_insert_modes = 0
+let g:blamer_prefix = '>>> '
+let g:blamer_date_format = '%d.%m.%y %H:%M'
+
 
 "/
 "/ Vim-repeat
