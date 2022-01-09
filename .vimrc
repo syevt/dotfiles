@@ -32,18 +32,22 @@ Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
+" Plug 'autozimu/LanguageClient-neovim', {
+    " \ 'branch': 'next',
+    " \ 'do': './install.sh'
+    " \ }
 
 "/ Formatters
 Plug 'sbdchd/neoformat'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'APZelos/blamer.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 "/ Test
 Plug 'vim-test/vim-test'
-Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+" Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 
 "/ Vim status line with git branch support through vim-fugitive
 Plug 'vim-airline/vim-airline'
@@ -384,7 +388,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "/ Neoformat
 "/
 " let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_enabled_haskell = ['brittany']
+let g:neoformat_enabled_haskell = ['hindent']
 augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
@@ -406,6 +410,7 @@ noremap <Leader>gwf :Gwrite!<cr>
 noremap <Leader>gr :Gread<cr>
 noremap <Leader>ge :Gedit<cr>
 noremap <Leader>gu :Gdiffupdate<cr>
+noremap <Leader>gh :0Gclog<cr>
 autocmd User fugitive 
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
@@ -413,34 +418,12 @@ autocmd User fugitive
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
 "/
-"/ Git blamer
+"/ Git signs
 "/
-noremap <Leader>gbt :BlamerToggle<cr>
-let g:blamer_template = '<author>, <committer-time> - <summary>'
-let g:blamer_enabled = 1
-let g:blamer_show_in_visual_modes = 0
-let g:blamer_show_in_insert_modes = 0
-let g:blamer_prefix = '>>> '
-let g:blamer_date_format = '%d.%m.%y %H:%M'
-
-"/
-"/ Vim Ultest
-"/
-noremap <Leader>tf :Ultest<cr>
-noremap <Leader>tn :UltestNearest<cr>
-noremap <Leader>ts :UltestSummary<cr>
-nmap ]t <Plug>(ultest-next-fail)
-nmap [t <Plug>(ultest-prev-fail)
-let test#javascript#jest#options = "--color=always"
-let g:ultest_pass_sign = "✅"
-let g:ultest_fail_sign = "❌"
-let g:ultest_summary_width=80
-hi UltestPass ctermfg=Green guifg=#96F291
-hi UltestFail ctermfg=Red guifg=#F70067
-augroup UltestRunner
-    au!
-    au BufWritePost * UltestNearest
-augroup END
+lua require('gitsigns').setup({
+\  current_line_blame = true,
+\  numhl = true,
+\})
 
 "/
 "/ Vim-repeat
@@ -461,6 +444,7 @@ hi link HopNextKey WarningMsg
 " hi link HopNextKey2 ctermbg=red ctermfg=yellow
 hi link HopNextKey1 WarningMsg
 hi link HopNextKey2 WarningMsg
+lua require'hop'.setup()
 
 "/
 " Multiple cursors
@@ -514,8 +498,9 @@ let g:ale_fixers = {
 \   'html': ['prettier'],
 \   'css': ['prettier'],
 \   'scss': ['prettier'],
+\   'haskell': ['brittany', 'hindent'],
 \}
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 let g:ale_cursor_detail=1
 let g:ale_close_preview_on_insert=1
@@ -530,6 +515,7 @@ let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 " let g:airline_theme='deus'
 let g:airline_theme='gruvbox'
 " let g:airline_theme='onedark'
+" let g:airline_theme='base16'
 " let g:airline_theme='night_owl'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
