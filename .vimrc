@@ -496,8 +496,8 @@ hi clear SignColumn
 "<Ctrl-Q>u<4 unicode symbols>, these are 2326, 25cf, 25b6
 "⌦ ● ▶ ⚠ ⨉      ⌧ ⌦ ╳          
 
-nmap <silent> <A-k> <Plug>(ale_previous_wrap)
-nmap <silent> <A-j> <Plug>(ale_next_wrap)
+nmap <silent> [l <Plug>(ale_previous_wrap)
+nmap <silent> ]l <Plug>(ale_next_wrap)
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
 let g:ale_statusline_format=[' %d', ' %d', 'ok']
@@ -505,6 +505,7 @@ let g:ale_statusline_format=[' %d', ' %d', 'ok']
 " \  'javascript': ['xo'],
 " \}
 nmap <Leader>afp :ALEFix prettier<cr>
+nmap <Leader>afe :ALEFix eslint<cr>
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
@@ -514,7 +515,7 @@ let g:ale_fixers = {
 \   'haskell': ['brittany', 'hindent'],
 \}
 let g:ale_fix_on_save = 1
-let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
+" let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 let g:ale_cursor_detail=1
 let g:ale_close_preview_on_insert=1
 let g:ale_floating_preview=1
