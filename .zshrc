@@ -10,7 +10,7 @@ export ZSH=~/.oh-my-zsh
 # ZSH_THEME="agnoster"
 
 # ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="powerlevel10k/powerlevel01k"
+# ZSH_THEME="powerlevel10k/powerlevel01k"
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir rbenv nodeenv rspec_stats vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vi_mode vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs time)
@@ -149,8 +149,12 @@ eval "$(nodenv init -)"
 # export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='--layout reverse'
+export FZF_PREVIEW_PREVIEW_BAT_THEME='gruvbox-dark'
 source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
-export BAT_THEME="gruvbox"
+export BAT_THEME="gruvbox-dark"
 source ~/.bash_aliases
 source ~/.tmux/gruvbox-dark.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/fzf/key-bindings.zsh
+
+[ -f "/home/syevt/.ghcup/env" ] && source "/home/syevt/.ghcup/env" # ghcup-env

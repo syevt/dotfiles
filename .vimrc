@@ -207,6 +207,8 @@ set rtp+=~/.fzf
 " nmap ; :call fzf#vim#buffers()<CR>
 nmap ; :FzfPreviewAllBuffersRpc<CR>
 
+let g:fzf_preview_command = 'bat --color=always --plain {-1}'
+let g:fzf_preview_use_dev_icons = 1
 " nmap <Leader>p :Files!<CR>
 nmap <Leader>p :FzfPreviewProjectFilesRpc<CR>
 nmap <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
@@ -425,6 +427,7 @@ lua require('gitsigns').setup({
 \  current_line_blame = false,
 \  numhl = false,
 \})
+noremap <Leader>gph :Gitsigns preview_hunk<cr>
 
 "/
 "/ Git blamer
@@ -505,16 +508,19 @@ let g:ale_statusline_format=[' %d', ' %d', 'ok']
 " \  'javascript': ['xo'],
 " \}
 nmap <Leader>afp :ALEFix prettier<cr>
+nmap <Leader>afb :ALEFix brittany<cr>
+nmap <Leader>afh :ALEFix hindent<cr>
 nmap <Leader>afe :ALEFix eslint<cr>
-let g:ale_fixers = {
+let b:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
 \   'html': ['prettier'],
 \   'css': ['prettier'],
 \   'scss': ['prettier'],
-\   'haskell': ['brittany', 'hindent'],
+\   'haskell': ['hindent', 'brittany'],
 \}
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save=0
+let g:ale_fix_on_save_ignore=1
 " let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 let g:ale_cursor_detail=1
 let g:ale_close_preview_on_insert=1

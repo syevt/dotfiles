@@ -18,9 +18,9 @@ tool = vimdiff
 [diff]
   tool = vimdiff
 [core]
-  pager = delta -w=variable --theme='gruvbox-dark'
+  pager = delta
+  ; pager = delta -w=variable --theme='gruvbox-dark'
 [interactive]
     diffFilter = delta --color-only
 [delta]
 line-numbers = true
-; side-by-side = true
