@@ -20,8 +20,13 @@ local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
-local mpris_widget = require("awesome-wm-widgets.mpris-widget")
+local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+-- local mpris_widget = require("awesome-wm-widgets.mpris-widget")
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+-- local keyboard_layout = require("keyboard_layout")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -99,8 +104,8 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-newaita_path =  "/home/syevt/.local/share/icons/Newaita-dark/apps/64/"
-newaita_cats_path =  "/home/syevt/.local/share/icons/Newaita-dark/categories/64/"
+newaita_path =  "/usr/share/icons/Newaita-dark/apps/64/"
+newaita_cats_path =  "/usr/share/icons/Newaita-dark/categories/64/"
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
    { "manual", terminal .. " -e man awesome", newaita_path .. "viber.svg" },
@@ -125,6 +130,8 @@ mymeetings = {
 mymessengers = {
   { "Slack", "slack", newaita_path .. "slack.svg" },
   { "Viber", "viber", newaita_path .. "viber.svg" },
+  { "Telegram", "telegram-desktop", newaita_path .. "telegram.svg" },
+  { "Signal", "signal-desktop", newaita_path .. "signal-desktop.svg" },
 }
 
 mymedia = {
@@ -133,7 +140,9 @@ mymedia = {
 }
 
 mydocs = {
-  { "Okular", "okular", newaita_path .. "okular.svg" }
+  { "Okular", "okular", newaita_path .. "okular.svg" },
+  { "Calc", "libreoffice --calc", newaita_path .. "libreoffice-calc.svg" },
+  { "Writer", "libreoffice --writer", newaita_path .. "libreoffice-writer.svg" }
 }
 
 mymainmenu = awful.menu({ items = { 
@@ -160,6 +169,26 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
+
+-- local kbdcfg = keyboard_layout.kbdcfg({type = "gui"})
+
+-- kbdcfg.add_primary_layout("English", beautiful.en_layout, "us dvorak")
+-- kbdcfg.add_additional_layout("Українська",  beautiful.de_layout, "ua")
+-- kbdcfg.add_primary_layout("кацапська", beautiful.ru_layout, "ru")
+-- kbdcfg.bind()
+
+-- local kbdcfg = keyboard_layout.kbdcfg({type = "tui"})
+
+-- kbdcfg.add_primary_layout("English", "dv", "-layout us -variant dvorak && setxkbmap -option caps:swapescape")
+-- kbdcfg.add_primary_layout("Українська",  "ua", "setxkbmap ua && setxkbmap -option caps:swapescape")
+-- kbdcfg.add_primary_layout("кацапська", "ru", "setxkbmap ua && setxkbmap -option caps:swapescape")
+-- kbdcfg.bind()
+
+-- -- Mouse bindings
+-- kbdcfg.widget:buttons(
+ -- awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch_next() end),
+                       -- awful.button({ }, 3, function () kbdcfg.menu:toggle() end))
+-- )
 
 -- {{{ Wibar
 -- Create a textclock widget
@@ -291,15 +320,21 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 8,
             -- wibox.widget.textbox("Some 2 text"),
             mykeyboardlayout,
+            -- kbdcfg.widget,
             weather_widget({
               api_key='ef1b4bda42764ceb3d76460a00b02117',
               -- api_key = readFile(os.getenv('HOME' .. '/owm_api_key')),
               -- api_key = readAll(os.getenv('HOME' .. '/owm_api_key')),
               -- api_key = os.getenv('OWM_API_KEY'),
               -- api_key = owm_api_key,
-              coordinates = {48.4323,35.0255},
+              -- Dnipro
+              -- coordinates = {48.4323,35.0255},
+              -- Stryi
+              -- coordinates = {49.2469864,23.8289937},
+              coordinates = {49.606337303735195, 34.53117606814956},
               -- time_format_12h = true,
               -- units = 'imperial',
               -- both_units_widget = true,
@@ -316,20 +351,41 @@ awful.screen.connect_for_each_screen(function(s)
               -- color_used = beautiful.bg_normal
             -- },
             -- cpu_widget(),
+            brightness_widget{
+              type = 'icon_and_text',
+              step = 1,
+              font = 'PT Sans Narrow 10'
+            },
             volume_widget{
               -- widget_type = 'arc',
               thickness = 1,
               -- size = 25,
-              -- widget_type = 'icon_and_text'
-              widget_type = 'icon'
+              widget_type = 'icon_and_text',
+              font = 'PT Sans Narrow 10'
+              -- widget_type = 'icon'
               -- widget_type = 'horizontal_bar'
             },
-            mpris_widget(),
+            -- batteryarc_widget({
+                -- show_current_level = true,
+                -- size = 25,
+                -- font = 'PT Sans Narrow 10',
+                -- arc_thickness = 1,
+            -- }),
+            battery_widget({
+              path_to_icons = '/usr/share/icons/Newaita-dark/status/symbolic/',
+              show_current_level = true,
+              font = 'PT Sans Narrow 10',
+              display_notification = true
+            }),
+            -- net_speed_widget(),
+            -- mpris_widget(),
             -- wibox.widget.textbox("Some 3 text"),
             -- wibox.widget.textbox(os.getenv('SHELL')),
             wibox.widget.systray(),
             mytextclock,
-            logout_menu_widget(),
+            logout_menu_widget({
+              onlock = function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode penrose') end
+            }),
             s.mylayoutbox,
         },
     }
@@ -430,9 +486,14 @@ globalkeys = gears.table.join(
     -- Prompt
     awful.key({ modkey },            "r",
               function ()
-                  awful.spawn.with_shell("rofi -show drun")
+                  awful.spawn.with_shell("rofi -show drun -icon-theme 'Newaita dark' -show-icons")
               end,
               {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey },            "e",
+              function ()
+                  awful.spawn.with_shell("rofi -modi emoji -show emoji")
+              end,
+              {description = "select emoji", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
@@ -445,12 +506,16 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
+    -- awful.key({ modkey }, "p", function() menubar.show() end,
+              -- {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey, "Control" }, "=", function () lain.util.useless_gaps_resize(1) end,
           {description = "increase gaps", group = "customise"}),
           awful.key({ modkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end,
-          {description = "decrease gaps", group = "customise"})
+          {description = "decrease gaps", group = "customise"}),
+          awful.key({ modkey         }, ";", function () brightness_widget:inc() end, {description = "increase brightness", group = "custom"}),
+          awful.key({ modkey, "Shift"}, ";", function () brightness_widget:dec() end, {description = "decrease brightness", group = "custom"}),
+    awful.key({ modkey, "Control" }, "l", function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode matrix') end,
+              {description = "lock screen", group = "custom"})
 )
 
 clientkeys = gears.table.join(
@@ -499,6 +564,11 @@ clientkeys = gears.table.join(
         function ()
           awful.spawn.with_shell("setxkbmap -layout us -variant dvorak && setxkbmap -option caps:swapescape")
         end ,
+        {description = "(un)maximize horizontally", group = "client"}),
+    awful.key({ "Control" }, "5",
+        function ()
+          awful.spawn.with_shell("setxkbmap -layout us && setxkbmap -option caps:swapescape")
+        end ,
         {description = "switch keyboard layout to us dvorak", group = "client"}),
     awful.key({ "Control" }, "8",
         function ()
@@ -509,7 +579,12 @@ clientkeys = gears.table.join(
         function ()
           awful.spawn.with_shell("setxkbmap ru && setxkbmap -option caps:swapescape")
         end ,
-        {description = "switch keyboard layout to ru", group = "client"})
+        {description = "switch keyboard layout to ru", group = "client"}),
+    awful.key({ modkey}, "p",
+        function ()
+          awful.spawn.with_shell("killall picom && picom --config ~/.config/awesome/my_picom.conf")
+        end ,
+        {description = "restart picom", group = "client"})
 )
 
 -- Bind all key numbers to tags.
@@ -670,8 +745,18 @@ awful.rules.rules = {
 
     { rule = { class = "Audacious" },
       properties = {
+        type = 'splash',
         border_width = 0,
-        tag = "5"
+        -- border_color = '#000000',
+        -- requests_no_titlebar = true,
+        requests_no_titlebar = false,
+        tag = "5",
+        floating = true
+    } },
+
+    { rule = { class = "Thunar" },
+      properties = {
+        floating = true
     } },
 
     { rule = { class = "zoom" },
@@ -698,8 +783,10 @@ awful.rules.rules = {
     } },
 
     -- Add titlebars to normal clients and dialogs
+    -- disable this if you DON'T NEED TITLEBARS ON WINDOWS
+
     -- { rule_any = {type = { "normal", "dialog" }
-      -- }, properties = { titlebars_enabled = true }
+      -- }, properties = { sitlebars_enabled = true }
     -- },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
@@ -743,44 +830,44 @@ end)
 -- end
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
--- client.connect_signal("request::titlebars", function(c)
-    -- -- buttons for the titlebar
-    -- local buttons = gears.table.join(
-        -- awful.button({ }, 1, function()
-            -- c:emit_signal("request::activate", "titlebar", {raise = true})
-            -- awful.mouse.client.move(c)
-        -- end),
-        -- awful.button({ }, 3, function()
-            -- c:emit_signal("request::activate", "titlebar", {raise = true})
-            -- awful.mouse.client.resize(c)
-        -- end)
-    -- )
+client.connect_signal("request::titlebars", function(c)
+    -- buttons for the titlebar
+    local buttons = gears.table.join(
+        awful.button({ }, 1, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.move(c)
+        end),
+        awful.button({ }, 3, function()
+            c:emit_signal("request::activate", "titlebar", {raise = true})
+            awful.mouse.client.resize(c)
+        end)
+    )
 
-    -- awful.titlebar(c) : setup {
-        -- { -- Left
-            -- awful.titlebar.widget.iconwidget(c),
-            -- buttons = buttons,
-            -- layout  = wibox.layout.fixed.horizontal
-        -- },
-        -- { -- Middle
-            -- { -- Title
-                -- align  = "center",
-                -- widget = awful.titlebar.widget.titlewidget(c)
-            -- },
-            -- buttons = buttons,
-            -- layout  = wibox.layout.flex.horizontal
-        -- },
-        -- { -- Right
-            -- awful.titlebar.widget.floatingbutton (c),
-            -- awful.titlebar.widget.maximizedbutton(c),
+    awful.titlebar(c, { size = 20 }) : setup {
+        { -- Right
+            awful.titlebar.widget.closebutton    (c),
+            awful.titlebar.widget.maximizedbutton(c),
+            awful.titlebar.widget.floatingbutton (c),
             -- awful.titlebar.widget.stickybutton   (c),
             -- awful.titlebar.widget.ontopbutton    (c),
-            -- awful.titlebar.widget.closebutton    (c),
-            -- layout = wibox.layout.fixed.horizontal()
-        -- },
-        -- layout = wibox.layout.align.horizontal
-    -- }
--- end)
+            layout = wibox.layout.fixed.horizontal()
+        },
+        { -- Middle
+            { -- Title
+                align  = "center",
+                widget = awful.titlebar.widget.titlewidget(c)
+            },
+            buttons = buttons,
+            layout  = wibox.layout.flex.horizontal
+        },
+        { -- Left
+            -- awful.titlebar.widget.iconwidget(c),
+            -- buttons = buttons,
+            layout  = wibox.layout.fixed.horizontal
+        },
+        layout = wibox.layout.align.horizontal
+    }
+end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 -- client.connect_signal("mouse::enter", function(c)
@@ -806,16 +893,18 @@ screen.connect_signal("arrange", function (s)
 end)
 
 commands = {
+  -- "xfce4-power-manager",
   "picom --config  $HOME/.config/awesome/my_picom.conf",
-  "xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 60.00 --output VGA-0 --mode 1360x768 --rate 60.02 --left-of HDMI-0",
+  -- "xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 60.00 --output VGA-0 --mode 1360x768 --rate 60.02 --left-of HDMI-0",
   "setxkbmap us -variant dvorak && setxkbmap -option caps:swapescape",
-  "xset -dpms && xset s off",
+  -- "xset -dpms && xset s off",
   "nm-applet",
   "easystroke",
   "flameshot",
-  "workrave",
+  -- "workrave",
   "gis-weather",
-  "indicator-bulletin",
+  -- "indicator-bulletin",
+  -- "slack"
 }
 
 for _, command in ipairs(commands) do
