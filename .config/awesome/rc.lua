@@ -145,6 +145,12 @@ mydocs = {
   { "Writer", "libreoffice --writer", newaita_path .. "libreoffice-writer.svg" }
 }
 
+mygrapics = {
+  { "Gwenview", "gwenview", newaita_path .. "gwenview.svg" },
+  { "Gimp", "gimp", newaita_path .. "gimp.svg" },
+  { "Inkscape", "inkscape", newaita_path .. "inkscape.svg" },
+}
+
 mymainmenu = awful.menu({ items = { 
   -- { "awesome", myawesomemenu, beautiful.awesome_icon },
     { "Internet", myinet, newaita_path .. "palemoon.svg" },
@@ -152,6 +158,7 @@ mymainmenu = awful.menu({ items = {
     { "Messengers", mymessengers, newaita_cats_path .. "pidgin.svg" },
     { "Media", mymedia, newaita_cats_path .. "org.gnome.Podcasts.svg" },
     { "Docs", mydocs, newaita_cats_path .. "text-editor.svg" },
+    { "Graphics", mygrapics, newaita_cats_path .. "inkscape.svg" },
     { "Alacritty", terminal, newaita_cats_path .. "tilix.svg" },
     { "Solitaire", "kpat", newaita_path .. "kpatience.svg" },
     { "Thunar", "thunar", newaita_path .. "system-file-manager.svg" },
@@ -384,7 +391,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             mytextclock,
             logout_menu_widget({
-              onlock = function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode penrose') end
+              onlock = function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode lisa') end
             }),
             s.mylayoutbox,
         },
@@ -489,6 +496,11 @@ globalkeys = gears.table.join(
                   awful.spawn.with_shell("rofi -show drun -icon-theme 'Newaita dark' -show-icons")
               end,
               {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey },            "c",
+              function ()
+                  awful.spawn.with_shell("rofi -show calc -modi calc -no-show-match -no-sort")
+              end,
+              {description = "run calculator", group = "launcher"}),
     awful.key({ modkey },            "e",
               function ()
                   awful.spawn.with_shell("rofi -modi emoji -show emoji")
@@ -514,7 +526,7 @@ globalkeys = gears.table.join(
           {description = "decrease gaps", group = "customise"}),
           awful.key({ modkey         }, ";", function () brightness_widget:inc() end, {description = "increase brightness", group = "custom"}),
           awful.key({ modkey, "Shift"}, ";", function () brightness_widget:dec() end, {description = "decrease brightness", group = "custom"}),
-    awful.key({ modkey, "Control" }, "l", function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode matrix') end,
+    awful.key({ modkey, "Control" }, "l", function() awful.spawn.with_shell('xlock -fontset "-misc-dejavu serif condensed-medium-i-semicondensed--0-0-0-0-p-0-ascii-0" -mode fiberlamp') end,
               {description = "lock screen", group = "custom"})
 )
 
@@ -655,146 +667,6 @@ clientbuttons = gears.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
-awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = {
-        border_width = beautiful.border_width,
-        border_color = beautiful.border_normal,
-        focus = awful.client.focus.filter,
-        raise = true,
-        keys = clientkeys,
-        buttons = clientbuttons,
-        screen = awful.screen.preferred,
-        placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-        shape = function()
-          return function(cr, w, h)
-            gears.shape.rounded_rect(cr, w, h, 8)
-          end
-        end,
-      }
-    },
-
-    -- { rule = { maximized = true },
-      -- properties = {
-        -- shape = function()
-          -- return function(cr, w, h)
-            -- gears.shape.rounded_rect(cr, w, h, 0)
-          -- end
-        -- end,
-      -- }
-    -- },
-
-    -- Floating clients.
-    { rule_any = {
-        instance = {
-          "DTA",  -- Firefox addon DownThemAll.
-          "copyq",  -- Includes session name in class.
-          "pinentry",
-        },
-        class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Kruler",
-          "MessageWin",  -- kalarm.
-          "Nm-openconnect-auth-dialog",
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"},
-
-        -- Note that the name property shown in xprop might be set slightly after creation of the client
-        -- and the name shown there might not match defined rules here.
-        name = {
-          "Event Tester",  -- xev.
-        },
-        role = {
-          "AlarmWindow",  -- Thunderbird's calendar.
-          "ConfigManager",  -- Thunderbird's about:config.
-          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-        }
-      }, properties = { floating = true }},
-
-    -- Set no border for gis-weather
-    -- { rule = { type = "utility" },
-
-    { rule = { class = "firefox" },
-      properties = {
-        tag = "2"
-    } },
-
-    { rule = { class = "Slack" },
-      properties = {
-        tag = "3"
-    } },
-
-    { rule = { class = "Microsoft Teams - Preview" },
-      properties = {
-        tag = "4"
-    } },
-
-    { rule = { class = "Gis-weather.py" },
-      properties = {
-        border_width = 0,
-        tag = "5"
-    } },
-
-    { rule = { class = "Audacious" },
-      properties = {
-        type = 'splash',
-        border_width = 0,
-        -- border_color = '#000000',
-        -- requests_no_titlebar = true,
-        requests_no_titlebar = false,
-        tag = "5",
-        floating = true
-    } },
-
-    { rule = { class = "Thunar" },
-      properties = {
-        floating = true
-    } },
-
-    { rule = { class = "zoom" },
-      properties = {
-        tag = "6"
-    } },
-
-    { rule = { class = "Google-chrome" },
-      properties = {
-        tag = "9"
-    } },
-
-    -- { rule = { class = "dolphin" },
-      -- properties = {
-        -- screen = "HDMI-1",
-        -- tag = "7"
-    -- } },
-
-    -- Set no border for the maximized windows
-    -- no luck...
-    { rule = { maximized = true},
-      properties = {
-        border_width = 0,
-    } },
-
-    -- Add titlebars to normal clients and dialogs
-    -- disable this if you DON'T NEED TITLEBARS ON WINDOWS
-
-    -- { rule_any = {type = { "normal", "dialog" }
-      -- }, properties = { sitlebars_enabled = true }
-    -- },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
-}
--- }}}
-
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
@@ -869,6 +741,156 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
+-- {{{ Rules
+-- Rules to apply to new clients (through the "manage" signal).
+awful.rules.rules = {
+    -- All clients will match this rule.
+    { rule = { },
+      properties = {
+        border_width = beautiful.border_width,
+        border_color = beautiful.border_normal,
+        focus = awful.client.focus.filter,
+        raise = true,
+        keys = clientkeys,
+        buttons = clientbuttons,
+        screen = awful.screen.preferred,
+        placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+        shape = function()
+          return function(cr, w, h)
+            gears.shape.rounded_rect(cr, w, h, 8)
+          end
+        end,
+      }
+    },
+
+    -- Add titlebars to normal clients and dialogs
+    -- disable this if you DON'T NEED TITLEBARS ON WINDOWS
+
+    { rule_any = {type = { "normal", "dialog" }
+      }, properties = { titlebars_enabled = true }
+    },
+
+    -- { rule = { maximized = true },
+      -- properties = {
+        -- shape = function()
+          -- return function(cr, w, h)
+            -- gears.shape.rounded_rect(cr, w, h, 0)
+          -- end
+        -- end,
+      -- }
+    -- },
+
+    -- Floating clients.
+    { rule_any = {
+        instance = {
+          "DTA",  -- Firefox addon DownThemAll.
+          "copyq",  -- Includes session name in class.
+          "pinentry",
+        },
+        class = {
+          "Arandr",
+          "Blueman-manager",
+          "Gpick",
+          "Kruler",
+          "MessageWin",  -- kalarm.
+          "Nm-openconnect-auth-dialog",
+          "Sxiv",
+          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+          "Wpa_gui",
+          "veromix",
+          "xtightvncviewer"},
+
+        -- Note that the name property shown in xprop might be set slightly after creation of the client
+        -- and the name shown there might not match defined rules here.
+        name = {
+          "Event Tester",  -- xev.
+        },
+        role = {
+          "AlarmWindow",  -- Thunderbird's calendar.
+          "ConfigManager",  -- Thunderbird's about:config.
+          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+        }
+      }, properties = { floating = true }},
+
+    -- Set no border for gis-weather
+    -- { rule = { type = "utility" },
+
+    { rule = { class = "firefox" },
+      properties = {
+        tag = "2"
+    } },
+
+    { rule = { class = "Slack" },
+      properties = {
+        tag = "3"
+    } },
+
+    { rule = { class = "Microsoft Teams - Preview" },
+      properties = {
+        tag = "4"
+    } },
+
+    { rule = { class = "Gis-weather.py" },
+      properties = {
+        border_width = 0,
+        tag = "5"
+    } },
+
+    { rule = { class = "Cairo-clock" },
+      properties = {
+        -- border_width = 0,
+        tag = "5",
+        requests_no_titlebar = true,
+        floating = true,
+        titlebars_enabled = false,
+    } },
+
+    { rule = { class = "Audacious" },
+      properties = {
+        type = 'splash',
+        -- border_width = 0,
+        -- border_color = '#000000',
+        -- requests_no_titlebar = true,
+        requests_no_titlebar = true,
+        titlebars_enabled = false,
+        tag = "5",
+        floating = true
+    } },
+
+    { rule = { class = "Thunar" },
+      properties = {
+        floating = true
+    } },
+
+    { rule = { class = "zoom" },
+      properties = {
+        tag = "6"
+    } },
+
+    { rule = { class = "Google-chrome" },
+      properties = {
+        tag = "9"
+    } },
+
+    -- { rule = { class = "dolphin" },
+      -- properties = {
+        -- screen = "HDMI-1",
+        -- tag = "7"
+    -- } },
+
+    -- Set no border for the maximized windows
+    -- no luck...
+    { rule = { maximized = true},
+      properties = {
+        border_width = 0,
+    } },
+
+    -- Set Firefox to always map on the tag named "2" on screen 1.
+    -- { rule = { class = "Firefox" },
+    --   properties = { screen = 1, tag = "2" } },
+}
+-- }}}
+
 -- Enable sloppy focus, so that focus follows mouse.
 -- client.connect_signal("mouse::enter", function(c)
     -- c:emit_signal("request::activate", "mouse_enter", {raise = false})
@@ -884,7 +906,12 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 screen.connect_signal("arrange", function (s)
     local only_one = #s.tiled_clients == 1
     for _, c in pairs(s.clients) do
-        if only_one or c.class == "Gis-weather.py" then
+        if only_one 
+          or c.class == "Gis-weather.py"
+          or c.class == "Cairo-clock"
+          or c.class == "Audacious"
+          then
+        -- if only_one then
             c.border_width = 0
         else
             c.border_width = beautiful.border_width
@@ -921,3 +948,6 @@ end
 -- run numlockx on
 -- run volumeicon
 -- }}}
+
+-- to check the window props
+-- xprop WM_CLASS
