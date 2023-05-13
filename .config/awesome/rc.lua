@@ -176,6 +176,20 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
+awful.widget.keyboardlayout():connect_signal("button::press", function(_,_,_,button)
+    if button == 1 then -- left click
+        awful.spawn.with_shell("setxkbmap -layout us -variant dvorak && setxkbmap -option caps:swapescape")
+    elseif button == 3 then -- right click
+        awful.spawn.with_shell("setxkbmap ua && setxkbmap -option caps:swapescape")
+    end
+end)
+-- mykeyboardlayout:connect_signal("button::press", function(_, _, _, button)
+    -- if button == 1 then
+        -- -- keyboardlayout_widget:next_layout()
+        -- awful.spawn("setxkbmap -layout us -variant dvorak && setxkbmap -option caps:swapescape")
+    -- end
+-- end)
+
 
 -- local kbdcfg = keyboard_layout.kbdcfg({type = "gui"})
 
