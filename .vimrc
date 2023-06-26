@@ -32,13 +32,17 @@ Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
+Plug 'digitaltoad/vim-pug'
+Plug 'wavded/vim-stylus'
+
+" Plug 'urso/haskell_syntax.vim'
 " Plug 'autozimu/LanguageClient-neovim', {
-    " \ 'branch': 'next',
-    " \ 'do': './install.sh'
-    " \ }
+" \ 'branch': 'next',
+" \ 'do': './install.sh'
+" \ }
 
 "/ Formatters
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -62,6 +66,9 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
 Plug 'charliesbot/night-owl.vim'
+" Plug 'haishanh/night-owl.vim'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'oxfist/night-owl.nvim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -89,8 +96,8 @@ let &t_SI = "\e[3 q"
 let &t_EI = "\e[1 q"
 " optional reset cursor on start:
 augroup myCmds
-au!
-autocmd VimEnter * silent !echo -ne "\e[1 q"
+  au!
+  autocmd VimEnter * silent !echo -ne "\e[1 q"
 augroup END
 " Other options (replace the number after \e[):
 " Ps = 0  -> blinking block.
@@ -123,9 +130,10 @@ set wildignore+=*\\tmp\\*,*\\node_modules\\*,*.swp,*.log,*.zip,*.exe  " Windows
 set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Linux
 
 "---------Visuals-------"
- set termguicolors
+set termguicolors
 
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_light='soft'
 let g:gruvbox_bold=0
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
@@ -252,12 +260,13 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" if has("patch-8.1.1564")
+  " " Recently vim can merge signcolumn and number column into one
+  " set signcolumn=number
+" else
+  " set signcolumn=yes
+" endif
+set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -391,11 +400,11 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "/ Neoformat
 "/
 " let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_enabled_haskell = ['hindent']
-augroup fmt
-  autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
-augroup END
+" let g:neoformat_enabled_haskell = ['hindent']
+" augroup fmt
+  " autocmd!
+  " autocmd BufWritePre * undojoin | Neoformat
+" augroup END
 
 "/
 "/ Vim-fugitive
@@ -425,9 +434,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 "/
 lua require('gitsigns').setup({
 \  current_line_blame = false,
-\  numhl = false,
 \})
 noremap <Leader>gph :Gitsigns preview_hunk<cr>
+noremap <Leader>grh :Gitsigns reset_hunk<cr>
 
 "/
 "/ Git blamer
@@ -519,8 +528,9 @@ let b:ale_fixers = {
 \   'scss': ['prettier'],
 \   'haskell': ['hindent', 'brittany'],
 \}
-" let g:ale_fix_on_save=0
-let g:ale_fix_on_save_ignore=1
+let g:ale_fix_on_save=1
+let g:ale_lint_on_save=1
+" let g:ale_fix_on_save_ignore=1
 " let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
 let g:ale_cursor_detail=1
 let g:ale_close_preview_on_insert=1
@@ -638,13 +648,18 @@ hi typescriptExport gui=italic guifg=#458588
 hi tsxAttrib gui=italic guifg=#fabd2f
 hi Comment gui=italic
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-hi Normal guibg=NONE ctermbg=NONE
 " hi GruvboxBg0 guibg=NONE ctermbg=NONE
+
+hi Normal guibg=NONE ctermbg=NONE
 hi GruvboxGreenSign guibg=NONE ctermbg=NONE
 hi GruvboxAquaSign guibg=NONE ctermbg=NONE
 hi GruvboxRedSign guibg=NONE ctermbg=NONE
 hi GruvboxYellowSign guibg=NONE ctermbg=NONE
 hi GruvboxBlueSign guibg=NONE ctermbg=NONE
+
+" set background=light
+
+" set background=light
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
