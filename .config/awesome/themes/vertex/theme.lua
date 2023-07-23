@@ -22,7 +22,8 @@ theme.icon_dir = os.getenv 'HOME' .. '/.config/awesome/themes/vertex/icons'
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/vertex/wall.png"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/alena-aenami-horizon-1k.jpg"
 theme.wallpaper = os.getenv 'HOME'
-  .. '/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg'
+  -- .. '/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg'
+  .. '/Pictures/wallhaven-gpqye7.jpg'
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/78ef53f787b320bf033eca0f66134adf.jpg"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/ca97a4ce77962a9ad0868904ccbf8c24.jpg"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/landscape-1649678322478-666.jpg"

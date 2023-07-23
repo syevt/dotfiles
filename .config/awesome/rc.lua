@@ -387,7 +387,9 @@ awful.screen.connect_for_each_screen(function(s)
         -- coordinates = {48.4323,35.0255},
         -- Stryi
         -- coordinates = {49.2469864,23.8289937},
-        coordinates = { 49.606337303735195, 34.53117606814956 },
+        -- Poltava
+        -- coordinates = { 49.606337303735195, 34.53117606814956 },
+        coordinates = { 49.580738,34.5043861 },
         -- time_format_12h = true,
         -- units = 'imperial',
         -- both_units_widget = true,
@@ -428,7 +430,7 @@ awful.screen.connect_for_each_screen(function(s)
         path_to_icons = '/usr/share/icons/Newaita-dark/status/symbolic/',
         show_current_level = true,
         font = 'PT Sans Narrow 10',
-        display_notification = true,
+        -- display_notification = true,
       },
       -- net_speed_widget(),
       -- mpris_widget(),
@@ -809,6 +811,8 @@ for i = 1, 9 do
   )
 end
 
+-- this part is for binding clicks on a WINDOW not its titlebar
+-- that's why we need a 'modkey' pressed here
 clientbuttons = gears.table.join(
   awful.button(
     {},
@@ -818,10 +822,12 @@ clientbuttons = gears.table.join(
     end
   ),
   awful.button({ modkey }, 1, function(c)
+  -- awful.button({ }, 1, function(c)
     c:emit_signal('request::activate', 'mouse_click', { raise = true })
     awful.mouse.client.move(c)
   end),
   awful.button({ modkey }, 3, function(c)
+  -- awful.button({ }, 3, function(c)
     c:emit_signal('request::activate', 'mouse_click', { raise = true })
     awful.mouse.client.resize(c)
   end)
@@ -869,15 +875,16 @@ end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal('request::titlebars', function(c)
-  -- buttons for the titlebar
+  -- buttons ONLY for the titlebar
+  -- those are not really buttons, it's binding mouse clicks on TITLEBARS
   local buttons = gears.table.join(
     awful.button({}, 1, function()
       c:emit_signal('request::activate', 'titlebar', { raise = true })
       awful.mouse.client.move(c)
     end),
     awful.button({}, 3, function()
-      c:emit_signal('request::activate', 'titlebar', { raise = true })
-      awful.mouse.client.resize(c)
+      -- c:emit_signal('request::activate', 'titlebar', { raise = true })
+      -- awful.mouse.client.resize(c)
     end)
   )
 
@@ -895,12 +902,14 @@ client.connect_signal('request::titlebars', function(c)
         align = 'center',
         widget = awful.titlebar.widget.titlewidget(c),
       },
+      -- bind titlebar clicks to the Middle
       buttons = buttons,
       layout = wibox.layout.flex.horizontal,
     },
     { -- Left
       -- awful.titlebar.widget.iconwidget(c),
-      -- buttons = buttons,
+      -- and to the left
+      buttons = buttons,
       layout = wibox.layout.fixed.horizontal,
     },
     layout = wibox.layout.align.horizontal,
@@ -933,7 +942,7 @@ awful.rules.rules = {
 
   {
     rule_any = { type = { 'normal', 'dialog' } },
-    properties = { titlebars_enabled = false },
+    properties = { titlebars_enabled = true },
   },
 
   -- { rule = { maximized = true },
@@ -1119,7 +1128,7 @@ commands = {
   'nm-applet',
   'easystroke',
   'flameshot',
-  -- "workrave",
+  "workrave",
   'gis-weather',
   -- "indicator-bulletin",
   -- "slack"
