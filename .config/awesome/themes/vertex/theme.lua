@@ -21,9 +21,10 @@ theme.default_dir = require('awful.util').get_themes_dir() .. 'default'
 theme.icon_dir = os.getenv 'HOME' .. '/.config/awesome/themes/vertex/icons'
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/vertex/wall.png"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/alena-aenami-horizon-1k.jpg"
-theme.wallpaper = os.getenv 'HOME'
+-- theme.wallpaper = os.getenv 'HOME'
   -- .. '/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg'
-  .. '/Pictures/wallhaven-gpqye7.jpg'
+  -- .. '/Pictures/wallhaven-gpqye7.jpg'
+  -- .. '/Pictures/wallhaven-gpq1lq.jpg'
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/78ef53f787b320bf033eca0f66134adf.jpg"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/ca97a4ce77962a9ad0868904ccbf8c24.jpg"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/landscape-1649678322478-666.jpg"
@@ -481,11 +482,14 @@ function theme.at_screen_connect(s)
     lain.util.quake { app = awful.util.terminal, border = theme.border_width }
 
   -- If wallpaper is a function, call it with the screen
-  local wallpaper = theme.wallpaper
-  if type(wallpaper) == 'function' then
-    wallpaper = wallpaper(s)
-  end
-  gears.wallpaper.maximized(wallpaper, s, true)
+  --
+  -- gears.wallpaper does not have `fill` option :(
+  --
+  -- local wallpaper = theme.wallpaper
+  -- if type(wallpaper) == 'function' then
+    -- wallpaper = wallpaper(s)
+  -- end
+  -- gears.wallpaper.maximized(wallpaper, s, true)
 
   -- Tags
   awful.tag(awful.util.tagnames, s, awful.layout.layouts)

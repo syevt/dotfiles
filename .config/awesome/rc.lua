@@ -384,12 +384,11 @@ awful.screen.connect_for_each_screen(function(s)
         -- api_key = os.getenv('OWM_API_KEY'),
         -- api_key = owm_api_key,
         -- Dnipro
-        -- coordinates = {48.4323,35.0255},
+        coordinates = {48.4323,35.0255},
         -- Stryi
         -- coordinates = {49.2469864,23.8289937},
         -- Poltava
-        -- coordinates = { 49.606337303735195, 34.53117606814956 },
-        coordinates = { 49.580738,34.5043861 },
+        -- coordinates = { 49.580738,34.5043861 },
         -- time_format_12h = true,
         -- units = 'imperial',
         -- both_units_widget = true,
@@ -1122,6 +1121,8 @@ end)
 commands = {
   -- "xfce4-power-manager",
   'picom --config  $HOME/.config/awesome/my_picom.conf',
+  -- gears.wallpaper does not have `bg-fill` option
+  'feh --bg-fill ~/Pictures/wallhaven-gpq1lq.jpg',
   -- "xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 60.00 --output VGA-0 --mode 1360x768 --rate 60.02 --left-of HDMI-0",
   (xkbDvorak .. ' && ' .. xkbSwapEscape),
   -- "xset -dpms && xset s off",
