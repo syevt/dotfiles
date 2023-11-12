@@ -17,6 +17,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'phaazon/hop.nvim'
 Plug 'terryma/vim-multiple-cursors'
+" rmal_keys,
+" rmal_keys,
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'smoka7/multicursors.nvim'
 Plug 'vim-scripts/loremipsum'
 Plug 'mattn/emmet-vim'
 
@@ -27,6 +31,7 @@ Plug 'iamcco/coc-tailwindcss'
 Plug 'w0rp/ale'
 
 "/ Syntax support
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -65,7 +70,9 @@ Plug 'preservim/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
-Plug 'charliesbot/night-owl.vim'
+" Plug 'ellisonleao/gruvbox.nvim'
+" Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+" Plug 'charliesbot/night-owl.vim'
 " Plug 'haishanh/night-owl.vim'
 " Plug 'sainnhe/gruvbox-material'
 Plug 'oxfist/night-owl.nvim'
@@ -137,8 +144,9 @@ set termguicolors
 let g:gruvbox_bold=0
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
-colorscheme gruvbox
-" colorscheme night-owl
+" colorscheme gruvbox
+" colorscheme gruvbox-baby
+colorscheme night-owl
 
 "---------Enable italics-----------"
 set t_ZH=[3m
@@ -475,7 +483,27 @@ lua require'hop'.setup()
 " Multiple cursors
 "/
 let g:multi_cursor_prev_key='<C-z>'
-let g:multi_cursor_quit_key='<C-e>'
+le=t= g:multi_cursor_quit_key='<C-e>'
+
+"/
+" Tree Sitter
+"/
+lua require'nvim-treesitter.configs'.setup{
+\   auto_install = true,
+\ 
+\   highlight = {
+\     enable = true,
+\     disable = function(lang, buf)
+\       local max_filesize = 20 * 1024
+\       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+\       if ok and stats and stats.size > max_filesize then
+\         return true
+\       end
+\     end,
+\ 
+\   additional_vim_regex_highlighting = false,
+\   },
+\ }
 
 "/
 " TypeScript syntax
@@ -543,10 +571,10 @@ let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 "       ⏽
 " let g:airline_theme='badwolf'
 " let g:airline_theme='deus'
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
 " let g:airline_theme='onedark'
 " let g:airline_theme='base16'
-" let g:airline_theme='night_owl'
+let g:airline_theme='night_owl'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = ''
