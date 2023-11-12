@@ -29,6 +29,7 @@ local weather_widget = require 'awesome-wm-widgets.weather-widget.weather'
 local logout_menu_widget =
   require 'awesome-wm-widgets.logout-menu-widget.logout-menu'
 local net_speed_widget = require 'awesome-wm-widgets.net-speed-widget.net-speed'
+local todo_widget = require("awesome-wm-widgets.todo-widget.todo")
 -- local keyboard_layout = require("keyboard_layout")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -160,6 +161,7 @@ mymessengers = {
   { 'Viber', 'viber', newaita_path .. 'viber.svg' },
   { 'Telegram', 'telegram-desktop', newaita_path .. 'telegram.svg' },
   { 'Signal', 'signal-desktop', newaita_path .. 'signal-desktop.svg' },
+  { 'Whatsapp', 'whatsdesk', newaita_path .. 'whatsapp.svg' },
 }
 
 mymedia = {
@@ -376,6 +378,7 @@ awful.screen.connect_for_each_screen(function(s)
       spacing = 8,
       -- wibox.widget.textbox("Some 2 text"),
       mykeyboardlayout,
+      todo_widget(),
       -- kbdcfg.widget,
       weather_widget {
         api_key = 'ef1b4bda42764ceb3d76460a00b02117',
@@ -384,11 +387,11 @@ awful.screen.connect_for_each_screen(function(s)
         -- api_key = os.getenv('OWM_API_KEY'),
         -- api_key = owm_api_key,
         -- Dnipro
-        coordinates = {48.4323,35.0255},
+        -- coordinates = {48.4323,35.0255},
         -- Stryi
         -- coordinates = {49.2469864,23.8289937},
         -- Poltava
-        -- coordinates = { 49.580738,34.5043861 },
+        coordinates = { 49.580738,34.5043861 },
         -- time_format_12h = true,
         -- units = 'imperial',
         -- both_units_widget = true,
@@ -1114,6 +1117,7 @@ screen.connect_signal('arrange', function(s)
       c.border_width = 0
     else
       c.border_width = beautiful.border_width
+      c.border_color = beautiful.border_normal
     end
   end
 end)
@@ -1122,7 +1126,7 @@ commands = {
   -- "xfce4-power-manager",
   'picom --config  $HOME/.config/awesome/my_picom.conf',
   -- gears.wallpaper does not have `bg-fill` option
-  'feh --bg-fill ~/Pictures/wallhaven-gpq1lq.jpg',
+  -- 'feh --bg-fill ~/Pictures/wallhaven-gpq1lq.jpg',
   -- "xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 60.00 --output VGA-0 --mode 1360x768 --rate 60.02 --left-of HDMI-0",
   (xkbDvorak .. ' && ' .. xkbSwapEscape),
   -- "xset -dpms && xset s off",

@@ -21,6 +21,7 @@ theme.default_dir = require('awful.util').get_themes_dir() .. 'default'
 theme.icon_dir = os.getenv 'HOME' .. '/.config/awesome/themes/vertex/icons'
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/themes/vertex/wall.png"
 -- theme.wallpaper                                 = os.getenv("HOME") .. "/Downloads/alena-aenami-horizon-1k.jpg"
+theme.wallpaper                                 = os.getenv("HOME") .. "/Pictures/swans3.jpg"
 -- theme.wallpaper = os.getenv 'HOME'
   -- .. '/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg'
   -- .. '/Pictures/wallhaven-gpqye7.jpg'
@@ -33,7 +34,9 @@ theme.icon_dir = os.getenv 'HOME' .. '/.config/awesome/themes/vertex/icons'
 theme.font = 'PT Sans Narrow 12'
 theme.taglist_font = 'PT Sans Narrow 20'
 theme.fg_normal = '#FFFFFF'
-theme.fg_focus = '#6A95EB'
+-- theme.fg_focus = '#6A95EB'
+-- it's for the swans
+theme.fg_focus = '#cd6f6d'
 -- theme.bg_focus                                  = "#303030"
 theme.bg_focus = '#242424'
 theme.bg_focus2 = '#3762B8'
@@ -41,8 +44,11 @@ theme.bg_normal = '#242424'
 theme.fg_urgent = '#CC9393'
 theme.bg_urgent = '#006B8E'
 theme.border_width = dpi(2)
-theme.border_normal = '#252525'
-theme.border_focus = '#7CA2EE'
+-- it's for the swans
+theme.border_normal = theme.fg_focus
+-- theme.border_normal = '#252525'
+theme.border_focus = theme.fg_focus
+-- theme.border_focus = '#7CA2EE'
 theme.tooltip_border_color = theme.fg_focus
 theme.tooltip_border_width = theme.border_width
 theme.menu_height = dpi(30)
