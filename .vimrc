@@ -17,10 +17,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'phaazon/hop.nvim'
 Plug 'terryma/vim-multiple-cursors'
-" rmal_keys,
-" rmal_keys,
-" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-" Plug 'smoka7/multicursors.nvim'
 Plug 'vim-scripts/loremipsum'
 Plug 'mattn/emmet-vim'
 
@@ -39,15 +35,6 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
-
-" Plug 'urso/haskell_syntax.vim'
-" Plug 'autozimu/LanguageClient-neovim', {
-" \ 'branch': 'next',
-" \ 'do': './install.sh'
-" \ }
-
-"/ Formatters
-" Plug 'sbdchd/neoformat'
 
 "/ Git
 Plug 'tpope/vim-fugitive'
@@ -69,7 +56,7 @@ Plug 'preservim/nerdcommenter'
 "/ Seamless moving between vim and tmux panels
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 " Plug 'ellisonleao/gruvbox.nvim'
 " Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
 " Plug 'charliesbot/night-owl.vim'
@@ -145,7 +132,6 @@ let g:gruvbox_bold=0
 let g:gruvbox_sign_column='bg0'
 let g:gruvbox_invert_selection=0
 " colorscheme gruvbox
-" colorscheme gruvbox-baby
 colorscheme night-owl
 
 "---------Enable italics-----------"
@@ -405,16 +391,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "/
-"/ Neoformat
-"/
-" let g:neoformat_enabled_typescript = ['prettier']
-" let g:neoformat_enabled_haskell = ['hindent']
-" augroup fmt
-  " autocmd!
-  " autocmd BufWritePre * undojoin | Neoformat
-" augroup END
-
-"/
 "/ Vim-fugitive
 "/
 " noremap <Leader>gs :Gstatus<cr>
@@ -456,7 +432,6 @@ let g:blamer_show_in_visual_modes = 0
 let g:blamer_show_in_insert_modes = 0
 let g:blamer_prefix = '>>> '
 let g:blamer_date_format = '%d.%m.%y %H:%M'
-
 
 "/
 "/ Vim-repeat
@@ -657,12 +632,6 @@ augroup autosourcing
   autocmd BufWritePost .vimrc source %
 augroup END
 
-"---------Using night-owl theme---------"
-" specifically for Markdown
-" doesn't wok :(
-" autocmd BufEnter * colorscheme default
-" autocmd BufEnter *.md colorscheme night-owl
-
 "---------Custom Syntax Highlights---------"
 " 'gui=italic' or 'cterm=italic'
 " 'guifg', 'guibg', 'ctermfg', 'ctermbg'
@@ -671,29 +640,25 @@ augroup END
 " instance, have those italics out of the box and doesn't need the tweaks
 " below.
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-hi htmlArg gui=italic
+" hi htmlArg gui=italic
 
 " 'return' should pop up from the code, so giving 'em italic explicitly
 " without changing the syntax plugin file
-hi Statement gui=italic guifg=red
+" hi Statement gui=italic guifg=red
 
-hi typescriptImport gui=italic guifg=#458588
-hi typescriptExport gui=italic guifg=#458588
-hi tsxAttrib gui=italic guifg=#fabd2f
-hi Comment gui=italic
-">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-" hi GruvboxBg0 guibg=NONE ctermbg=NONE
+" hi typescriptImport gui=italic guifg=#458588
+" hi typescriptExport gui=italic guifg=#458588
+" hi tsxAttrib gui=italic guifg=#fabd2f
+" hi Comment gui=italic
+" " hi GruvboxBg0 guibg=NONE ctermbg=NONE
 
 hi Normal guibg=NONE ctermbg=NONE
-hi GruvboxGreenSign guibg=NONE ctermbg=NONE
-hi GruvboxAquaSign guibg=NONE ctermbg=NONE
-hi GruvboxRedSign guibg=NONE ctermbg=NONE
-hi GruvboxYellowSign guibg=NONE ctermbg=NONE
-hi GruvboxBlueSign guibg=NONE ctermbg=NONE
-
-" set background=light
-
-" set background=light
+" hi GruvboxGreenSign guibg=NONE ctermbg=NONE
+" hi GruvboxAquaSign guibg=NONE ctermbg=NONE
+" hi GruvboxRedSign guibg=NONE ctermbg=NONE
+" hi GruvboxYellowSign guibg=NONE ctermbg=NONE
+" hi GruvboxBlueSign guibg=NONE ctermbg=NONE
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
