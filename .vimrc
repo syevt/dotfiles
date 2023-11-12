@@ -488,22 +488,28 @@ le=t= g:multi_cursor_quit_key='<C-e>'
 "/
 " Tree Sitter
 "/
+" One may use `heredoc` with lua configs like
+" https://github.com/nvim-lualine/lualine.nvim#configuring-lualine-in-initvim
+" lua << END
+" require('lualine').setup()
+" END
+" but that spoils vim syntax highlighting down the file
 lua require'nvim-treesitter.configs'.setup{
-\   auto_install = true,
-\ 
-\   highlight = {
-\     enable = true,
-\     disable = function(lang, buf)
-\       local max_filesize = 20 * 1024
-\       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-\       if ok and stats and stats.size > max_filesize then
-\         return true
-\       end
-\     end,
-\ 
-\   additional_vim_regex_highlighting = false,
-\   },
-\ }
+\  auto_install = true,
+\
+\  highlight = {
+\    enable = true,
+\    disable = function(lang, buf)
+\      local max_filesize = 20 * 1024
+\      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+\      if ok and stats and stats.size > max_filesize then
+\        return true
+\      end
+\    end,
+\
+\  additional_vim_regex_highlighting = false,
+\  },
+\}
 
 "/
 " TypeScript syntax
