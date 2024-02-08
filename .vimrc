@@ -28,6 +28,7 @@ Plug 'w0rp/ale'
 
 "/ Syntax support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'hiphish/rainbow-delimiters.nvim'
 Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json'
 Plug 'HerringtonDarkholme/yats.vim'
@@ -57,11 +58,6 @@ Plug 'preservim/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Plug 'morhetz/gruvbox'
-" Plug 'ellisonleao/gruvbox.nvim'
-" Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
-" Plug 'charliesbot/night-owl.vim'
-" Plug 'haishanh/night-owl.vim'
-" Plug 'sainnhe/gruvbox-material'
 Plug 'oxfist/night-owl.nvim'
 
 "/ File icons
@@ -128,9 +124,11 @@ set termguicolors
 
 " let g:gruvbox_contrast_dark='hard'
 " let g:gruvbox_contrast_light='soft'
-let g:gruvbox_bold=0
-let g:gruvbox_sign_column='bg0'
-let g:gruvbox_invert_selection=0
+
+" let g:gruvbox_bold=0
+" let g:gruvbox_sign_column='bg0'
+" let g:gruvbox_invert_selection=0
+
 " colorscheme gruvbox
 colorscheme night-owl
 
@@ -486,6 +484,26 @@ lua require'nvim-treesitter.configs'.setup{
 \  },
 \}
 
+let g:rainbow_delimiters = {
+  \ 'strategy': {
+    \ '': rainbow_delimiters#strategy.global,
+    \ 'vim': rainbow_delimiters#strategy.local,
+  \ },
+  \ 'query': {
+      \ '': 'rainbow-delimiters',
+      \ 'lua': 'rainbow-blocks',
+\ },
+  \ 'highlight': [
+      \ 'RainbowDelimiterViolet',
+      \ 'RainbowDelimiterGreen',
+      \ 'RainbowDelimiterYellow',
+      \ 'RainbowDelimiterBlue',
+\ 'RainbowDelimiterCyan',
+      \ 'RainbowDelimiterOrange',
+      \ 'RainbowDelimiterRed',
+  \ ],
+\ }
+
 "/
 " TypeScript syntax
 "/
@@ -549,13 +567,15 @@ let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 "/
 " Vim-Airline
 "/
+" this disables the native vim's show mode ('-- INSERT --' etc.)
+set noshowmode
 "       ⏽
 " let g:airline_theme='badwolf'
-" let g:airline_theme='deus'
+let g:airline_theme='deus'
 " let g:airline_theme='gruvbox'
 " let g:airline_theme='onedark'
 " let g:airline_theme='base16'
-let g:airline_theme='night_owl'
+" let g:airline_theme='night_owl'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#left_alt_sep = ''
@@ -659,6 +679,12 @@ hi Normal guibg=NONE ctermbg=NONE
 " hi GruvboxYellowSign guibg=NONE ctermbg=NONE
 " hi GruvboxBlueSign guibg=NONE ctermbg=NONE
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+" this is for the night-owl theme
+hi ALEWarningSign ctermfg=4 ctermbg=0 guibg=none guifg=DarkYellow
+
+" set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ї],фa,іs,вd,аf,пg,рh,оj,лk,дl,ж\\;,є',ґ\\,яz,чx,сc,мv,иb,тn,ьm,ю.,./,ЙQ,ЦW,УE,КR,ЕT,НY,НY,ГU,ШI,ЩO,ЗP,Х{,Ї},ФA,ІS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\\:,Є\\",Ґ<bar>,ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\\<,Ю>,№#
+set langmap=й',ц\\,,у.,кp,еy,нf,гg,шc,щr,зl,х=,ї=,ґ\\\,фa,іo,вe,аu,пi,рd,оh,лt,дn,жs,є-,я\\;,чq,сj,мk,иx,тb,ьm,бw,юv
 
 " Notes and Tips
 " - Press 'zz' to instantly center the line where the cursor is located.
