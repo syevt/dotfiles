@@ -37,6 +37,10 @@ Plug 'jparise/vim-graphql'        " GraphQL syntax
 Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 
+Plug 'purescript-contrib/purescript-vim'
+Plug 'nwolverson/purescript-language-server'
+Plug 'natefaubion/purescript-tidy'
+
 "/ Git
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim'
@@ -58,6 +62,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Plug 'morhetz/gruvbox'
+" Plug 'ellisonleao/gruvbox.nvim'
+Plug 'luisiacc/gruvbox-baby'
 Plug 'oxfist/night-owl.nvim'
 
 "/ File icons
@@ -98,7 +104,9 @@ augroup END
 " Ps = 5  -> blinking bar (xterm).
 " Ps = 6  -> steady bar (xterm).
 
-syntax enable
+" We don't need this when using treesitter
+" syntax enable
+
 "set listchars+=space:␣
 " I guess, setting '...,space:...' here makes 'set lcs+=space:...' obsolete
 " set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
@@ -129,8 +137,11 @@ set termguicolors
 " let g:gruvbox_sign_column='bg0'
 " let g:gruvbox_invert_selection=0
 
+let g:gruvbox_baby_use_original_palette = 1
+colorscheme gruvbox-baby
+
 " colorscheme gruvbox
-colorscheme night-owl
+" colorscheme night-owl
 
 "---------Enable italics-----------"
 set t_ZH=[3m
@@ -537,9 +548,6 @@ hi clear SignColumn
 
 nmap <silent> [l <Plug>(ale_previous_wrap)
 nmap <silent> ]l <Plug>(ale_next_wrap)
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_statusline_format=[' %d', ' %d', 'ok']
 " let g:ale_linters = {
 " \  'javascript': ['xo'],
 " \}
@@ -550,19 +558,34 @@ nmap <Leader>afe :ALEFix eslint<cr>
 let b:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
+\   'purescript': ['purs-tidy', 'purescript-language-server'],
 \   'html': ['prettier'],
 \   'css': ['prettier'],
 \   'scss': ['prettier'],
 \   'haskell': ['hindent', 'brittany'],
 \}
+let b:ale_linters = {
+\   'purescript': ['purescript-language-server'],
+\}
 let g:ale_fix_on_save=1
 let g:ale_lint_on_save=1
+let g:ale_lint_on_text_changed=1
+let g:ale_lint_on_insert_leave=1
+let g:ale_lint_on_enter=1
+
 " let g:ale_fix_on_save_ignore=1
 " let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
+"
 let g:ale_cursor_detail=1
 let g:ale_close_preview_on_insert=1
 let g:ale_floating_preview=1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+
+" these stopped working, need some attention
+" let g:ale_use_neovim_diagnostics_api=1
+" let g:ale_sign_error = ''
+" let g:ale_sign_warning = ''
+" let g:ale_statusline_format=[' %d', ' %d', 'ok']
 
 "/
 " Vim-Airline

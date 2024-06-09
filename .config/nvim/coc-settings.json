@@ -1,0 +1,25 @@
+{
+  "suggest.enablePreselect": true,
+	"suggest.noselect": true,
+  "diagnostic.displayByAle": true,
+  "languageserver": {
+    "purescript": {
+      "command": "node_modules/.bin/purescript-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["purescript"],
+      "trace.server": false,
+      "rootPatterns": ["bower.json", "psc-package.json", "spago.dhall"],
+      "settings": {
+        "purescript": {
+          "addSpagoSources": true,
+          "addNpmPath": true, // won't work with 'false' with the locally installed server
+
+          "formatter": "purs-tidy"
+        }
+      }
+    }
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "purescript"
+  ]
+}
