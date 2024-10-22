@@ -1,0 +1,55 @@
+[colors.bright]
+black = "#928373"
+blue = "#83a597"
+cyan = "#8ec07b"
+green = "#b8ba25"
+magenta = "#d3859a"
+red = "#fb4833"
+white = "#ebdbb2"
+yellow = "#cc241d"
+
+[colors.normal]
+black = "#1d1d1d"
+blue = "#076678"
+cyan = "#689d6a"
+green = "#427b58"
+magenta = "#b16286"
+red = "#cc241d"
+white = "#a89984"
+yellow = "#ffaf00"
+
+[colors.primary]
+background = "#202020"
+foreground = "#ebdbb2"
+
+[cursor]
+thickness = 0.3
+unfocused_hollow = true
+
+# [cursor.style]
+# blink_interval = 500
+# blinking = "Always"
+# shape = "Block"
+
+[cursor.vi_mode_style]
+shape = "Beam"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 11
+
+[font.italic]
+family = "Operator Mono"
+
+[font.normal]
+family = "Operator Mono"
+
+[font.offset]
+x = -1
+y = 0
+
+[window]
+opacity = 0.95
+title = "Terminal"

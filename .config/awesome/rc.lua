@@ -381,13 +381,17 @@ awful.screen.connect_for_each_screen(function(s)
       todo_widget(),
       -- kbdcfg.widget,
       weather_widget {
-        api_key = 'ef1b4bda42764ceb3d76460a00b02117',
+        -- api_key = 'ef1b4bda42764ceb3d76460a00b02117',
+        -- created one on 04.09.2024 for 3.0 API
+        api_key = '11',
         -- api_key = readFile(os.getenv('HOME' .. '/owm_api_key')),
         -- api_key = readAll(os.getenv('HOME' .. '/owm_api_key')),
         -- api_key = os.getenv('OWM_API_KEY'),
         -- api_key = owm_api_key,
         -- Dnipro
         -- coordinates = {48.4323,35.0255},
+        -- Hrizne
+        -- coordinates = {48.025160, 35.331700},
         -- Stryi
         -- coordinates = {49.2469864,23.8289937},
         -- Poltava
@@ -1051,6 +1055,8 @@ awful.rules.rules = {
     rule = { class = 'Thunar' },
     properties = {
       floating = true,
+      x = 100,
+      y = 100,
     },
   },
 
@@ -1133,8 +1139,8 @@ commands = {
   'nm-applet',
   'easystroke',
   'flameshot',
-  "workrave",
-  'gis-weather',
+  -- "workrave",
+  'python3 /home/syevt/data/projects/gis-weather/gis-weather.py',
   -- "indicator-bulletin",
   -- "slack"
 }

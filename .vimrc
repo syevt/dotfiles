@@ -65,6 +65,10 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'ellisonleao/gruvbox.nvim'
 Plug 'luisiacc/gruvbox-baby'
 Plug 'oxfist/night-owl.nvim'
+Plug 'karoliskoncevicius/sacredforest-vim'
+Plug 'sainnhe/everforest'
+Plug 'andersevenrud/nordic.nvim'
+Plug 'shaunsingh/nord.nvim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -137,8 +141,33 @@ set termguicolors
 " let g:gruvbox_sign_column='bg0'
 " let g:gruvbox_invert_selection=0
 
-let g:gruvbox_baby_use_original_palette = 1
-colorscheme gruvbox-baby
+" let g:gruvbox_baby_use_original_palette = 1
+" colorscheme gruvbox-baby
+" colorscheme sacredforest
+
+" Everforest scheme
+let g:everforest_better_performance = 1
+let g:everforest_enable_italic = 1
+" 0 is default
+" let g:everforest_transparent_background = 0
+colorscheme everforest
+
+" Nordic
+" let g:nord_underline_option = 'none'
+" let g:nord_italic = v:true
+" let g:nord_italic_comments = v:false
+" let g:nord_minimal_mode = v:false
+" let g:nord_alternate_backgrounds = v:true
+" colorscheme nordic
+
+" Nord
+" let g:nord_contrast = v:true
+" let g:nord_borders = v:true
+" let g:nord_disable_background = v:false
+" let g:nord_italic = v:true
+" let g:nord_uniform_diff_background = v:true
+" let g:nord_bold = v:false
+" colorscheme nord
 
 " colorscheme gruvbox
 " colorscheme night-owl
@@ -581,11 +610,17 @@ let g:ale_close_preview_on_insert=1
 let g:ale_floating_preview=1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 
-" these stopped working, need some attention
-" let g:ale_use_neovim_diagnostics_api=1
-" let g:ale_sign_error = ''
-" let g:ale_sign_warning = ''
-" let g:ale_statusline_format=[' %d', ' %d', 'ok']
+" for neovim > 0.9 this should explicitly set to "0" to show customized icons
+let g:ale_use_neovim_diagnostics_api=0
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_statusline_format=[' %d', ' %d', 'ok']
+
+" this is for suppressing error messages at the end of the line
+let g:ale_virtualtext_cursor = 'disabled'
+" this one for suppressing error messages at the bottom
+let g:ale_echo_cursor = 0
+
 
 "/
 " Vim-Airline
@@ -695,7 +730,9 @@ augroup END
 " hi Comment gui=italic
 " " hi GruvboxBg0 guibg=NONE ctermbg=NONE
 
-hi Normal guibg=NONE ctermbg=NONE
+" this is for transparency
+" hi Normal guibg=NONE ctermbg=NONE
+
 " hi GruvboxGreenSign guibg=NONE ctermbg=NONE
 " hi GruvboxAquaSign guibg=NONE ctermbg=NONE
 " hi GruvboxRedSign guibg=NONE ctermbg=NONE
@@ -704,7 +741,8 @@ hi Normal guibg=NONE ctermbg=NONE
 ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 " this is for the night-owl theme
-hi ALEWarningSign ctermfg=4 ctermbg=0 guibg=none guifg=DarkYellow
+" this is for transparency
+" hi ALEWarningSign ctermfg=4 ctermbg=0 guibg=none guifg=DarkYellow
 
 " set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ї],фa,іs,вd,аf,пg,рh,оj,лk,дl,ж\\;,є',ґ\\,яz,чx,сc,мv,иb,тn,ьm,ю.,./,ЙQ,ЦW,УE,КR,ЕT,НY,НY,ГU,ШI,ЩO,ЗP,Х{,Ї},ФA,ІS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\\:,Є\\",Ґ<bar>,ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\\<,Ю>,№#
 set langmap=й',ц\\,,у.,кp,еy,нf,гg,шc,щr,зl,х=,ї=,ґ\\\,фa,іo,вe,аu,пi,рd,оh,лt,дn,жs,є-,я\\;,чq,сj,мk,иx,тb,ьm,бw,юv
