@@ -1,0 +1,93 @@
+* {
+  font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Icons", "Font Awesome 6 Free", sans-serif;
+  /* font-family: "PT Sans narrow", sans-serif; */
+  /* font-family: "Noto Color Emoji", "Font Awesome 6 Free", "PT Sans narrow", sans-serif; */
+  font-size: 16px;
+}
+
+/* .icon { */
+  /* [> font-family: "Font Awesome 6 Free", "Material Icons", "JetBrainsMono Nerd Font"; <] */
+  /* font-family: "JetBrainsMono Nerd Font"; */
+  /* font-size: 18px; */
+  /* padding-right: 4px; */
+/* } */
+
+/* #pulseaudio, #battery, #network, #custom-icon { */
+  /* font-family: "Font Awesome 6 Free", "JetBrainsMono Nerd Font", sans-serif; */
+/* } */
+
+window#waybar {
+  background-color: rgba(20, 20, 20, 0.7); /* semi-transparent black */
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 12px;
+  color: #D8DEE9;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  border-radius: 10px;
+  /* backdrop-filter: blur(8px); [> optional frosty blur <] */
+}
+
+#custom-spacer-left {
+  /* margin-left: 1px; */
+}
+
+#custom-spacer-right {
+  /* margin-right: 1px; */
+}
+
+#battery {
+  background: transparent;
+}
+
+#battery.critical {
+  color: #ff5555;
+  font-weight: 900;
+  animation: blink 1s infinite alternate;
+}
+
+#workspaces button {
+  padding: 4px;
+  margin: 4px;
+  /* color: #888; */
+  color: #D8DEE9;
+  border-radius: 9999px; /* ← ROUND AF */
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  /* border-radius: 5px; */
+  /* font-size: 12px; */
+  min-width: 18px;
+  min-height: 18px;
+}
+
+#workspaces button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccc;
+}
+
+#workspaces button.focused {
+  background: #5e81ac;
+  color: white;
+}
+
+#workspaces button.urgent {
+  background: #bf616a;
+  color: white;
+  animation: blink 1s infinite;
+}
+
+#workspaces button.visible {
+  background: #3b4252;
+  color: white;
+}
+
+#custom-window-control-buttons:hover {
+  color: #ff5555;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
