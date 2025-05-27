@@ -274,8 +274,6 @@
     "custom/screenshot": {
       "format": "",
       "tooltip": false,
-      // "font-size": 18px,
-      // "on-click": "niri msg action screenshot",
       "on-click": "~/.config/waybar/scripts/safe-screenshot.sh",
     },
   }
