@@ -24,6 +24,7 @@
         // "idle_inhibitor",
         "custom/layout",
         "custom/screenshot",
+        "custom/weather",
         // "keyboard-state",
         "pulseaudio",
         // "network",
@@ -142,7 +143,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "format": "{:%H:%M, %b %d}",
     },
     "cpu": {
         "format": "{usage}% ",
@@ -275,5 +277,13 @@
       "format": "",
       "tooltip": false,
       "on-click": "~/.config/waybar/scripts/safe-screenshot.sh",
+    },
+    "custom/weather": {
+      "format": "{}°",
+      "tooltip": true,
+      "interval": 3600,
+      "exec": "wttrbar --location Grizne --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
+      // "exec": "wttrbar --location Grizne -l uk --hide-conditions --date-format %d.%m.%Y",
+      "return-type": "json"
     },
   }
