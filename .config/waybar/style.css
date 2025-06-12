@@ -1,5 +1,6 @@
 * {
-  font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Icons", "Font Awesome 6 Free", "Weather Icons", sans-serif;
+  font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Design Icons", "Font Awesome 6 Free", "Weather Icons", sans-serif;
+  /* font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif; */
   /* font-family: "PT Sans narrow", sans-serif; */
   /* font-family: "Noto Color Emoji", "Font Awesome 6 Free", "PT Sans narrow", sans-serif; */
   font-size: 16px;
@@ -18,7 +19,7 @@
 /* } */
 
 /* #custom-weather { */
-  /* font-family: "Weather Icons"; */
+  /* font-family: "PT Sans Narrow", "Weather Icons"; */
   /* font-size: 30px; */
 /* } */
 
@@ -125,8 +126,19 @@ window#waybar {
     color: white;
 }
 
-#custom-window-control-buttons:hover {
+#custom-niri-window-close:hover {
   color: #ff5555;
+}
+
+#custom-niri-windows {
+  margin-left: 8px;
+}
+
+#custom-niri-windows:hover,
+#custom-launcher:hover,
+#custom-niri-window-preset-column-width:hover,
+#custom-niri-window-maximize-column:hover {
+  color: #7fc8ff;
 }
 
 @keyframes blink {

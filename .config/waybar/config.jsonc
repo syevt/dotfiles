@@ -10,7 +10,11 @@
     // Choose the order of the modules
     "modules-left": [
       "custom/spacer-left",
-      "custom/window-control-buttons",
+      "custom/niri-window-close",
+      "custom/niri-window-preset-column-width",
+      "custom/niri-window-maximize-column",
+      "custom/niri-windows",
+      "custom/launcher",
       "niri/workspaces"
       // "niri/language",
       // "niri/backend"
@@ -21,7 +25,7 @@
     ],
     "modules-center": [
         // "custom/window-title"
-      "niri/window"
+        "niri/window"
     ],
     "modules-right": [
         // "mpd",
@@ -173,8 +177,8 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}",
-        "format": "{:%H:%M, %b %d}",
+        "format-alt": "{:%d.%m.%Y}",
+        "format": "{:%H:%M, %a %b %d}",
     },
     "cpu": {
         "format": "{usage}% ",
@@ -189,12 +193,14 @@
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-icons": ["", "", ""],
+        "tooltip": false,
     },
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": false,
     },
     "battery": {
         "states": {
@@ -297,11 +303,35 @@
       "return-type": "json",
       "format": "{}",
     },
-    "custom/window-control-buttons": {
+    "custom/niri-window-close": {
       "format": "",
       "tooltip": false,
       // "font-size": 18px,
       "on-click": "niri msg action close-window",
+    },
+    "custom/niri-window-preset-column-width": {
+      "format": "½",
+      "tooltip": false,
+      "on-click": "niri msg action switch-preset-column-width",
+      "interval": 0
+    },
+    "custom/niri-window-maximize-column": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "niri msg action maximize-column",
+      "interval": 0
+    },
+    "custom/niri-windows": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "~/.config/waybar/scripts/niri-window-switcher.sh",
+      "interval": 0
+    },
+    "custom/launcher": {
+      "format": "",
+      "tooltip": false,
+      // "font-size": 18px,
+      "on-click": "fuzzel -l 10",
     },
     "custom/screenshot": {
       "format": "",
@@ -312,7 +342,7 @@
       "format": "{}°",
       "tooltip": true,
       "interval": 3600,
-      "exec": "wttrbar --location Grizne --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
+      "exec": "wttrbar --location Poltava --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
       // "exec": "wttrbar --location Grizne -l uk --hide-conditions --date-format %d.%m.%Y",
       "return-type": "json"
     },
