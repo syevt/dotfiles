@@ -33,6 +33,7 @@
         // "mpd/mpd",
         // "mpd/state",
         // "mpris",
+        // "custom/uptime",
         "custom/layout",
         "custom/screenshot",
         "custom/weather",
@@ -273,6 +274,12 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
+    "niri/window": {
+      "icon": true,
+      "on-click": "fuzzel -l 10",
+      "on-click-right": "~/.config/waybar/scripts/niri-window-switcher.sh",
+      "tooltip": false,
+    },
     // "custom/power": {
       // "format" : "⏻ ",
       // "tooltip": false,
@@ -346,4 +353,9 @@
       // "exec": "wttrbar --location Grizne -l uk --hide-conditions --date-format %d.%m.%Y",
       "return-type": "json"
     },
+    "custom/uptime": {
+      "format": "<span font='Weather Icons 16'></span> Uptime: {}",
+      "exec": "uptime -p | sed 's/up //'",
+      "interval": 60
+    }
   }
