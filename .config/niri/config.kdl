@@ -82,13 +82,12 @@ input {
 // Remember to uncomment the node by removing "/-"!
 output "HDMI-A-1" {
     // off
-    position x=0 y=0
+    // position x=1360 y=0
 }
 
-output "eDP-1" {
+output "DP-1" {
     // off
-    position x=1920 y=0
-    // position x=1280 y=0
+    position x=2560 y=0
 }
 
 /-output "eDP-1" {

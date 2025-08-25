@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 runSegment() {
   weather=$(curl -s wttr.in/Dnipro?format\="%l:+%c%20%20%t%20%p%20%w")

@@ -23,7 +23,8 @@ in
       (import "${home-manager}/nixos")
     ];
 
-  home-manager.users.${userName} = { pkgs, lib, ... }: {
+  home-manager.backupFileExtension = "backup";
+  home-manager.users.${userName} = { config, pkgs, lib, ... }: {
     home.stateVersion = "25.05"; # match your NixOS version
 
     # Clone dotfiles repo on first activation
@@ -33,11 +34,83 @@ in
       fi
     '';
 
-    # programs.zsh.enable = true;
-    home.file.".alacritty.toml".source = "${dotfilesDir}/.alacritty.toml";
-    home.file.".bash_aliases".source = "${dotfilesDir}/.bash_aliases";
-    home.file.".gitconfig".source = "${dotfilesDir}/.gitconfig";
-    home.file.".tridactylrc".source = "${dotfilesDir}/.tridactylrc";
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+      defaultCommand = "rg --files";
+      defaultOptions = [ "--layout reverse" ];
+    };
+
+    programs.tmux = {
+      enable = true;
+
+      baseIndex = 1;
+
+      plugins = with pkgs.tmuxPlugins; [
+        continuum
+        resurrect
+        vim-tmux-navigator
+      ];
+
+      extraConfig = ''
+        # Environment variable pointing to continuum plugin
+        set-environment -g TMUX_CONTINUUM_PATH ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum
+        set-environment -g TMUX_RESURRECT_DIR "$HOME/.tmux/resurrect"
+        
+        set -g @resurrect-strategy-vim 'session'
+        set -g @continuum-save-interval '5'
+        set -g @continuum-restore 'on'
+
+        source-file ${dotfilesDir}/.tmux.conf
+	run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
+      '';
+
+    };
+
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      history.saveNoDups = true;
+      syntaxHighlighting.enable = true;
+      autosuggestion = {
+        enable = true;
+        strategy = [ "match_prev_cmd" ];
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "vi-mode" "yarn" ];
+        custom = "${dotfilesDir}/zsh_custom";
+      };
+
+       initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+       initContent = builtins.readFile "${dotfilesDir}/.zshrc";
+    };
+
+    home.file.".alacritty.toml".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.alacritty.toml";
+    home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.bash_aliases";
+    home.file.".config/nvim/init.vim".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/init.vim";
+    home.file.".config/fuzzel/fuzzer.ini".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/fuzzel/fuzzel.ini";
+    home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.gitconfig";
+    home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/hypr";
+    home.file.".config/niri".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/niri";
+
+    home.file.".tmux/segments/".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/segments/";
+    home.file.".tmux/gruvbox-dark.sh".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/gruvbox-dark.sh";
+    home.file.".tmux/segment.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/segment.sh";
+    home.file.".tmux/status.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/status.sh";
+    home.file.".tmux/window.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/window.sh";
+
+    home.file.".tridactylrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tridactylrc";
+    home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vimrc";
+    home.file.".vim/after/syntax/nerdtree.vim".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vim/after/syntax/nerdtree.vim";
+    home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/waybar";
+    home.file.".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/wlogout";
   };
 
   # Bootloader.
@@ -86,6 +159,14 @@ in
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+
+  hardware.graphics.enable = true;
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  # hardware.opengl = {
+  #   enable = true;
+  #   extraPackages = [ pkgs.vaapiVdpau pkgs.libvdpau-va-gl ];
+  # };
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -136,18 +217,27 @@ in
       kdePackages.kate
     #  thunderbird
     ];
+    shell = pkgs.zsh;
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
   # zsh
-  # programs.zsh.enable = true;
+  programs.zsh.enable = true;
+  # programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
   # users.defaultUserShell = pkgs.zsh;
-  # users.users.syevt.shell = pkgs.shell;
+
+  # that's the hack to make things like `nodenv` work
+  programs.nix-ld.enable = true;
+
+  programs.niri.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # that's for making nvidia gt730 have acceleration
+  # nixpkgs.config.nvidia.acceptLicense = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -164,6 +254,7 @@ in
    ecryptfs
    kdePackages.falkon
    fd
+   font-awesome
    fuzzel
    fzf
    gimp
@@ -174,13 +265,14 @@ in
    hyprlock
    hyprpaper
    light
+   llvmPackages.clang
+   material-icons
    neofetch
    neovim
    niri
    nodejs_24
    noto-fonts-color-emoji
    oh-my-zsh
-   zsh-powerlevel10k
    qbittorrent
    ripgrep
    signal-desktop
@@ -192,13 +284,19 @@ in
    xfce.thunar-archive-plugin
    tmux
    tor
+   tree
    ungoogled-chromium
+   usb-modeswitch
+   usbutils
    vlc
    waybar
    whatsie
    wl-clipboard
    wlogout
+   wttrbar
+   xclip
    zsh
+   zsh-powerlevel10k
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

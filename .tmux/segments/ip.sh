@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 source "$HOME/.tmux/helpers/online.sh"
 source "$HOME/.tmux/helpers/cache.sh"

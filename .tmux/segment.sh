@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 displaySegment() {
   local segmentName="$1"

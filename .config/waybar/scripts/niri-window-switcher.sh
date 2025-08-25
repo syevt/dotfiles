@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mapfile -t lines < <(
   niri msg --json windows |

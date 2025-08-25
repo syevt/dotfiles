@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LAYOUT_FILE="/tmp/current_layout"
 CURRENT=$(cat "$LAYOUT_FILE" 2>/dev/null || echo "🇺🇸")

@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # echo ua > /tmp/current_layout
 echo 🇺🇦 > /tmp/current_layout
 niri msg action switch-layout 1

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LAYOUT=$(cat /tmp/current_layout 2>/dev/null)
 
