@@ -1,9 +1,9 @@
 * {
-  font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Design Icons", "Font Awesome 6 Free", "Weather Icons", sans-serif;
+  font-family: "PT Sans narrow", "Font Awesome 6 Free", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif;
   /* font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif; */
   /* font-family: "PT Sans narrow", sans-serif; */
   /* font-family: "Noto Color Emoji", "Font Awesome 6 Free", "PT Sans narrow", sans-serif; */
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* .icon { */
@@ -101,11 +101,12 @@ window#waybar {
 }
 
 #workspaces {
-    margin: 0 8px;
+    margin: 0 6px;
 }
 
 #workspaces button {
-    padding: 0px 11px;
+    /* adjunt the padding-right to have a true circle */
+    padding: 0px 7px;
     margin: 2px;
     border-radius: 9999px; /* full circle */
     background-color: transparent;
@@ -121,10 +122,18 @@ window#waybar {
 }
 
 /* Optional: hovered workspace */
-#workspaces button:hover {
-    background-color: #444;
+/* #workspaces button:hover { */
+#workspaces button:hover,
+#workspaces button.active:hover,
+#workspaces button.focused:hover,
+#workspaces button.urgent:hover {
+    background-color: #202020;
     color: white;
 }
+
+/* #custom-niri-window-close { */
+  /* margin-right: 20px; */
+/* } */
 
 #custom-niri-window-close:hover {
   color: #ff5555;
@@ -140,6 +149,7 @@ window#waybar {
 #custom-niri-window-maximize-column:hover {
   color: #7fc8ff;
 }
+
 
 @keyframes blink {
   0% { opacity: 1; }

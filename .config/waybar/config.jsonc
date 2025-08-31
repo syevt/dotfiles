@@ -29,7 +29,7 @@
     ],
     "modules-right": [
         // "mpd",
-        // "idle_inhibitor",
+        "idle_inhibitor",
         // "mpd/mpd",
         // "mpd/state",
         // "mpris",
@@ -349,7 +349,7 @@
       "format": "{}°",
       "tooltip": true,
       "interval": 3600,
-      "exec": "wttrbar --location Poltava --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
+      "exec": "wttrbar --location Dnipro --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
       // "exec": "wttrbar --location Grizne -l uk --hide-conditions --date-format %d.%m.%Y",
       "return-type": "json"
     },

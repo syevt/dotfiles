@@ -92,7 +92,9 @@ in
     home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.bash_aliases";
     home.file.".config/nvim/init.vim".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/init.vim";
-    home.file.".config/fuzzel/fuzzer.ini".source =
+    home.file.".config/nvim/coc-settings.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/coc-settings.json";
+    home.file.".config/fuzzel/fuzzel.ini".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/fuzzel/fuzzel.ini";
     home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.gitconfig";
     home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/hypr";
@@ -160,6 +162,8 @@ in
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
+  # services.systembus-notify.enable = true;
+
   hardware.graphics.enable = true;
 
   services.xserver.videoDrivers = [ "amdgpu" ];
@@ -220,6 +224,14 @@ in
     shell = pkgs.zsh;
   };
 
+  # fonts
+  fonts.packages = with pkgs; [
+    font-awesome
+    material-icons
+    nerd-fonts.jetbrains-mono
+    weather-icons
+  ];
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -252,9 +264,9 @@ in
    chromium
    delta
    ecryptfs
+   jq
    kdePackages.falkon
    fd
-   font-awesome
    fuzzel
    fzf
    gimp
@@ -264,13 +276,14 @@ in
    hypridle
    hyprlock
    hyprpaper
+   kdePackages.kpat
+   libnotify
    light
    llvmPackages.clang
-   material-icons
+   lm_sensors
    neofetch
    neovim
    niri
-   nodejs_24
    noto-fonts-color-emoji
    oh-my-zsh
    qbittorrent
@@ -288,6 +301,7 @@ in
    ungoogled-chromium
    usb-modeswitch
    usbutils
+   viber
    vlc
    waybar
    whatsie
@@ -295,6 +309,7 @@ in
    wlogout
    wttrbar
    xclip
+   xsensors
    zsh
    zsh-powerlevel10k
   ];

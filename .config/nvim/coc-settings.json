@@ -17,6 +17,17 @@
           "formatter": "purs-tidy"
         }
       }
+    },
+    "nix": {
+      "command": "nil",
+      "filetypes": ["nix"],
+      "rootPatterns":  ["flake.nix"],
+      // Uncomment these to tweak settings.
+      // "settings": {
+      //   "nil": {
+      //     "formatting": { "command": ["nixfmt"] }
+      //   }
+      // }
     }
   },
   "coc.preferences.formatOnSaveFiletypes": [

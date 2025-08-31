@@ -11,6 +11,7 @@ spawn-at-startup "hypridle"
 // spawn-at-startup "hyprlock"
 // spawn-at-startup "bash -c 'echo us > /tmp/current_layout'"
 spawn-at-startup "~/.config/niri/scripts/set_layout_us.sh"
+spawn-at-startup "~/gis-weather/run-gis-weather.sh"
 spawn-at-startup "alacritty"
 
 // Input device configuration.
@@ -125,6 +126,7 @@ workspace "1"
 workspace "2"
 workspace "3"
 workspace "4"
+workspace "5"
 
 // Make workspaces four times smaller than normal in the overview.
 overview {
@@ -363,6 +365,21 @@ window-rule {
   match app-id="libreoffice"
   open-on-workspace "4"
 }
+
+window-rule {
+  match app-id="gis-weather.py"
+  open-on-output "HDMI-A-1"
+  open-on-workspace "5"
+  open-floating true
+  default-floating-position x=0 y=0 relative-to="top-right"
+  focus-ring {
+    off
+  }
+  shadow {
+    off
+  }
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
