@@ -7,3 +7,6 @@ alias wttr='clear && curl "v2.wttr.in/Dnipro?lang=uk"'
 alias tr='trans :en -speak -no-ansi'
 
 alias tm='tmux -u new -ADs 0'
+nd() {
+  nix develop "$@" --command zsh
+}

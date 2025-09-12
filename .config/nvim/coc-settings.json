@@ -4,7 +4,9 @@
   "diagnostic.displayByAle": true,
   "languageserver": {
     "purescript": {
-      "command": "node_modules/.bin/purescript-language-server",
+      // "command": "node_modules/.bin/purescript-language-server",
+      // "command": "/nix/store/hi13g9r99ddcsrqzisr3ykaxj9kb48vf-purescript-language-server-0.18.5/bin/purescript-language-server",
+      "command": "purescript-language-server",
       "args": ["--stdio"],
       "filetypes": ["purescript"],
       "trace.server": false,
@@ -12,8 +14,7 @@
       "settings": {
         "purescript": {
           "addSpagoSources": true,
-          "addNpmPath": true, // won't work with 'false' with the locally installed server
-
+          //"addNpmPath": true, // won't work with 'false' with the locally installed server
           "formatter": "purs-tidy"
         }
       }

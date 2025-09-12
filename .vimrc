@@ -7,6 +7,12 @@ call plug#begin('~/.vim/plugged')
 "/ File browsing
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
@@ -69,6 +75,9 @@ Plug 'karoliskoncevicius/sacredforest-vim'
 Plug 'sainnhe/everforest'
 Plug 'andersevenrud/nordic.nvim'
 Plug 'shaunsingh/nord.nvim'
+Plug 'folke/tokyonight.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'rebelot/kanagawa.nvim'
 
 "/ File icons
 Plug 'ryanoasis/vim-devicons'
@@ -146,11 +155,12 @@ set termguicolors
 " colorscheme sacredforest
 
 " Everforest scheme
-let g:everforest_better_performance = 1
-let g:everforest_enable_italic = 1
+" let g:everforest_better_performance = 1
+" let g:everforest_enable_italic = 1
 " 0 is default
 " let g:everforest_transparent_background = 0
-colorscheme everforest
+" let g:everforest_transparent_background = 'soft'
+" colorscheme everforest
 
 " Nordic
 " let g:nord_underline_option = 'none'
@@ -171,6 +181,10 @@ colorscheme everforest
 
 " colorscheme gruvbox
 " colorscheme night-owl
+colorscheme tokyonight-moon
+
+" colorscheme catppuccin-frappe
+" colorscheme kanagawa-wave
 
 "---------Enable italics-----------"
 set t_ZH=[3m

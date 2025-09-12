@@ -41,6 +41,12 @@ in
       defaultOptions = [ "--layout reverse" ];
     };
 
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     programs.tmux = {
       enable = true;
 
@@ -70,7 +76,12 @@ in
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      history.saveNoDups = true;
+      history = {
+        saveNoDups = true;
+        # these two are needed to access history inside `nix develop`
+        append = true;
+        share = true;
+      };
       syntaxHighlighting.enable = true;
       autosuggestion = {
         enable = true;
@@ -248,8 +259,10 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # that's for making nvidia gt730 have acceleration
-  # nixpkgs.config.nvidia.acceptLicense = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -304,7 +317,7 @@ in
    viber
    vlc
    waybar
-   whatsie
+   wasistlos
    wl-clipboard
    wlogout
    wttrbar
