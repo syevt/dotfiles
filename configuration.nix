@@ -94,8 +94,10 @@ in
         custom = "${dotfilesDir}/zsh_custom";
       };
 
-       initExtra = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-       initContent = builtins.readFile "${dotfilesDir}/.zshrc";
+       initContent = ''
+        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+        source ${dotfilesDir}/.zshrc
+      '';
     };
 
     home.file.".alacritty.toml".source =
