@@ -700,6 +700,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
 let g:indentLine_char_list = ['₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₀']
 " not to let vim-json hide quotes in the current line
 let g:indentLine_concealcursor=""
+let g:indentLine_fileTypeExclude = ['neo-tree']
 
 "/
 " Nclipper
