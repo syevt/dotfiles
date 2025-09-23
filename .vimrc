@@ -3,98 +3,6 @@ set encoding=utf-8
 set clipboard=unnamed
 set mouse=a
 
-call plug#begin('~/.vim/plugged')
-"/ File browsing
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'nvim-neo-tree/neo-tree.nvim'
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
-
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'yuki-yano/fzf-preview.vim', { 'branch': 'release/rpc' }
-Plug 'qpkorr/vim-bufkill'
-
-"/ Faster editing tools
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'phaazon/hop.nvim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/loremipsum'
-Plug 'mattn/emmet-vim'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'iamcco/coc-tailwindcss'
-
-"/ ale - asynchronous lint engine for show errors/warnings in the gutter
-Plug 'w0rp/ale'
-
-"/ Syntax support
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'hiphish/rainbow-delimiters.nvim'
-Plug 'Yggdroot/indentLine'
-Plug 'elzr/vim-json'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'jparise/vim-graphql'        " GraphQL syntax
-Plug 'digitaltoad/vim-pug'
-Plug 'wavded/vim-stylus'
-
-Plug 'purescript-contrib/purescript-vim'
-Plug 'nwolverson/purescript-language-server'
-Plug 'natefaubion/purescript-tidy'
-
-"/ Git
-Plug 'tpope/vim-fugitive'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'APZelos/blamer.nvim'
-
-"/ Test
-Plug 'vim-test/vim-test'
-" Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
-
-"/ Vim status line with git branch support through vim-fugitive
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-"/ Quick comment
-Plug 'preservim/nerdcommenter'
-
-"/ Seamless moving between vim and tmux panels
-Plug 'christoomey/vim-tmux-navigator'
-
-" Plug 'morhetz/gruvbox'
-" Plug 'ellisonleao/gruvbox.nvim'
-Plug 'luisiacc/gruvbox-baby'
-Plug 'oxfist/night-owl.nvim'
-Plug 'karoliskoncevicius/sacredforest-vim'
-Plug 'sainnhe/everforest'
-Plug 'andersevenrud/nordic.nvim'
-Plug 'shaunsingh/nord.nvim'
-Plug 'folke/tokyonight.nvim'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'rebelot/kanagawa.nvim'
-
-"/ File icons
-Plug 'ryanoasis/vim-devicons'
-
-"/ Copy lines to buffer with file name and line number
-Plug 'ujihisa/nclipper.vim'
-
-"/ Vim obsession to work with tmux-resurrect
-Plug 'tpope/vim-obsession'
-
-"/ Vim md editing live preview in Chrome
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
-
-Plug 'chazy/dirsettings'
-
-call plug#end()
 map <Leader>zzz :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
 
 " Set cursor shape depending on mode
@@ -128,7 +36,7 @@ set listchars=tab:>·,trail:~,extends:>,precedes:<
 set list
 " this one shows spaces with dots
 " set lcs+=space:·
-let mapleader = ',' "Swaps default backspace leader with comma
+" let mapleader = ',' "Swaps default backspace leader with comma
 set number      "Let's activate line numbers
 set complete=.,w,b,u  "Set desired autocompletion options
 
@@ -144,49 +52,13 @@ set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.log,*.zip     " MacOSX/Lin
 "---------Visuals-------"
 set termguicolors
 
-" let g:gruvbox_contrast_dark='hard'
-" let g:gruvbox_contrast_light='soft'
-
-" let g:gruvbox_bold=0
-" let g:gruvbox_sign_column='bg0'
-" let g:gruvbox_invert_selection=0
-
-" let g:gruvbox_baby_use_original_palette = 1
-" colorscheme gruvbox-baby
-" colorscheme sacredforest
-
-" Everforest scheme
-" let g:everforest_better_performance = 1
-" let g:everforest_enable_italic = 1
-" 0 is default
-" let g:everforest_transparent_background = 0
-" let g:everforest_transparent_background = 'soft'
-" colorscheme everforest
-
 " Nordic
-" let g:nord_underline_option = 'none'
-" let g:nord_italic = v:true
-" let g:nord_italic_comments = v:false
-" let g:nord_minimal_mode = v:false
-" let g:nord_alternate_backgrounds = v:true
-" colorscheme nordic
-
-" Nord
-" let g:nord_contrast = v:true
-" let g:nord_borders = v:true
-" let g:nord_disable_background = v:false
-" let g:nord_italic = v:true
-" let g:nord_uniform_diff_background = v:true
-" let g:nord_bold = v:false
-" colorscheme nord
-
-" colorscheme gruvbox
-" colorscheme night-owl
-colorscheme tokyonight-moon
-
-" colorscheme catppuccin-frappe
-" colorscheme kanagawa-wave
-
+let g:nord_underline_option = 'none'
+let g:nord_italic = v:true
+let g:nord_italic_comments = v:true
+let g:nord_minimal_mode = v:false
+let g:nord_alternate_backgrounds = v:true
+colorscheme nordic
 "---------Enable italics-----------"
 set t_ZH=[3m
 set t_ZR=[23m
@@ -224,15 +96,7 @@ set ignorecase smartcase                "For case-insensitive search
 set splitbelow
 set splitright
 
-nmap <C-j> <C-w><C-j>
-nmap <C-k> <C-w><C-k>
-nmap <C-h> <C-w><C-h>
-nmap <C-l> <C-w><C-l>
-
 "---------Mappings---------"
-
-" Make it easy to edit the Vimrc file.
-nmap <Leader>ev :tabedit $MYVIMRC<cr>
 
 " Format json document in the current buffer
 nmap <Leader>fj :%!jq<cr>
@@ -240,215 +104,9 @@ nmap <Leader>fj :%!jq<cr>
 "Add simple highlight remover"
 nmap <Leader><space> :nohlsearch<cr>
 
-"Map NERDTree easier to toggle"
-nmap <S-tab> :NERDTreeToggle<cr>
-nmap <Leader>nf :NERDTreeFind<cr>
-
-"Map CtrlPMRUFiles"
-nmap <c-E> :CtrlPMRUFiles<cr>
-
-" Show hidden files
-let NERDTreeShowHidden=1
-let NERDTreeRespectWildIgnore=0
-let NERDTreeWinSize=150
-
-"---------Plugins--------------"
-"/
-"/ fzf
-"/
-" hello macos :( without the next line it just doesn't work
-" set rtp+=/usr/local/opt/fzf
-set rtp+=~/.fzf
-" nmap ; :call fzf#vim#buffers()<CR>
-nmap ; :FzfPreviewAllBuffersRpc<CR>
-
-let g:fzf_preview_command = 'bat --color=always --plain {-1}'
-let g:fzf_preview_use_dev_icons = 1
-" nmap <Leader>p :Files!<CR>
-nmap <Leader>p :FzfPreviewProjectFilesRpc<CR>
-nmap <Leader>pr :FzfPreviewProjectMruFilesRpc<CR>
-nmap <Leader>prw :FzfPreviewProjectMrwFilesRpc<CR>
-" nmap <Leader>fh :History:<CR>
-nmap <Leader>fh :FzfPreviewCommandPaletteRpc<CR>
-nmap <Leader>rg :Rg<space>
 " copy current buffer file path to the clipboard
 nnoremap <Leader>cfp :let @+=expand('%:p')<CR>
 
-"/
-"/ NERDTree
-"/
-"▶▼契     洛
-let g:NERDTreeWinSize=35
-let NERDTreeHijackNetrw = 0
-"Change +/~ toggle dir content to arrows
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-nmap <Leader>nf :NERDTreeFind<cr>
-
-"/
-"/ Coc
-"/
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-" if has("patch-8.1.1564")
-  " " Recently vim can merge signcolumn and number column into one
-  " set signcolumn=number
-" else
-  " set signcolumn=yes
-" endif
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-"/
-"/ Vim-fugitive
-"/
-" noremap <Leader>gs :Gstatus<cr>
-" noremap <Leader>gs :Git<cr>
-noremap <Leader>gs :FzfPreviewGitStatusRpc<cr>
 noremap <Leader>gco :Git checkout<space>
 noremap <Leader>gb :Gblame<cr>
 noremap <Leader>gd :Gvdiff<Space>
@@ -571,136 +229,11 @@ let g:haskell_classic_highlighting=1
 let g:haskell_indent_disable=1
 
 "/
-" Vue syntax
-"/
-let g:vue_pre_processors = 'detect_on_enter'
-
-"/
 " JSDoc
 "/
 nmap <silent> <Leader>jd <Plug>(jsdoc)
 let g:jsdoc_allow_input_prompt=1
 let g:jsdoc_enable_es6=1
-
-"/
-" Ale
-"/
-hi clear SignColumn
-"Symbols for showing errors/warning are typed like
-"<Ctrl-Q>u<4 unicode symbols>, these are 2326, 25cf, 25b6
-"⌦ ● ▶ ⚠ ⨉      ⌧ ⌦ ╳          
-
-nmap <silent> [l <Plug>(ale_previous_wrap)
-nmap <silent> ]l <Plug>(ale_next_wrap)
-" let g:ale_linters = {
-" \  'javascript': ['xo'],
-" \}
-nmap <Leader>afp :ALEFix prettier<cr>
-nmap <Leader>afb :ALEFix brittany<cr>
-nmap <Leader>afh :ALEFix hindent<cr>
-nmap <Leader>afe :ALEFix eslint<cr>
-let b:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'typescript': ['prettier'],
-\   'purescript': ['purs-tidy', 'purescript-language-server'],
-\   'html': ['prettier'],
-\   'css': ['prettier'],
-\   'scss': ['prettier'],
-\   'haskell': ['hindent', 'brittany'],
-\}
-let b:ale_linters = {
-\   'purescript': ['purescript-language-server'],
-\}
-let g:ale_fix_on_save=1
-let g:ale_lint_on_save=1
-let g:ale_lint_on_text_changed=1
-let g:ale_lint_on_insert_leave=1
-let g:ale_lint_on_enter=1
-
-" let g:ale_fix_on_save_ignore=1
-" let g:ale_javascript_eslint_options='-c ~/.eslintrc.json'
-"
-let g:ale_cursor_detail=1
-let g:ale_close_preview_on_insert=1
-let g:ale_floating_preview=1
-let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
-
-" for neovim > 0.9 this should explicitly set to "0" to show customized icons
-let g:ale_use_neovim_diagnostics_api=0
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_statusline_format=[' %d', ' %d', 'ok']
-
-" this is for suppressing error messages at the end of the line
-let g:ale_virtualtext_cursor = 'disabled'
-" this one for suppressing error messages at the bottom
-let g:ale_echo_cursor = 0
-
-
-"/
-" Vim-Airline
-"/
-" this disables the native vim's show mode ('-- INSERT --' etc.)
-set noshowmode
-"       ⏽
-" let g:airline_theme='badwolf'
-let g:airline_theme='deus'
-" let g:airline_theme='gruvbox'
-" let g:airline_theme='onedark'
-" let g:airline_theme='base16'
-" let g:airline_theme='night_owl'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#fnamemod = ':p:~'
-let g:airline#extensions#tabline#fnamecollapse = 0
-call airline#parts#define_minwidth('branch', 50)
-call airline#parts#define_minwidth('filetype', 100)
-call airline#parts#define_minwidth('ffenc', 100)
-
-function! AirlineInit()
-  let g:airline_skip_empty_sections = 1
-  let g:airline_section_b = airline#section#create(['branch', ' ', 'hunks'])
-  let g:airline_symbols.branch = ''
-  " let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' '])
-  let g:airline_section_z = airline#section#create(['%3p%% ', ' %l', 'maxlinenr', ' : %c', ' ', '%{ObsessionStatus('' '', '''')}'])
-endfunction
-
-autocmd User AirlineAfterInit call AirlineInit()
-" autocmd VimEnter * call AirlineInit()
-
-"/
-" NerdCommenter
-"/
-" Add one space after comment symbol
-let g:NERDSpaceDelims = 1
-
-"/
-" Vim-devicons
-"/
-let g:WebDevIconsNerdTreeAfterGlyphPadding=' '
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ''
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-let g:DevIconsDefaultFolderOpenSymbol = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['package.json'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExactSymbols['.gitignore'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['haml'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['jade'] = ''
-
-"/
-" Indent lines
-"/
-
-" let g:indentLine_char_list = ['', '', '﫦', '⏽', '│', '|', '¦', '┆', '┊', '', '†', '‡', '', '', '', '', '', '', '', '', '', '']
-let g:indentLine_char_list = ['₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '₀']
-" not to let vim-json hide quotes in the current line
-let g:indentLine_concealcursor=""
-let g:indentLine_fileTypeExclude = ['neo-tree']
 
 "/
 " Nclipper
@@ -718,13 +251,6 @@ let g:mkdp_browser = 'vivaldi-stable'
 " Enable spellcheck for markdown and gitcommit files
 autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal spell
-
-"---------Auto-Commands---------"
-" Automatically source the Vimrc file on save.
-augroup autosourcing
-  autocmd!
-  autocmd BufWritePost .vimrc source %
-augroup END
 
 "---------Custom Syntax Highlights---------"
 " 'gui=italic' or 'cterm=italic'

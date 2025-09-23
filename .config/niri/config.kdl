@@ -367,6 +367,12 @@ window-rule {
 }
 
 window-rule {
+  match title="Audacious"
+  open-on-workspace "5"
+  default-column-width { proportion 0.33; }
+}
+
+window-rule {
   match app-id="gis-weather.py"
   open-on-output "HDMI-A-1"
   open-on-workspace "5"

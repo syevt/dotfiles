@@ -1,4 +1,5 @@
-alias vim='nvim'
+# alias vim='nvim'
+alias vim='nvim +"silent! source .git/session"'
 alias svim='nvim -S .git/session.vim'
 alias fvim='nvim -o `fzp`'
 # alias fzp="fzf --layout reverse --preview='head {}' --preview-window=down --preview 'bat --style=numbers --theme=base16 --color=always {} | head -500'"

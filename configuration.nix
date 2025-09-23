@@ -62,13 +62,13 @@ in
         # Environment variable pointing to continuum plugin
         set-environment -g TMUX_CONTINUUM_PATH ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum
         set-environment -g TMUX_RESURRECT_DIR "$HOME/.tmux/resurrect"
-        
+
         set -g @resurrect-strategy-vim 'session'
         set -g @continuum-save-interval '5'
         set -g @continuum-restore 'on'
 
         source-file ${dotfilesDir}/.tmux.conf
-	run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
+        run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
       '';
 
     };
@@ -103,10 +103,12 @@ in
     home.file.".alacritty.toml".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.alacritty.toml";
     home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.bash_aliases";
-    home.file.".config/nvim/init.vim".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/init.vim";
-    home.file.".config/nvim/coc-settings.json".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/coc-settings.json";
+    home.file.".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim";
+    # home.file.".config/nvim/init.vim".source =
+      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/init.vim";
+    # home.file.".config/nvim/coc-settings.json".source =
+      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/coc-settings.json";
     home.file.".config/fuzzel/fuzzel.ini".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/fuzzel/fuzzel.ini";
     home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.gitconfig";
@@ -314,6 +316,7 @@ in
    tor
    tree
    ungoogled-chromium
+   unzip
    usb-modeswitch
    usbutils
    viber
