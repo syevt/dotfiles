@@ -27,8 +27,6 @@ require("lazy").setup({
   { "tpope/vim-obsession" },
   --{"iamcco/markdown-preview.nvim", build =  "cd app & yarn install"},
   --{"chazy/dirsettings"},
-  -- { "hrsh7th/cmp-cmdline" },
-  --{ import = "plugins.cmp-tabnine" },
   {
     "mason-org/mason.nvim",
     opts = {},
@@ -45,9 +43,6 @@ require("lazy").setup({
   { import = "plugins.nordic" },
   { import = "plugins.gitsigns" },
   { import = "plugins.cmp-tabnine" },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-path" },
-  { "onsails/lspkind.nvim" },
   { import = "plugins.nvim-cmp" },
   -- that's the culprit
   -- { import = "plugins.rainbow-delimiters" },

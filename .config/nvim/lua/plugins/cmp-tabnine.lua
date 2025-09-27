@@ -1,8 +1,11 @@
 return {
   "tzachar/cmp-tabnine",
-  run = "./install.sh",
-  dependencies = { "hrsh7th/nvim-cmp" },
+  build = "./install.sh",
+  dependencies = "hrsh7th/nvim-cmp",
   config = function()
+    -- vim.g.cmp_tabnine_binary_path =
+    -- "/home/syevt/.local/share/nvim/lazy/cmp-tabnine/binaries/4.304.0/x86_64-unknown-linux-musl/TabNine"
+
     local tabnine = require("cmp_tabnine.config")
     tabnine:setup({
       max_lines = 1000,
