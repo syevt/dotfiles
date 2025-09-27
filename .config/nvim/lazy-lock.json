@@ -37,6 +37,7 @@
   "purescript-vim": { "branch": "main", "commit": "82348352e6568fcc0385bd7c99a8ead3a479feea" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "687ef75fdbd497eabc9eea92b52e7b4d403b3319" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "f64efd33a51ea89bdb847fb3aaf716e96b83ba1a" },
   "tokyonight.nvim": { "branch": "main", "commit": "14fd5ff7f84027064724ec3157fe903199e77ded" },
   "vim-bufkill": { "branch": "master", "commit": "3113181d0c1bfb8719f3ddcd2e2f35a8d763d1e5" },
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },

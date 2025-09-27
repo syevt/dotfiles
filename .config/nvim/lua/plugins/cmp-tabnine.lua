@@ -1,6 +1,6 @@
 return {
   "tzachar/cmp-tabnine",
-  run='./install.sh',
+  run = "./install.sh",
   dependencies = { "hrsh7th/nvim-cmp" },
   config = function()
     local tabnine = require("cmp_tabnine.config")
@@ -15,14 +15,8 @@ return {
       min_percent = 0,
     })
 
-    vim.keymap.set(
-      "n",
-      "<leader>tn",
-      function()
-        print(vim.inspect(require("cmp").get_config().sources))
-      end,
-      { desc = "Show nvim-cmp sources" }
-    )
-
+    vim.keymap.set("n", "<leader>tn", function()
+      print(vim.inspect(require("cmp").get_config().sources))
+    end, { desc = "Show nvim-cmp sources" })
   end,
 }

@@ -1,6 +1,7 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter", -- load only when you start typing
+
+  -- event = "InsertEnter", -- load only when you start typing
   config = function()
     local cmp = require("cmp")
     local lspkind = require("lspkind")
@@ -26,13 +27,14 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
       sources = {
-        {name = 'path'},
-        {name = 'nvim_lsp', keyword_length = 1},
-        {name = 'buffer', keyword_length = 3},
-        {name = 'cmp_tabnine', keyword_length = 1 },
+        { name = "path" },
+        { name = "cmdline" },
+        { name = "nvim_lsp", keyword_length = 1 },
+        { name = "buffer", keyword_length = 3 },
+        { name = "cmp_tabnine", keyword_length = 1 },
       },
       window = {
-        documentation = cmp.config.window.bordered()
+        documentation = cmp.config.window.bordered(),
       },
       -- 🔹 Use cmdline & path source for ':' (commands)
       cmp.setup.cmdline(":", {
@@ -43,9 +45,9 @@ return {
         },
       }),
       formatting = {
-          format = lspkind.cmp_format({
+        format = lspkind.cmp_format({
           mode = "symbol_text", -- "text", "text_symbol", "symbol_text", "symbol"
-          maxwidth = 50,        -- truncate long entries
+          maxwidth = 50, -- truncate long entries
           ellipsis_char = "...",
           menu = {
             buffer = "[Buf]",
