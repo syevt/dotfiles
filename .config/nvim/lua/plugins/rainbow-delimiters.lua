@@ -13,13 +13,13 @@ return {
         lua = "rainbow-blocks",
       },
       highlight = {
-        "RainbowDelimiterRed",
-        "RainbowDelimiterYellow",
         "RainbowDelimiterBlue",
-        "RainbowDelimiterOrange",
         "RainbowDelimiterGreen",
         "RainbowDelimiterViolet",
         "RainbowDelimiterCyan",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterRed",
       },
       priority = {
         [""] = 210, -- default

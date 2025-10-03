@@ -10,13 +10,13 @@ return {
 
         vim.keymap.set(
           "n",
-          "<leader>gph",
+          "<leader>grh",
           gitsigns.reset_hunk,
           { buffer = bufnr }
         )
         vim.keymap.set(
           "n",
-          "<leader>grh",
+          "<leader>gph",
           gitsigns.preview_hunk,
           { buffer = bufnr }
         )
