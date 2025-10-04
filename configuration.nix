@@ -105,10 +105,6 @@ in
     home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.bash_aliases";
     home.file.".config/nvim".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim";
-    # home.file.".config/nvim/init.vim".source =
-      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/init.vim";
-    # home.file.".config/nvim/coc-settings.json".source =
-      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/nvim/coc-settings.json";
     home.file.".config/fuzzel/fuzzel.ini".source =
       config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/fuzzel/fuzzel.ini";
     home.file.".gitconfig".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.gitconfig";
@@ -123,9 +119,6 @@ in
     home.file.".tmux/window.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/window.sh";
 
     home.file.".tridactylrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tridactylrc";
-    # home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vimrc";
-    # home.file.".vim/after/syntax/nerdtree.vim".source =
-      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vim/after/syntax/nerdtree.vim";
     home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/waybar";
     home.file.".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/wlogout";
   };

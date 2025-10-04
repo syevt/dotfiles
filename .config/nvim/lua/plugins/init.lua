@@ -38,6 +38,7 @@ require("lazy").setup({
   { import = "plugins.hop" },
   { import = "plugins.mini-surround" },
   { import = "plugins.markdown" },
+  -- { import = "plugins.multicursor" },
   -- need to revisit this later
   -- { import = "plugins.fugitive" },
 })
