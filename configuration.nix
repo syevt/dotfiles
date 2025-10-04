@@ -123,9 +123,9 @@ in
     home.file.".tmux/window.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tmux/window.sh";
 
     home.file.".tridactylrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.tridactylrc";
-    home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vimrc";
-    home.file.".vim/after/syntax/nerdtree.vim".source =
-      config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vim/after/syntax/nerdtree.vim";
+    # home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vimrc";
+    # home.file.".vim/after/syntax/nerdtree.vim".source =
+      # config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.vim/after/syntax/nerdtree.vim";
     home.file.".config/waybar".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/waybar";
     home.file.".config/wlogout".source = config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/.config/wlogout";
   };

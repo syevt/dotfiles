@@ -15,7 +15,6 @@ require("lazy").setup({
   { "shaunsingh/nord.nvim" },
   --{"folke/tokyonight.nvim"},
   { "tpope/vim-obsession" },
-  --{"iamcco/markdown-preview.nvim", build =  "cd app & yarn install"},
   --{"chazy/dirsettings"},
   {
     "mason-org/mason.nvim",
@@ -38,6 +37,7 @@ require("lazy").setup({
   { import = "plugins.rainbow-delimiters" },
   { import = "plugins.hop" },
   { import = "plugins.mini-surround" },
+  { import = "plugins.markdown" },
   -- need to revisit this later
   -- { import = "plugins.fugitive" },
 })
