@@ -37,6 +37,7 @@ require("lazy").setup({
   { import = "plugins.rainbow-delimiters" },
   { import = "plugins.hop" },
   { import = "plugins.mini-surround" },
+  { import = "plugins.mini-icons" },
   { import = "plugins.markdown" },
   -- { import = "plugins.multicursor" },
   -- need to revisit this later
