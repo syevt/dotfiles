@@ -3,8 +3,6 @@ return {
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    -- you need this when 'mini-icons' is not installed
-    -- "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
   config = function()
@@ -16,6 +14,14 @@ return {
             -- auto close neo-tree when a file is opened
             require("neo-tree.command").execute({ action = "close" })
           end,
+        },
+      },
+
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          hide_ignored = true,
         },
       },
     })
