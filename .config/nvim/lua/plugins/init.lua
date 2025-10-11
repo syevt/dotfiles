@@ -2,7 +2,6 @@ require("plugins.diagnostics")
 require("lazy").setup({
   { "christoomey/vim-tmux-navigator" },
   { "qpkorr/vim-bufkill" },
-  { "terryma/vim-multiple-cursors", event = "VeryLazy" },
   { "vim-scripts/loremipsum" },
   --{"mattn/emmet-vim"},
   --{"iamcco/coc-tailwindcss"},
@@ -39,7 +38,6 @@ require("lazy").setup({
   { import = "plugins.mini-surround" },
   { import = "plugins.mini-icons" },
   { import = "plugins.markdown" },
-  -- { import = "plugins.multicursor" },
   -- need to revisit this later
   -- { import = "plugins.fugitive" },
 })
