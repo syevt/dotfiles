@@ -3,32 +3,35 @@
 # nixos-generate-config --root /mnt
 # nano /mnt/etc/nixos/configuration.nix   # paste this config & edit
 # nixos-install
-
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs,  ... }:
-
-let
-  userName     = "syevt"; # my user names are the same, both for the system and on the github, change appropriately
-  dotfilesDir  = "/home/${userName}/.dotfiles";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-in
 {
-
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
+  config,
+  pkgs,
+  ...
+}: let
+  userName = "syevt"; # my user names are the same, both for the system and on the github, change appropriately
+  dotfilesDir = "/home/${userName}/.dotfiles";
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    (import "${home-manager}/nixos")
+  ];
 
   home-manager.backupFileExtension = "backup";
-  home-manager.users.${userName} = { config, pkgs, lib, ... }: {
+  home-manager.users.${userName} = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }: {
     home.stateVersion = "25.05"; # match your NixOS version
 
     # Clone dotfiles repo on first activation
-    home.activation.cloneDotfiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    home.activation.cloneDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [ ! -d "${dotfilesDir}" ]; then
         ${pkgs.git}/bin/git clone https://github.com/${userName}/dotfiles.git "${dotfilesDir}"
       fi
@@ -38,7 +41,7 @@ in
       enable = true;
       enableZshIntegration = true;
       defaultCommand = "rg --files";
-      defaultOptions = [ "--layout reverse" ];
+      defaultOptions = ["--layout reverse"];
     };
 
     programs.direnv = {
@@ -70,7 +73,6 @@ in
         source-file ${dotfilesDir}/.tmux.conf
         run-shell ${pkgs.tmuxPlugins.continuum}/share/tmux-plugins/continuum/continuum.tmux
       '';
-
     };
 
     programs.zsh = {
@@ -85,16 +87,16 @@ in
       syntaxHighlighting.enable = true;
       autosuggestion = {
         enable = true;
-        strategy = [ "match_prev_cmd" ];
+        strategy = ["match_prev_cmd"];
       };
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "vi-mode" "yarn" ];
+        plugins = ["git" "vi-mode" "yarn"];
         custom = "${dotfilesDir}/zsh_custom";
       };
 
-       initContent = ''
+      initContent = ''
         source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
         source ${dotfilesDir}/.zshrc
       '';
@@ -174,7 +176,7 @@ in
 
   hardware.graphics.enable = true;
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = ["amdgpu"];
   # hardware.opengl = {
   #   enable = true;
   #   extraPackages = [ pkgs.vaapiVdpau pkgs.libvdpau-va-gl ];
@@ -224,10 +226,10 @@ in
   users.users.${userName} = {
     isNormalUser = true;
     description = "syevt";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.zsh;
   };
@@ -264,65 +266,69 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-   alacritty
-   audacious
-   bat
-   bibata-cursors
-   brightnessctl
-   chromium
-   delta
-   ecryptfs
-   jq
-   kdePackages.falkon
-   fd
-   fuzzel
-   fzf
-   gimp
-   git
-   google-chrome
-   kdePackages.gwenview
-   hypridle
-   hyprlock
-   hyprpaper
-   kdePackages.kpat
-   libnotify
-   light
-   llvmPackages.clang
-   lm_sensors
-   neofetch
-   neovim
-   niri
-   noto-fonts-color-emoji
-   oh-my-zsh
-   qbittorrent
-   ripgrep
-   signal-desktop
-   slurp
-   stow
-   swaynotificationcenter
-   xfce.thunar
-   xfce.thunar-volman
-   xfce.thunar-archive-plugin
-   tmux
-   tor
-   tree
-   ungoogled-chromium
-   unzip
-   usb-modeswitch
-   usbutils
-   viber
-   vlc
-   waybar
-   wasistlos
-   wl-clipboard
-   wlogout
-   wttrbar
-   xclip
-   xsensors
-   zsh
-   zsh-powerlevel10k
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    alacritty
+    alejandra
+    audacious
+    bat
+    bibata-cursors
+    brightnessctl
+    chromium
+    deadnix
+    delta
+    ecryptfs
+    jq
+    kdePackages.falkon
+    fd
+    fuzzel
+    fzf
+    gimp
+    git
+    google-chrome
+    kdePackages.gwenview
+    hypridle
+    hyprlock
+    hyprpaper
+    kdePackages.kpat
+    libnotify
+    light
+    llvmPackages.clang
+    lm_sensors
+    lua54Packages.luacheck
+    neofetch
+    neovim
+    niri
+    noto-fonts-color-emoji
+    oh-my-zsh
+    qbittorrent
+    ripgrep
+    signal-desktop
+    slurp
+    statix
+    stow
+    swaynotificationcenter
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-archive-plugin
+    tmux
+    tor
+    tree
+    ungoogled-chromium
+    unzip
+    usb-modeswitch
+    usbutils
+    viber
+    vlc
+    waybar
+    wasistlos
+    wl-clipboard
+    wlogout
+    wttrbar
+    xclip
+    xsensors
+    zsh
+    zsh-powerlevel10k
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

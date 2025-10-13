@@ -1,10 +1,14 @@
 return {
   "nvimtools/none-ls.nvim",
   dependencies = {
+    "nvim-lua/plenary.nvim",
     "nvimtools/none-ls-extras.nvim",
+    "gbprod/none-ls-luacheck.nvim",
   },
+  -- lazy = false,
   config = function()
     local null_ls = require("null-ls")
+    -- local null_ls = require("none-ls")
 
     null_ls.setup({
       sources = {
@@ -14,10 +18,12 @@ return {
           -- extra_args = { "--config-path", vim.fn.expand("~/.stylua.toml") },
         }),
 
-        -- null_ls.builtins.diagnostics.luacheck.with({
-        -- filetypes = { "lua" },
-        -- extra_args = { "--globals", "vim" }, -- so it doesn’t complain about vim
-        -- }),
+        -- Use the external luacheck plugin
+        require("none-ls-luacheck.diagnostics.luacheck").with({
+          filetypes = { "lua" },
+          -- consider moving to .luacheckrc when growing
+          extra_args = { "--globals", "vim" },
+        }),
 
         -- JS/TS
         null_ls.builtins.formatting.prettier.with({
@@ -44,21 +50,18 @@ return {
         }),
 
         -- Nix
-        -- null_ls.builtins.formatting.alejandra.with({
-        -- filetypes = { "nix" },
-        -- }),
-        -- or nixpkgs_fmt:
-        -- null_ls.builtins.formatting.nixpkgs_fmt.with({
-        --   filetypes = { "nix" },
-        -- }),
+        -- Formatters
+        null_ls.builtins.formatting.alejandra.with({
+          filetypes = { "nix" },
+        }),
 
         -- Linters
-        -- null_ls.builtins.diagnostics.statix.with({
-        -- filetypes = { "nix" },
-        -- }),
-        -- null_ls.builtins.diagnostics.deadnix.with({
-        -- filetypes = { "nix" },
-        -- }),
+        null_ls.builtins.diagnostics.statix.with({
+          filetypes = { "nix" },
+        }),
+        null_ls.builtins.diagnostics.deadnix.with({
+          filetypes = { "nix" },
+        }),
       },
 
       on_attach = function(client, bufnr)
