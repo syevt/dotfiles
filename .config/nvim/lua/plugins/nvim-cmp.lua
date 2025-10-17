@@ -32,25 +32,10 @@ return {
       }),
 
       sources = cmp.config.sources({
-        { name = "cmp_tabnine", priority = 1000, keyword_length = 1 },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
       }),
-
-      sorting = {
-        priority_weight = 2,
-        comparators = {
-          require("cmp_tabnine.compare"),
-          cmp.config.compare.offset,
-          cmp.config.compare.exact,
-          cmp.config.compare.score,
-          cmp.config.compare.kind,
-          cmp.config.compare.sort_text,
-          cmp.config.compare.length,
-          cmp.config.compare.order,
-        },
-      },
 
       window = {
         documentation = cmp.config.window.bordered(),
@@ -65,7 +50,6 @@ return {
             buffer = "[Buf]",
             nvim_lsp = "[LSP]",
             path = "[Path]",
-            cmp_tabnine = "[TN]",
           },
         }),
       },
