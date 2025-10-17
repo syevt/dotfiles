@@ -135,7 +135,6 @@ in {
   boot.kernelModules = pkgs.lib.mkAfter ["ecryptfs"];
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -143,6 +142,10 @@ in {
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.unmanaged = [];
+  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
+
+  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
 
   # Bluetooth
   hardware.bluetooth = {
@@ -254,6 +257,7 @@ in {
   programs.nix-ld.enable = true;
 
   programs.niri.enable = true;
+  programs.nm-applet.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -277,6 +281,7 @@ in {
     chromium
     deadnix
     delta
+    dig
     ecryptfs
     jq
     kdePackages.falkon
@@ -298,6 +303,7 @@ in {
     lua54Packages.luacheck
     neofetch
     neovim
+    networkmanagerapplet
     niri
     noto-fonts-color-emoji
     oh-my-zsh
@@ -320,6 +326,7 @@ in {
     usbutils
     viber
     vlc
+    vscode
     waybar
     wasistlos
     wl-clipboard
