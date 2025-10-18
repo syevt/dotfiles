@@ -31,6 +31,7 @@ require("lazy").setup({
   { import = "plugins.tiny-inline-diagnostics" },
   { import = "plugins.nordic" },
   { import = "plugins.gitsigns" },
+  { import = "plugins.supermaven" },
   { import = "plugins.nvim-cmp" },
   { import = "plugins.rainbow-delimiters" },
   { import = "plugins.hop" },

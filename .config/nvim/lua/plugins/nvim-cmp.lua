@@ -32,6 +32,7 @@ return {
       }),
 
       sources = cmp.config.sources({
+        { name = "supermaven" },
         { name = "nvim_lsp" },
         { name = "buffer" },
         { name = "path" },
@@ -50,7 +51,9 @@ return {
             buffer = "[Buf]",
             nvim_lsp = "[LSP]",
             path = "[Path]",
+            supermaven = "[AI]",
           },
+          symbol_map = { Supermaven = "" },
         }),
       },
     })
