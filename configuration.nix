@@ -311,6 +311,7 @@ in {
     hyprpaper
     kdePackages.kpat
     libnotify
+    libreoffice
     light
     llvmPackages.clang
     lm_sensors

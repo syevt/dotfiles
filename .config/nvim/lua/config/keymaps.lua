@@ -97,20 +97,35 @@ map(
   { desc = "Yank lines with file name once and line numbers", silent = true }
 )
 
--- Multiple cursors
-vim.g.multi_cursor_prev_key = "<C-z>"
-vim.g.multi_cursor_quit_key = "<C-e>"
+-- map("n", "gd", vim.lsp.buf.definition, opts)
+map("n", "gT", vim.lsp.buf.type_definition, opts)
+map("n", "gD", vim.lsp.buf.declaration, opts)
+map("n", "gi", vim.lsp.buf.implementation, opts)
+map("n", "gr", function()
+  require("telescope.builtin").lsp_references({ show_line = true })
+end, { desc = "Telescope LSP References", buffer = buf })
+map("n", "rn", vim.lsp.buf.rename, opts)
+map("n", "ca", vim.lsp.buf.code_action, opts)
+map("n", "<leader>ds", function()
+  require("telescope.builtin").lsp_document_symbols()
+end, { desc = "Telescope document symbols", buffer = buf })
 
--- Optional explicit keymaps for clarity
-vim.keymap.set(
-  "v",
-  "<C-n>",
-  "<Plug>(multiple-cursors-start)",
-  { desc = "Start multiple cursors (visual)" }
-)
-vim.keymap.set(
+-- does not work so far
+-- map("n", "<leader>ws", function()
+--   require("telescope.builtin").lsp_workspace_symbols()
+-- end, { desc = "Telescope workspace symbols", buffer = buf })
+
+map("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols", opts)
+map(
   "n",
-  "<C-n>",
-  "<Plug>(multiple-cursors-start)",
-  { desc = "Start multiple cursors (normal)" }
+  "<leader>ws",
+  vim.lsp.buf.workspace_symbol,
+  { desc = "Workspace Symbols" }
 )
+-- map(
+--   "n",
+--   "<leader>ds",
+--   vim.lsp.buf.document_symbol,
+--   { desc = "Document Symbols" }
+-- )
+-- map("n", "K", vim.lsp.buf.hover, opts)
