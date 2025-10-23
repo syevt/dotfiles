@@ -122,10 +122,4 @@ map(
   vim.lsp.buf.workspace_symbol,
   { desc = "Workspace Symbols" }
 )
--- map(
---   "n",
---   "<leader>ds",
---   vim.lsp.buf.document_symbol,
---   { desc = "Document Symbols" }
--- )
 -- map("n", "K", vim.lsp.buf.hover, opts)
