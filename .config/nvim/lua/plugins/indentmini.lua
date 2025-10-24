@@ -4,11 +4,15 @@ return {
   config = function()
     require("mini.indentscope").setup({
       draw = {
-        delay = 50,           -- how fast to draw after moving cursor
+        delay = 50, -- how fast to draw after moving cursor
+        animation = require("mini.indentscope").gen_animation.exponential({
+          easing = "out",
+          duration = 15,
+        }),
       },
-      symbol = "│",           -- the character used for guides
+      symbol = "│", -- the character used for guides
       options = {
-        border = "both",      -- show guides only inside the scope
+        border = "both", -- show guides only inside the scope
         indent_at_cursor = true,
         try_as_border = true,
       },
