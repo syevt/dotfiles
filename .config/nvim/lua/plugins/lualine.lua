@@ -8,7 +8,7 @@ return {
       },
       sections = {
         -- lualine_b = { { "branch", icon = "" } },
-        lualine_b = { { "branch", icon = "" } },
+        lualine_b = { { "branch", icon = "" }, "diff", "diagnostics" },
         -- lualine_x = { "encoding", "fileformat", "filetype", "lsp_status" },
         lualine_x = { "filetype", "lsp_status" },
       },
