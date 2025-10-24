@@ -1,10 +1,14 @@
 vim.diagnostic.config({
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN] = " ",
-      [vim.diagnostic.severity.HINT] = " ",
-      [vim.diagnostic.severity.INFO] = " ",
+      [vim.diagnostic.severity.ERROR] = "", -- codicon error
+      [vim.diagnostic.severity.WARN] = "", -- codicon warning
+      [vim.diagnostic.severity.INFO] = "", -- codicon info
+      [vim.diagnostic.severity.HINT] = "", -- codicon hint
+      -- [vim.diagnostic.severity.ERROR] = "",
+      -- [vim.diagnostic.severity.WARN] = "  ",
+      -- [vim.diagnostic.severity.HINT] = " ",
+      -- [vim.diagnostic.severity.INFO] = " ",
     },
   },
   --virtual_lines = { current_line = true },
