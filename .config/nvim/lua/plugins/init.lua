@@ -12,7 +12,7 @@ require("lazy").setup({
   { "natefaubion/purescript-tidy" },
   { "nvim-lua/plenary.nvim" },
   { "shaunsingh/nord.nvim" },
-  --{"folke/tokyonight.nvim"},
+  { "folke/tokyonight.nvim" },
   { "tpope/vim-obsession" },
   --{"chazy/dirsettings"},
   {
