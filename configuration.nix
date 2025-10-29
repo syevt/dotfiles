@@ -290,6 +290,7 @@ in {
     alejandra
     audacious
     bat
+    bemoji
     bibata-cursors
     brightnessctl
     chromium
