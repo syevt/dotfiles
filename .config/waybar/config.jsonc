@@ -36,6 +36,7 @@
         // "custom/uptime",
         "custom/layout",
         "custom/screenshot",
+        "custom/ocr",
         "custom/weather",
         // "keyboard-state",
         "pulseaudio",
@@ -345,6 +346,11 @@
       "format": "",
       "tooltip": false,
       "on-click": "~/.config/waybar/scripts/safe-screenshot.sh",
+    },
+    "custom/ocr": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "~/.config/waybar/scripts/ocr.sh",
     },
     "custom/weather": {
       "format": "{}°",
