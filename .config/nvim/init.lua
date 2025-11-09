@@ -22,3 +22,5 @@ require("plugins")
 
 -- vim.lsp.enable({ 'tsls', 'psls', 'luals' })
 vim.lsp.enable({ "tsls", "psls" })
+
+vim.cmd([[colorscheme tokyonight-storm]])

@@ -294,6 +294,7 @@ in {
     bibata-cursors
     brightnessctl
     chromium
+    crow-translate
     deadnix
     delta
     dig
@@ -306,6 +307,7 @@ in {
     gimp
     git
     google-chrome
+    grim
     kdePackages.gwenview
     hypridle
     hyprlock
@@ -330,6 +332,7 @@ in {
     statix
     stow
     swaynotificationcenter
+    tesseract
     xfce.thunar
     xfce.thunar-volman
     xfce.thunar-archive-plugin

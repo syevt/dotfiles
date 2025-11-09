@@ -12,6 +12,7 @@ require("lazy").setup({
   { "natefaubion/purescript-tidy" },
   { "nvim-lua/plenary.nvim" },
   { "shaunsingh/nord.nvim" },
+  { "andersevenrud/nordic.nvim" },
   { "folke/tokyonight.nvim" },
   { "tpope/vim-obsession" },
   --{"chazy/dirsettings"},
@@ -29,7 +30,6 @@ require("lazy").setup({
   { import = "plugins.lualine" },
   { import = "plugins.null-ls" },
   { import = "plugins.tiny-inline-diagnostics" },
-  { import = "plugins.nordic" },
   { import = "plugins.gitsigns" },
   { import = "plugins.supermaven" },
   { import = "plugins.nvim-cmp" },
@@ -38,6 +38,8 @@ require("lazy").setup({
   { import = "plugins.mini-surround" },
   { import = "plugins.mini-icons" },
   { import = "plugins.markdown" },
+  -- { import = "plugins.markdown-browser" },
+  -- { import = "plugins.nordic" },
   -- need to revisit this later
   -- { import = "plugins.fugitive" },
 })
