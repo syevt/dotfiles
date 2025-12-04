@@ -319,6 +319,7 @@ in {
     llvmPackages.clang
     lm_sensors
     lua54Packages.luacheck
+    mpv
     neofetch
     neovim
     networkmanagerapplet
@@ -329,6 +330,7 @@ in {
     ripgrep
     signal-desktop
     slurp
+    smplayer
     statix
     stow
     swaynotificationcenter

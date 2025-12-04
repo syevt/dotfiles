@@ -373,6 +373,11 @@ window-rule {
 }
 
 window-rule {
+  match title="Okulal"
+  default-column-width { proportion 0.5; }
+}
+
+window-rule {
   match app-id="gis-weather.py"
   open-on-output "HDMI-A-1"
   open-on-workspace "5"
