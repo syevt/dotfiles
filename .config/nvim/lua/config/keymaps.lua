@@ -6,20 +6,20 @@ local opts = { noremap = true, silent = true }
 
 -- 🟦 Mode exits
 -- Insert mode: '<<' → exit to normal
-map(
-  "i",
-  "<<",
-  "<Esc>",
-  vim.tbl_extend("force", opts, { desc = "Exit insert mode with <<" })
-)
+-- map(
+--   "i",
+--   "<<",
+--   "<Esc>",
+--   vim.tbl_extend("force", opts, { desc = "Exit insert mode with <<" })
+-- )
 
 -- Visual mode: '<<' → exit to normal
-map(
-  "v",
-  "<<",
-  "<Esc>",
-  vim.tbl_extend("force", opts, { desc = "Exit visual mode with <<" })
-)
+-- map(
+--   "v",
+--   "<<",
+--   "<Esc>",
+--   vim.tbl_extend("force", opts, { desc = "Exit visual mode with <<" })
+-- )
 
 -- 🟩 Search
 map(

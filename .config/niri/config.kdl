@@ -373,7 +373,7 @@ window-rule {
 }
 
 window-rule {
-  match title="Okulal"
+  match title="Okular"
   default-column-width { proportion 0.5; }
 }
 
