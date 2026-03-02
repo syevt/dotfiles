@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 LAYOUT_FILE="/tmp/current_layout"
-CURRENT=$(cat "$LAYOUT_FILE" 2>/dev/null || echo "🇺🇸")
+CURRENT=$(cat "$LAYOUT_FILE" 2>/dev/null || echo "🏴󠁧󠁢󠁥󠁮󠁧󠁿")
 
-if [[ "$CURRENT" == "🇺🇸" ]]; then
+if [[ "$CURRENT" == "🏴󠁧󠁢󠁥󠁮󠁧󠁿" ]]; then
     NEXT="🇺🇦"
 else
-    NEXT="🇺🇸"
+    NEXT="🏴󠁧󠁢󠁥󠁮󠁧󠁿"
 fi
 
 echo "$NEXT" > "$LAYOUT_FILE"

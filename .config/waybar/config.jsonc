@@ -29,10 +29,10 @@
     ],
     "modules-right": [
         // "mpd",
+        "mpris",
         "idle_inhibitor",
         // "mpd/mpd",
         // "mpd/state",
-        // "mpris",
         // "custom/uptime",
         "custom/layout",
         "custom/screenshot",
@@ -154,7 +154,7 @@
       "single": false
     },
     "mpris": {
-      // "player": "spotify", // or leave blank for auto-detection
+      "player": "audacious", // or leave blank for auto-detection
       "format": "{artist} - {title}",
       "format-paused": " {artist} - {title}",
       "format-playing": " {artist} - {title}",
