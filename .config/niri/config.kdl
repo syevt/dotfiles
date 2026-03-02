@@ -3,13 +3,13 @@
 // Check the wiki for a full description of the configuration:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
 
-spawn-at-startup "waybar"
 // spawn-at-startup "swaykbdd"
 spawn-at-startup "hyprpaper"
-spawn-at-startup "swaybg" "-i" "~/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg"
+// spawn-at-startup "swaybg" "-i" "~/Pictures/alena-aenami-rooflinesgirl-1k-2.jpg"
 spawn-at-startup "hypridle"
 // spawn-at-startup "hyprlock"
 // spawn-at-startup "bash -c 'echo us > /tmp/current_layout'"
+spawn-at-startup "waybar"
 spawn-at-startup "~/.config/niri/scripts/set_layout_us.sh"
 spawn-at-startup "~/gis-weather/run-gis-weather.sh"
 spawn-at-startup "alacritty"
