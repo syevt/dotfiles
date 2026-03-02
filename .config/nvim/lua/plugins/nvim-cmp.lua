@@ -28,7 +28,8 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        -- this one is for `auto-select` the first option with `Enter` pressed
+        -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
       }),
 
       sources = cmp.config.sources({

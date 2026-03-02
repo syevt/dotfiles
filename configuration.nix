@@ -11,7 +11,7 @@
   pkgs,
   ...
 }: let
-  userName = "syevt"; # my user names are the same, both for the system and on the github, change appropriately
+  userName = "syevt"; # my user names are the same, both for the system and on github, change appropriately
   dotfilesDir = "/home/${userName}/.dotfiles";
   home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
 in {
@@ -29,7 +29,7 @@ in {
     ...
   }: {
     home = {
-      stateVersion = "25.05"; # match your NixOS version
+      stateVersion = "25.05"; # should match your NixOS version
 
       # Clone dotfiles repo on first activation
       activation.cloneDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -307,6 +307,7 @@ in {
     gimp
     git
     google-chrome
+    gparted
     grim
     kdePackages.gwenview
     hypridle
@@ -339,9 +340,9 @@ in {
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     tmux
+    tomat
     tor
     tree
-    ungoogled-chromium
     unzip
     usb-modeswitch
     usbutils
