@@ -161,6 +161,12 @@ in {
     bluetooth = {
       enable = true;
       powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = false;
+          ControllerMode = "dual";
+        };
+      };
     };
     graphics.enable = true;
   };
@@ -340,7 +346,6 @@ in {
     xfce.thunar-volman
     xfce.thunar-archive-plugin
     tmux
-    tomat
     tor
     tree
     unzip

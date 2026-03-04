@@ -38,16 +38,18 @@ shape = "Beam"
 TERM = "xterm-256color"
 
 [font]
-size = 22
+size = 20
 
 [font.italic]
-family = "Operator Mono"
+# family = "Operator Mono"
+family = "Rec Mono Casual"
 
 [font.normal]
-family = "Operator Mono"
+# family = "Operator Mono"
+family = "Rec Mono Casual"
 
 [font.offset]
-x = -3
+x = -2
 y = 0
 
 [window]
