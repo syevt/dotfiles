@@ -1,13 +1,14 @@
 return {
-  'nvim-telescope/telescope.nvim', tag = '0.1.8',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  "nvim-telescope/telescope.nvim",
+  tag = "0.1.8",
+  dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     local telescope = require("telescope")
-    local actions = require("telescope.actions")  -- <- load actions first
+    local actions = require("telescope.actions") -- <- load actions first
 
     telescope.setup({
       defaults = {
-        sorting_strategy = "ascending",  -- results start at the top
+        sorting_strategy = "ascending", -- results start at the top
         layout_config = {
           horizontal = {
             prompt_position = "top",
@@ -17,40 +18,41 @@ return {
           },
         },
         mappings = {
-          i = {  -- insert mode
+          i = { -- insert mode
             ["<Esc>"] = actions.close,
           },
-          n = {  -- normal mode
+          n = { -- normal mode
             ["<Esc>"] = actions.close,
           },
         },
       },
+      pickers = {
+        find_files = {
+          hidden = true, -- for fd
+          follow = true, -- optional, follows symlinks
+        },
+      },
     })
 
-    local builtin = require('telescope.builtin')
+    local builtin = require("telescope.builtin")
     vim.keymap.set(
-      'n',
-      '<leader>p',
+      "n",
+      "<leader>p",
       builtin.find_files,
-      { desc = 'Telescope find files' }
+      { desc = "Telescope find files" }
     )
     vim.keymap.set(
-      'n',
-      '<leader>rg',
+      "n",
+      "<leader>rg",
       builtin.live_grep,
-      { desc = 'Telescope live grep' }
+      { desc = "Telescope live grep" }
     )
+    vim.keymap.set("n", ";", builtin.buffers, { desc = "Telescope buffers" })
     vim.keymap.set(
-      'n',
-      ';',
-      builtin.buffers,
-      { desc = 'Telescope buffers' }
-    )
-    vim.keymap.set(
-      'n',
-      '<leader>fh',
+      "n",
+      "<leader>fh",
       builtin.lsp_dynamic_workspace_symbols,
-      { desc = 'Telescope workspace LSP tags' }
+      { desc = "Telescope workspace LSP tags" }
     )
   end,
 }

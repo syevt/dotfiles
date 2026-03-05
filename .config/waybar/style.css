@@ -106,7 +106,7 @@ window#waybar {
 
 #workspaces button {
     /* adjunt the padding-right to have a true circle */
-    padding: 0px 7px;
+    padding: 0px 11px;
     margin: 2px;
     border-radius: 9999px; /* full circle */
     background-color: transparent;

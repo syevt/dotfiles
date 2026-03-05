@@ -42,19 +42,21 @@ in {
         files = [
           ".alacritty.toml"
           ".bash_aliases"
-          ".config/nvim"
           ".config/fuzzel/fuzzel.ini"
-          ".gitconfig"
           ".config/hypr"
+          ".config/mako/config"
           ".config/niri"
-          ".tmux/segments/"
+          ".config/nvim"
+          ".config/waybar"
+          ".config/wlogout"
+          ".gitconfig"
           ".tmux/gruvbox-dark.sh"
+          ".tmux/segments/"
           ".tmux/segment.sh"
           ".tmux/status.sh"
           ".tmux/window.sh"
           ".tridactylrc"
-          ".config/waybar"
-          ".config/wlogout"
+          ".stylua.toml"
         ];
       in
         builtins.listToAttrs (map (path: {
@@ -288,6 +290,15 @@ in {
     "flakes"
   ];
 
+  systemd.user.services.mako = {
+    description = "Mako notification daemon";
+    wantedBy = ["graphical-session.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.mako}/bin/mako";
+      Restart = "on-failure";
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -326,6 +337,7 @@ in {
     llvmPackages.clang
     lm_sensors
     lua54Packages.luacheck
+    mako
     mpv
     neofetch
     neovim

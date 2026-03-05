@@ -1,0 +1,24 @@
+sort=-time
+layer=overlay
+background-color=#141414b3
+width=500
+height=110
+padding=20
+border-size=0
+border-radius=10
+icons=1
+max-icon-size=64
+default-timeout=3000
+ignore-timeout=1
+font=PT Sans narrow 14
+icon-path=/home/syevt/.local/share/icons/Newaita-dark
+
+[urgency=low]
+# background-color=#50fa7bb3
+
+[urgency=normal]
+# background-color=#f1fa8cb3
+
+[urgency=high]
+background-color=#ff5555b3
+default-timeout=0
