@@ -1,50 +1,58 @@
-* {
-	background-image: none;
-	box-shadow: none;
-}
-
 window {
-  background-color: rgba(12, 12, 12, 0.9);
+    background-color: rgba(20, 20, 20, 0.75);
+    animation: all 0.3s ease-in-out;
 }
 
 button {
-  border-radius: 0;
-  border-color: black;
-  text-decoration-color: #FFFFFF;
-  color: #FFFFFF;
-  background-color: #1E1E1E;
-  border-style: solid;
-  border-width: 1px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 25%;
+    background-color: rgba(30, 30, 30, 0.85);
+    border-radius: 14px;
+    border: 2px solid transparent;
+
+    margin: 20px;
+    padding: 25px;
+
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    background-size: 256px;
+
+    color: #dddddd;
+    font-family: "PT Sans Narrow";
+    font-size: 16px;
+
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-button:focus, button:active, button:hover {
-  background-color: #3700B3;
-  outline-style: none;
+button:hover {
+  background-color: rgba(60, 60, 60, 0.95);
+  border-color: #7fc8ff;
+  color: white;
 }
 
+button:active {
+    background-color: rgba(80, 80, 80, 0.95);
+}
+
+/* this is only needed for nixos */
 #lock {
-    /* background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png")); */
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/lock.png"));
 }
 
 #logout {
-    /* background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png")); */
-}
-
-#suspend {
-    /* background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png")); */
-}
-
-#hibernate {
-    /* background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png")); */
-}
-
-#shutdown {
-    /* background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png")); */
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/logout.png"));
 }
 
 #reboot {
-    /* background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png")); */
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/reboot.png"));
+}
+
+#shutdown {
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/shutdown.png"));
+}
+
+#suspend {
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/run/current-system/sw/share/wlogout/icons/hibernate.png"));
 }
