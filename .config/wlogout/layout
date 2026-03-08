@@ -24,7 +24,7 @@
 }
 {
     "label" : "suspend",
-    "action" : "systemctl suspend",
+    "action" : "~/.config/niri/scripts/set_layout_us_and_suspend.sh",
     "text" : "Suspend",
     "keybind" : "u"
 }
