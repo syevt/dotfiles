@@ -7,6 +7,9 @@ alias fzp="rg --files --hidden | fzf --layout reverse --preview='head {}' --prev
 alias wttr='clear && curl "v2.wttr.in/Dnipro?lang=uk"'
 alias tr='trans :en -speak -no-ansi'
 alias notify-send='notify-send -i help-about'
+alias batt60='echo 60 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold'
+alias batt80='echo 80 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold'
+alias batt100='echo 100 | sudo tee /sys/class/power_supply/BAT0/charge_control_end_threshold'
 
 alias tm='tmux -u new -ADs 0'
 nd() {
