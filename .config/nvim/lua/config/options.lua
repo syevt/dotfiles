@@ -3,8 +3,9 @@ vim.opt.langmap = {
   "й',ц\\,,у.,кp,еy,нf,гg,шc,щr,зl,х=,ї=,ґ\\\\,фa,іo,вe,аu,пi,рd,оh,лt,дn,жs,є-,я\\;,чq,сj,мk,иx,тb,ьm,бw,юv",
 }
 
--- -- Use system clipboard
-vim.opt.clipboard = "unnamedplus"
+-- Use system clipboard
+-- pretty annoying actually, turning off
+-- vim.opt.clipboard = "unnamedplus"
 
 -- Enable mouse support
 vim.opt.mouse = "a"

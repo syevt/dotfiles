@@ -86,6 +86,11 @@ output "HDMI-A-1" {
     // position x=1360 y=0
 }
 
+output "DP-2" {
+    // off
+    // position x=1360 y=0
+}
+
 output "DP-1" {
     // off
     position x=2560 y=0
