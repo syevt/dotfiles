@@ -63,6 +63,10 @@ map("n", "<leader>cfp", function()
   )
 end, { desc = "Copy file path relative to project root", silent = true })
 
+-- Yank to the system buffer
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+
 -- Yank visual lines with file name once + line numbers
 map(
   "v",
