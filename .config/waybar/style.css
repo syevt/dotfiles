@@ -1,34 +1,10 @@
 * {
-  font-family: "PT Sans narrow", "Font Awesome 6 Free", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif;
-  /* font-family: "PT Sans narrow", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif; */
-  /* font-family: "PT Sans narrow", sans-serif; */
-  /* font-family: "Noto Color Emoji", "Font Awesome 6 Free", "PT Sans narrow", sans-serif; */
+  font-family: "PT Sans Narrow", "Font Awesome 7 Free", "JetBrainsMono Nerd Font", "Material Design Icons", "Weather Icons", sans-serif;
   font-size: 18px;
 }
 
-/* .icon { */
-  /* font-size: 20px; */
-/* } */
-
-/* .icon { */
-  /* [> font-family: "Font Awesome 6 Free", "Material Icons", "JetBrainsMono Nerd Font"; <] */
-  /* [> font-family: "FiraCode Nerd Font Mono"; <] */
-  /* font-family: "Noto Color Emoji"; */
-  /* font-size: 18px; */
-  /* padding-right: 4px; */
-/* } */
-
-/* #custom-weather { */
-  /* font-family: "PT Sans Narrow", "Weather Icons"; */
-  /* font-size: 30px; */
-/* } */
-
-/* #pulseaudio, #battery, #network, #custom-icon { */
-  /* font-family: "Font Awesome 6 Free", "JetBrainsMono Nerd Font", sans-serif; */
-/* } */
-
 #mpd {
-  font-family: "Font Awesome 6 Free", "JetBrainsMono Nerd Font", sans-serif;
+  font-family: "Font Awesome 7 Free", "JetBrainsMono Nerd Font", sans-serif;
 }
 
 window#waybar {
@@ -61,41 +37,6 @@ window#waybar {
   animation: blink 1s infinite alternate;
 }
 
-/* #workspaces { */
-  /* font-family: "FiraCode Nerd Font Mono"; */
-  /* font-size: 24px; */
-  /* padding: 4px; */
-  /* margin: 4px; */
-  /* color: #D8DEE9; */
-  /* border-radius: 9999px; [> ← ROUND AF <] */
-  /* transition: all 0.2s ease; */
-  /* background: transparent; */
-  /* border: none; */
-  /* min-width: 24px; */
-  /* min-height: 24px; */
-/* } */
-
-/* #workspaces button:hover { */
-  /* background: rgba(255, 255, 255, 0.1); */
-  /* color: #ccc; */
-/* } */
-
-/* #workspaces button.focused { */
-  /* background: #5e81ac; */
-  /* color: white; */
-/* } */
-
-/* #workspaces button.urgent { */
-  /* background: #bf616a; */
-  /* color: white; */
-  /* animation: blink 1s infinite; */
-/* } */
-
-/* #workspaces button.visible { */
-  /* background: #3b4252; */
-  /* color: white; */
-/* } */
-
 #mpris {
     margin: 0 20px;
 }
@@ -106,7 +47,7 @@ window#waybar {
 
 #workspaces button {
     /* adjunt the padding-right to have a true circle */
-    padding: 0px 11px;
+    padding: 0 11px;
     margin: 2px;
     border-radius: 9999px; /* full circle */
     background-color: transparent;
@@ -116,7 +57,6 @@ window#waybar {
 
 /* Active workspace with filled circle */
 #workspaces button.active {
-    /* background-color: #6C71C4; [> your desired background color <] */
     background-color: #D8DEE9;
     color: black;
 }
@@ -130,10 +70,6 @@ window#waybar {
     background-color: #202020;
     color: white;
 }
-
-/* #custom-niri-window-close { */
-  /* margin-right: 20px; */
-/* } */
 
 #custom-niri-window-close:hover {
   color: #ff5555;

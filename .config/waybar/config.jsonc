@@ -38,6 +38,7 @@
         "custom/screenshot",
         "custom/ocr",
         "custom/weather",
+        "custom/tomat",
         // "keyboard-state",
         "pulseaudio",
         // "network",
@@ -101,6 +102,15 @@
         // "interval": 1,
         // "interval": 0,
         "signal": 8
+    },
+    "custom/tomat": {
+      "exec": "tomat status",
+      "interval": 10,
+      "return-type": "json",
+      "format": "{}",
+      "on-click": "tomat toggle",
+      "on-click-right": "tomat skip",
+      "on-click-middle": "tomat stop"
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -319,13 +329,16 @@
       "on-click": "niri msg action close-window",
     },
     "custom/niri-window-preset-column-width": {
-      "format": "½",
+      // "format": "½",
+      // "format": "",
+      "format": "",
       "tooltip": false,
       "on-click": "niri msg action switch-preset-column-width",
       "interval": 0
     },
     "custom/niri-window-maximize-column": {
-      "format": "",
+      "format": "",
+      // "format": "",
       "tooltip": false,
       "on-click": "niri msg action maximize-column",
       "interval": 0

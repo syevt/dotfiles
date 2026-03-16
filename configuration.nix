@@ -13,7 +13,7 @@
 }: let
   userName = "syevt"; # my user names are the same, both for the system and on github, change appropriately
   dotfilesDir = "/home/${userName}/.dotfiles";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -128,6 +128,20 @@ in {
           source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
           source ${dotfilesDir}/.zshrc
         '';
+      };
+    };
+    services = {
+      tomat = {
+        enable = true;
+
+        settings = {
+          timer = {
+            work = 45;
+            break = 10;
+            long_break = 30;
+            sessions = 4;
+          };
+        };
       };
     };
   };
