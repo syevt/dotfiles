@@ -86,6 +86,17 @@ window#waybar {
   color: #7fc8ff;
 }
 
+#custom-tomat.work {
+  color: #a3be8c;
+}
+
+#custom-tomat.break {
+  color: #88c0d0;
+}
+
+#custom-tomat.long_break {
+  color: #b48ead;
+}
 
 @keyframes blink {
   0% { opacity: 1; }

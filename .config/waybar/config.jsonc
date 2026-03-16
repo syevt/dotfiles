@@ -104,8 +104,8 @@
         "signal": 8
     },
     "custom/tomat": {
-      "exec": "tomat status",
-      "interval": 10,
+      "exec": "tomat watch",
+      // "interval": 10,
       "return-type": "json",
       "format": "{}",
       "on-click": "tomat toggle",

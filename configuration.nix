@@ -136,9 +136,9 @@ in {
 
         settings = {
           timer = {
-            work = 45;
-            break = 10;
-            long_break = 30;
+            work = 45.0;
+            break = 10.0;
+            long_break = 30.0;
             sessions = 4;
           };
         };
