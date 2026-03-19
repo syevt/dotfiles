@@ -104,8 +104,7 @@
         "signal": 8
     },
     "custom/tomat": {
-      "exec": "tomat watch",
-      // "interval": 10,
+      "exec": "tomat start -w 45 -b 10 -s 4 && tomat stop && tomat watch",
       "return-type": "json",
       "format": "{}",
       "on-click": "tomat toggle",

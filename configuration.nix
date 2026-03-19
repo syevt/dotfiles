@@ -7,7 +7,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
+  # config,
   pkgs,
   ...
 }: let
@@ -29,7 +29,7 @@ in {
     ...
   }: {
     home = {
-      stateVersion = "25.05"; # should match your NixOS version
+      stateVersion = "25.05"; # should match your NixOS system.stateVersion
 
       # Clone dotfiles repo on first activation
       activation.cloneDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
@@ -67,6 +67,8 @@ in {
     };
 
     programs = {
+      waybar.enable = true;
+
       fzf = {
         enable = true;
         enableZshIntegration = true;
@@ -131,18 +133,8 @@ in {
       };
     };
     services = {
-      tomat = {
-        enable = true;
-
-        settings = {
-          timer = {
-            work = 45.0;
-            break = 10.0;
-            long_break = 30.0;
-            sessions = 4;
-          };
-        };
-      };
+      mako.enable = true;
+      tomat.enable = true;
     };
   };
 
@@ -277,12 +269,8 @@ in {
   ];
 
   programs = {
-    # Install firefox.
     firefox.enable = true;
-    # zsh
     zsh.enable = true;
-    # zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    # users.defaultUserShell = pkgs.zsh;
     # that's the hack to make things like `nodenv` work
     nix-ld.enable = true;
     niri.enable = true;
@@ -305,14 +293,6 @@ in {
   ];
 
   systemd = {
-    user.services.mako = {
-      description = "Mako notification daemon";
-      wantedBy = ["graphical-session.target"];
-      serviceConfig = {
-        ExecStart = "${pkgs.mako}/bin/mako";
-        Restart = "on-failure";
-      };
-    };
     services.battery-charge-limit = {
       description = "Set battery charge limit";
       wantedBy = ["multi-user.target"];
