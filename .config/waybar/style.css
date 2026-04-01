@@ -3,6 +3,11 @@
   font-size: 18px;
 }
 
+tooltip label {
+  font-family: "Weather Icons", "PT Sans Narrow", "JetBrainsMono Nerd Font", "Rec Mono Casual";
+  /* font-size: 24px; */
+}
+
 #mpd {
   font-family: "Font Awesome 7 Free", "JetBrainsMono Nerd Font", sans-serif;
 }
@@ -25,6 +30,11 @@ window#waybar {
 
 #custom-spacer-right {
   /* margin-right: 1px; */
+}
+
+#custom-weather {
+  font-family: "Weather Icons", "PT Sans Narrow", sans-serif;
+  font-size: 24px;
 }
 
 #battery {
@@ -67,8 +77,9 @@ window#waybar {
 #workspaces button.active:hover,
 #workspaces button.focused:hover,
 #workspaces button.urgent:hover {
-    background-color: #202020;
-    color: white;
+  background-color: transparent;
+  border-color: white;
+  color: white;
 }
 
 #custom-niri-window-close:hover {

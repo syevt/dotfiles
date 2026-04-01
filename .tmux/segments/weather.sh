@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 runSegment() {
-  weather=$(curl -s wttr.in/Dnipro?format="%l:+%c%20%20%t%20%p%20%w")
+  weather=$(curl -s wttr.in/48.43,35.02?format="%l:+%c%20%20%t%20%p%20%w")
   echo -n "${weather}"
 # set -g status-right "$weath ..."
 }

@@ -1,9 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 35, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 10, // Gaps between modules (4px)
     "margin": "3 8 0 8",
     "padding": "0 10 0 10",
@@ -16,41 +13,23 @@
       "custom/niri-windows",
       "custom/launcher",
       "niri/workspaces"
-      // "niri/language",
-      // "niri/backend"
-        // "hyprland/workspaces",
-        // "hyprland/mode",
-        // "hyprland/scratchpad",
-        // "custom/media"
     ],
     "modules-center": [
-        // "custom/window-title"
         "niri/window"
     ],
     "modules-right": [
-        // "mpd",
         "mpris",
-        "idle_inhibitor",
-        // "mpd/mpd",
-        // "mpd/state",
-        // "custom/uptime",
+        "custom/weather",
         "custom/layout",
         "custom/screenshot",
         "custom/ocr",
-        "custom/weather",
         "custom/tomat",
-        // "keyboard-state",
         "pulseaudio",
-        // "network",
-        // "power-profiles-daemon",
-        // "cpu",
-        // "memory",
         "temperature",
         "backlight",
-        // "sway/language",
         "battery",
-        // "battery#bat2",
         "clock",
+        "idle_inhibitor",
         "tray",
         "custom/power",
         "custom/spacer-right",
@@ -63,34 +42,6 @@
     "custom/spacer-right": {
       "format": " ",
       "tooltip": false
-    },
-    "hyprland/workspaces": {
-        // "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace +1",
-        "on-scroll-down": "hyprctl dispatch workspace -1",
-        "format-icons": {
-            // "1": "",
-            // "2": "",
-            // "3": "",
-            // "4": "",
-            // "5": "",
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        // "format-icons": {
-            // "locked": "",
-            // "unlocked": ""
-        // }
     },
     "custom/layout": {
         "format": "{}",
@@ -111,57 +62,6 @@
       "on-click-right": "tomat skip",
       "on-click-middle": "tomat stop"
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    // "mpd": {
-        // "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        // "format-disconnected": "Disconnected ",
-        // "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        // "unknown-tag": "N/A",
-        // "interval": 5,
-        // "consume-icons": {
-            // "on": " "
-        // },
-        // "random-icons": {
-            // "off": "<span color=\"#f53c3c\"></span> ",
-            // "on": " "
-        // },
-        // "repeat-icons": {
-            // "on": " "
-        // },
-        // "single-icons": {
-            // "on": "1 "
-        // },
-        // "state-icons": {
-            // "paused": "",
-            // "playing": ""
-        // },
-        // "tooltip-format": "MPD (connected)",
-        // "tooltip-format-disconnected": "MPD (disconnected)"
-    // },
-    "mpd": {
-      "format": "{stateIcon} {artist} - {title}",
-      "format-paused": "⏸ {artist} - {title}",
-      "format-stopped": "⏹",
-      "state-icons": {
-        "paused": "",
-        "playing": "",
-        "stopped": ""
-      },
-      "max-length": 40,
-      "consume": false,
-      "repeat": false,
-      "random": false,
-      "single": false
-    },
     "mpris": {
       "player": "audacious", // or leave blank for auto-detection
       "format": "{artist} - {title}",
@@ -179,7 +79,6 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10,
         // "icons": {
         //   "blueman": "bluetooth",
@@ -187,7 +86,6 @@
         // }
     },
     "clock": {
-        // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%d.%m.%Y}",
         "format": "{:%H:%M, %a %b %d}",
@@ -291,18 +189,6 @@
       "on-click-right": "~/.config/waybar/scripts/niri-window-switcher.sh",
       "tooltip": false,
     },
-    // "custom/power": {
-      // "format" : "⏻ ",
-      // "tooltip": false,
-      // "menu": "on-click",
-      // "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-      // "menu-actions": {
-        // "shutdown": "shutdown",
-        // "reboot": "reboot",
-        // "suspend": "systemctl suspend",
-        // "hibernate": "systemctl hibernate"
-      // }
-  // },
     "custom/power": {
       "format" : "⏻ ",
       "tooltip": false,
@@ -310,13 +196,6 @@
       "interval": 3600,
     },
     "custom/window-title": {
-      // "exec": "niri msg --json focused-window | jq -r '.title // \"\"'",
-      // "interval": 1,
-      // "return-type": "plain",
-      // "format": "{}",
-      // "max-length": 80
-      // the above is for a 1 second polling
-      // and this uses niri's events
       "exec": "~/.config/waybar/scripts/focused-window.sh",
       "return-type": "json",
       "format": "{}",
@@ -324,7 +203,6 @@
     "custom/niri-window-close": {
       "format": "",
       "tooltip": false,
-      // "font-size": 18px,
       "on-click": "niri msg action close-window",
     },
     "custom/niri-window-preset-column-width": {
@@ -351,7 +229,6 @@
     "custom/launcher": {
       "format": "",
       "tooltip": false,
-      // "font-size": 18px,
       "on-click": "fuzzel -l 10",
     },
     "custom/screenshot": {
@@ -365,16 +242,13 @@
       "on-click": "~/.config/waybar/scripts/ocr.sh",
     },
     "custom/weather": {
-      "format": "{}°",
+      // "format": "{}°",
+      // "tooltip": "",
+      "class": "weather-tooltip",
       "tooltip": true,
-      "interval": 3600,
-      "exec": "wttrbar --location Dnipro --nerd -l uk --hide-conditions --date-format %d.%m.%Y",
-      // "exec": "wttrbar --location Grizne -l uk --hide-conditions --date-format %d.%m.%Y",
+      "interval": 600,
+      "exec": "~/.config/waybar/scripts/weather.sh",
+      "escape": false,
       "return-type": "json"
-    },
-    "custom/uptime": {
-      "format": "<span font='Weather Icons 16'></span> Uptime: {}",
-      "exec": "uptime -p | sed 's/up //'",
-      "interval": 60
     }
   }

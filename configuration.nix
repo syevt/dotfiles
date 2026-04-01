@@ -324,7 +324,6 @@ in {
     jq
     kdePackages.falkon
     fd
-    ferdium
     fuzzel
     fzf
     gimp
@@ -351,6 +350,7 @@ in {
     niri
     noto-fonts-color-emoji
     oh-my-zsh
+    pcmanfm
     qbittorrent
     ripgrep
     signal-desktop
@@ -360,9 +360,6 @@ in {
     stow
     swaynotificationcenter
     tesseract
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-archive-plugin
     tmux
     tor
     translate-shell
@@ -374,10 +371,8 @@ in {
     vlc
     vscode
     waybar
-    wasistlos
     wl-clipboard
     wlogout
-    wttrbar
     xclip
     xsensors
     zsh
