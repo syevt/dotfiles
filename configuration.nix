@@ -331,6 +331,7 @@ in {
     google-chrome
     gparted
     grim
+    gvfs
     kdePackages.gwenview
     hypridle
     hyprlock
