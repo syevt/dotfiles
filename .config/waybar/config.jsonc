@@ -10,15 +10,15 @@
       "custom/niri-window-close",
       "custom/niri-window-preset-column-width",
       "custom/niri-window-maximize-column",
-      "custom/niri-windows",
-      "custom/launcher",
-      "niri/workspaces"
+      "niri/window",
     ],
     "modules-center": [
-        "niri/window"
+      "custom/launcher",
+      "custom/niri-windows",
+      "niri/workspaces",
     ],
     "modules-right": [
-        "mpris",
+        // "mpris",
         "custom/weather",
         "custom/layout",
         "custom/screenshot",
@@ -204,18 +204,20 @@
       "format": "",
       "tooltip": false,
       "on-click": "niri msg action close-window",
+      "interval": 0
     },
     "custom/niri-window-preset-column-width": {
-      // "format": "½",
-      // "format": "",
+      // "format": "",
       "format": "",
       "tooltip": false,
       "on-click": "niri msg action switch-preset-column-width",
       "interval": 0
     },
     "custom/niri-window-maximize-column": {
-      "format": "",
+      // "format": "",
       // "format": "",
+      "format": "",
+      // "format": "",
       "tooltip": false,
       "on-click": "niri msg action maximize-column",
       "interval": 0

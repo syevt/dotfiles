@@ -24,6 +24,18 @@ window#waybar {
   /* backdrop-filter: blur(8px); [> optional frosty blur <] */
 }
 
+/* these are for hiding the window control buttons when there is no */
+/* focused window in a workspace */
+window#waybar.empty #custom-niri-window-close,
+window#waybar.empty #custom-niri-window-preset-column-width,
+window#waybar.empty #custom-niri-window-maximize-column {
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+
 #custom-spacer-left {
   /* margin-left: 1px; */
 }
