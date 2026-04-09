@@ -29,12 +29,23 @@ window#waybar {
 window#waybar.empty #custom-niri-window-close,
 window#waybar.empty #custom-niri-window-preset-column-width,
 window#waybar.empty #custom-niri-window-maximize-column {
+/* #custom-niri-window-close, */
+/* #custom-niri-window-preset-column-width, */
+/* #custom-niri-window-maximize-column { */
   opacity: 0;
   padding: 0;
   margin: 0;
   min-width: 0;
 }
 
+/* window#waybar:hover:not(.empty) #custom-niri-window-close, */
+/* window#waybar:hover:not(.empty) #custom-niri-window-preset-column-width, */
+/* window#waybar:hover:not(.empty) #custom-niri-window-maximize-column { */
+/* window#waybar:not(.empty):hover #custom-niri-window-close, */
+/* window#waybar:not(.empty):hover #custom-niri-window-preset-column-width, */
+/* window#waybar:not(.empty):hover #custom-niri-window-maximize-column { */
+/*   opacity: 1; */
+/* } */
 
 #custom-spacer-left {
   /* margin-left: 1px; */
@@ -79,8 +90,10 @@ window#waybar.empty #custom-niri-window-maximize-column {
 
 /* Active workspace with filled circle */
 #workspaces button.active {
-    background-color: #D8DEE9;
-    color: black;
+    /* background-color: #D8DEE9; */
+    /* color: black; */
+    background-color: transparent;
+    border-color: white;
 }
 
 /* Optional: hovered workspace */
@@ -90,7 +103,8 @@ window#waybar.empty #custom-niri-window-maximize-column {
 #workspaces button.focused:hover,
 #workspaces button.urgent:hover {
   background-color: transparent;
-  border-color: white;
+  /* border-color: white; */
+  border-color: #7fc8ff;
   color: white;
 }
 

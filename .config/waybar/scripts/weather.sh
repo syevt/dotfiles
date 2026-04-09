@@ -5,8 +5,31 @@
 LAT="48.4288"
 LON="35.0181"
 
-DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev") || exit 1
+# ---------- FETCH DATA ----------
+DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
 
+# curl failed OR returned nothing
+
+if [ $? -ne 0 ] || [ -z "$DATA" ]; then
+    jq -nrcM \
+      --arg text " " \
+      --arg tooltip "Weather service unavailable" \
+      '{text:$text, tooltip:$tooltip}'
+    exit 0
+fi
+
+# ---------- VALIDATE API RESPONSE ----------
+
+CURRENT_TEMP=$(jq -r '.current_weather.temperature // empty' <<< "$DATA")
+
+# If API response is malformed or missing fields
+if [ -z "$CURRENT_TEMP" ]; then
+    jq -nrcM \
+      --arg text " " \
+      --arg tooltip "Weather API error" \
+      '{text:$text, tooltip:$tooltip}'
+    exit 0
+fi
 
 # ---------- WEATHER ICONS ----------
 

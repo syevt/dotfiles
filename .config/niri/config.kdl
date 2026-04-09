@@ -190,7 +190,7 @@ layout {
     // You can change how the focus ring looks.
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
 
         // How many logical pixels the ring extends out from the windows.
         width 1
@@ -239,7 +239,7 @@ layout {
     // You can enable drop shadows for windows.
     shadow {
         // Uncomment the next line to enable shadows.
-        on
+        off
 
         // By default, the shadow draws only around its window, and not behind it.
         // Uncomment this setting to make the shadow draw behind its window.
@@ -261,16 +261,17 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 30
+        // softness 10
 
         // Spread expands the shadow.
-        spread 15
+        // spread 5
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        // offset x=-3 y=0
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        // color "#111111"
+        // color "#7fc8ff"
     }
 
     // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -339,6 +340,21 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
+}
+
+window-rule {
+  // match is-active-in-column=true
+  match is-active=true
+    shadow {
+        on
+        // draw-behind-window true
+        softness 20
+        spread 3
+        offset x=-1 y=-3
+        color "#7fc8ff"
+        // color "#ff5555"
+        // color "#222222"
+    }
 }
 
 window-rule {
