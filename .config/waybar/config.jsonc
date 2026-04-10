@@ -186,8 +186,12 @@
     "niri/window": {
       "icon": true,
       "max-length": 60,
-      "on-click": "fuzzel -l 10",
-      "on-click-right": "~/.config/waybar/scripts/niri-window-switcher.sh",
+      // "on-click": "fuzzel -l 10",
+      // "on-click-right": "~/.config/waybar/scripts/niri-window-switcher.sh",
+      "on-click": "niri msg action focus-column-left",
+      "on-click-right": "niri msg action focus-column-right",
+      "on-scroll-up": "niri msg action focus-workspace-up",
+      "on-scroll-down": "niri msg action focus-workspace-down",
       "tooltip": false,
     },
     "custom/power": {
@@ -223,16 +227,16 @@
       "on-click": "niri msg action maximize-column",
       "interval": 0
     },
+    "custom/launcher": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "fuzzel -l 10",
+    },
     "custom/niri-windows": {
       "format": "",
       "tooltip": false,
       "on-click": "~/.config/waybar/scripts/niri-window-switcher.sh",
       "interval": 0
-    },
-    "custom/launcher": {
-      "format": "",
-      "tooltip": false,
-      "on-click": "fuzzel -l 10",
     },
     "custom/screenshot": {
       "format": "",
