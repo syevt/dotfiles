@@ -43,6 +43,7 @@ in {
           ".alacritty.toml"
           ".bash_aliases"
           ".config/fuzzel/fuzzel.ini"
+          ".config/ghostty/config.ghostty"
           ".config/hypr"
           ".config/mako/config"
           ".config/niri"
@@ -326,12 +327,12 @@ in {
     fd
     fuzzel
     fzf
+    ghostty
     gimp
     git
     google-chrome
     gparted
     grim
-    gvfs
     kdePackages.gwenview
     hypridle
     hyprlock

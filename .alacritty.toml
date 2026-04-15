@@ -55,3 +55,4 @@ y = 0
 [window]
 opacity = 0.95
 title = "Terminal"
+dynamic_padding = true

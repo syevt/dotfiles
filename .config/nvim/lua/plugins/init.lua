@@ -38,6 +38,7 @@ require("lazy").setup({
   { import = "plugins.mini-surround" },
   { import = "plugins.mini-icons" },
   { import = "plugins.markdown" },
+  { import = "plugins.smear-cursors" },
   -- { import = "plugins.markdown-browser" },
   -- { import = "plugins.nordic" },
   -- need to revisit this later
