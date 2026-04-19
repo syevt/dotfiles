@@ -1,6 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  branch = "master", -- this is for Neovim < 0.11
+  -- event = { "BufReadPost", "BufNewFile" },
   -- lazy = false,
 
   config = function()

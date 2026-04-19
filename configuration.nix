@@ -333,11 +333,15 @@ in {
     google-chrome
     gparted
     grim
+    gvfs
+    jmtpfs
     kdePackages.gwenview
     hypridle
     hyprlock
     hyprpaper
     kdePackages.kpat
+    kitty
+    libmtp
     libnotify
     libreoffice
     light
@@ -346,6 +350,7 @@ in {
     lua54Packages.luacheck
     mako
     mpv
+    mtpfs
     neofetch
     neovim
     networkmanagerapplet

@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-# 10th version
+# =============================================================================
+# 12th version
 
 LAT="48.4288"
 LON="35.0181"
 
 # ---------- FETCH DATA ----------
-DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
-
-# curl failed OR returned nothing
+DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_mean,precipitation_hours,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
 
 if [ $? -ne 0 ] || [ -z "$DATA" ]; then
     jq -nrcM \
@@ -18,11 +17,9 @@ if [ $? -ne 0 ] || [ -z "$DATA" ]; then
     exit 0
 fi
 
-# ---------- VALIDATE API RESPONSE ----------
-
+# ---------- VALIDATE ----------
 CURRENT_TEMP=$(jq -r '.current_weather.temperature // empty' <<< "$DATA")
 
-# If API response is malformed or missing fields
 if [ -z "$CURRENT_TEMP" ]; then
     jq -nrcM \
       --arg text " " \
@@ -31,74 +28,63 @@ if [ -z "$CURRENT_TEMP" ]; then
     exit 0
 fi
 
-# ---------- WEATHER ICONS ----------
+# ---------- ICONS ----------
 
 weather_icon_day() {
     case "$1" in
-        0) echo "" ;;           # clear
-        1) echo "" ;;           # mainly clear
-        2) echo "" ;;           # partly cloudy
-        3) echo "" ;;           # cloudy
-
-        45|48) echo "" ;;       # fog
-
-        51|53) echo "" ;;       # light and moderate drizzle
-        55) echo "" ;;          # dense drizzle
-        56|57) echo "" ;;       # freezing drizzle
-
-        61) echo "" ;;          # slight rain (using day hail here)
-        63) echo "" ;;          # moderate rain
-        65) echo "" ;;          # heavy rain
-        66|67) echo "" ;;       # freezing rain
-
-        71|73) echo "" ;;       # snow
-        75) echo "" ;;          # snow
-        77) echo "" ;;          # snow
-        80|81) echo "" ;;       # rain showers
-        82) echo "" ;;          # rain showers
-        85|86) echo "" ;;       # snow showers
-
-        95|96|99) echo "" ;;    # thunderstorm
+        0) echo "" ;;
+        1) echo "" ;;
+        2) echo "" ;;
+        3) echo "" ;;
+        45|48) echo "" ;;
+        51|53) echo "" ;;
+        55) echo "" ;;
+        56|57) echo "" ;;
+        61) echo "" ;;
+        63) echo "" ;;
+        65) echo "" ;;
+        66|67) echo "" ;;
+        71|73) echo "" ;;
+        75) echo "" ;;
+        77) echo "" ;;
+        80|81) echo "" ;;
+        82) echo "" ;;
+        85|86) echo "" ;;
+        95|96|99) echo "" ;;
         *) echo "" ;;
     esac
 }
 
 weather_icon_night() {
     case "$1" in
-        0) echo "" ;;           # clear
-        1) echo "" ;;           # mainly clear
-        2) echo "" ;;           # partly cloudy
-        3) echo "" ;;           # cloudy
-
+        0) echo "" ;;
+        1) echo "" ;;
+        2) echo "" ;;
+        3) echo "" ;;
         45|48) echo "" ;;
-
-        51|53) echo "" ;;       # light and moderate drizzle
-        55) echo "" ;;          # dense drizzle
-        56|57) echo "" ;;       # freezing drizzle
-
-        61) echo "" ;;          # slight rain (using night-alt hail here)
-        63) echo "" ;;          # moderate rain
-        65) echo "" ;;          # heavy rain
+        51|53) echo "" ;;
+        55) echo "" ;;
+        56|57) echo "" ;;
+        61) echo "" ;;
+        63) echo "" ;;
+        65) echo "" ;;
         66|67) echo "" ;;
-
-        71|73) echo "" ;;       # snow
-        75) echo "" ;;          # snow
-        77) echo "" ;;          # snow
-        80|81) echo "" ;;       # rain showers
-        82) echo "" ;;          # rain showers
+        71|73) echo "" ;;
+        75) echo "" ;;
+        77) echo "" ;;
+        80|81) echo "" ;;
+        82) echo "" ;;
         85|86) echo "" ;;
-
-        95|96|99) echo "" ;;    # thunderstorm
+        95|96|99) echo "" ;;
         *) echo "" ;;
     esac
 }
 
-# ---------- WIND DIRECTION ----------
+# ---------- WIND ----------
 
 wind_arrow() {
     deg=$1
-
-    if   [ "$deg" -ge 337 ] || [ "$deg" -lt 23 ];  then echo "↑"
+    if   [ "$deg" -ge 337 ] || [ "$deg" -lt 23 ]; then echo "↑"
     elif [ "$deg" -lt 68 ];  then echo "↗"
     elif [ "$deg" -lt 113 ]; then echo "→"
     elif [ "$deg" -lt 158 ]; then echo "↘"
@@ -109,13 +95,13 @@ wind_arrow() {
     fi
 }
 
-# ---------- CURRENT CONDITIONS ----------
+# ---------- CURRENT ----------
 
-CURRENT_TEMP=$(jq -r '.current_weather.temperature' <<< "$DATA")
-CURRENT_CODE=$(jq -r '.current_weather.weathercode' <<< "$DATA")
-IS_DAY=$(jq -r '.current_weather.is_day' <<< "$DATA")
+read CURRENT_TEMP CURRENT_CODE IS_DAY <<< "$(
+  jq -r '.current_weather | "\(.temperature) \(.weathercode) \(.is_day)"' <<< "$DATA"
+)"
 
-CURRENT_TEMP_ROUND=$(awk "BEGIN {printf \"%d\", $CURRENT_TEMP+0.5}")
+CURRENT_TEMP_ROUND=$(printf "%.0f" "$CURRENT_TEMP")
 
 if [ "$IS_DAY" = "1" ]; then
     CURRENT_ICON=$(weather_icon_day "$CURRENT_CODE")
@@ -123,7 +109,7 @@ else
     CURRENT_ICON=$(weather_icon_night "$CURRENT_CODE")
 fi
 
-# ---------- DAILY DATA ----------
+# ---------- DAILY ----------
 
 readarray -t DAYS < <(jq -r '.daily.time[0:5][]' <<< "$DATA")
 readarray -t TMAX < <(jq -r '.daily.temperature_2m_max[0:5][]' <<< "$DATA")
@@ -132,6 +118,8 @@ readarray -t WEATHER_CODES < <(jq -r '.daily.weathercode[0:5][]' <<< "$DATA")
 readarray -t SUNRISE < <(jq -r '.daily.sunrise[0:5][]' <<< "$DATA")
 readarray -t SUNSET < <(jq -r '.daily.sunset[0:5][]' <<< "$DATA")
 readarray -t RAIN < <(jq -r '.daily.precipitation_sum[0:5][]' <<< "$DATA")
+readarray -t POP < <(jq -r '.daily.precipitation_probability_mean[0:5][]' <<< "$DATA")
+readarray -t RAIN_HOURS < <(jq -r '.daily.precipitation_hours[0:5][]' <<< "$DATA")
 readarray -t WINDSPD < <(jq -r '.daily.windspeed_10m_max[0:5][]' <<< "$DATA")
 readarray -t WINDDIR_RAW < <(jq -r '.daily.winddirection_10m_dominant[0:5][]' <<< "$DATA")
 
@@ -141,26 +129,42 @@ tooltip=""
 for i in {0..4}; do
 
     dow=$(date -d "${DAYS[i]}" +%a)
-
     icon=" $(weather_icon_day "${WEATHER_CODES[i]}") "
 
-    tmax=$(awk "BEGIN {printf \"%2d\", ${TMAX[i]}+0.5}")
-    tmin=$(awk "BEGIN {printf \"%2d\", ${TMIN[i]}+0.5}")
+    tmax=$(printf "%2.0f" "${TMAX[i]}")
+    tmin=$(printf "%2.0f" "${TMIN[i]}")
 
-    rain=$(awk "BEGIN {printf \"%.1f\", ${RAIN[i]} }")
-    windspd=$(awk "BEGIN {printf \"%d\", ${WINDSPD[i]} }")
-
+    windspd=$(printf "%2.0f" "${WINDSPD[i]}")
     winddir=$(wind_arrow "${WINDDIR_RAW[i]}")
 
     sunrise_time=$(date -d "${SUNRISE[i]}" +%H:%M)
     sunset_time=$(date -d "${SUNSET[i]}" +%H:%M)
 
+    # ---------- PRECIP FORMATTING (raw mm) ----------
+
+    rain_val=${RAIN[i]}
+    pop_val=${POP[i]}
+    rain_h_val=${RAIN_HOURS[i]}
+
+    # keep mm exactly as API gives it (trim only trailing zeros visually if any)
+    rain=$(printf "%s" "$rain_val")
+
+    pop=$(printf "%3.0f" "$pop_val")
+    rain_h=$(printf "%2.0f" "$rain_h_val")
+
+    # alignment for %
+    pop=${pop// /$FIG}
+
+    rain_str="$pop %  $rain mm / $rain_h h"
+
+    # ---------- ALIGNMENT ----------
+
     printf -v tmax "%2s" "$tmax"; tmax=${tmax// /$FIG}
     printf -v tmin "%2s" "$tmin"; tmin=${tmin// /$FIG}
-    printf -v rain "%5s" "$rain"; rain=${rain// /$FIG}
     printf -v windspd "%2s" "$windspd"; windspd=${windspd// /$FIG}
+    printf -v rain_str "%12s" "$rain_str"; rain_str=${rain_str// /$FIG}
 
-    line="$dow   $icon   $tmax / $tmin °C  $rain mm  $winddir $windspd km/h   $sunrise_time   $sunset_time"
+    line="$dow   $icon   $tmax  / $tmin °C  $rain_str    $winddir $windspd km/h   $sunrise_time   $sunset_time"
 
     if [ "$i" -eq 0 ]; then
         tooltip="$line"
