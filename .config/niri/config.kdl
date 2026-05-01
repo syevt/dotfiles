@@ -317,11 +317,29 @@ animations {
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
+  workspace-switch {
+    spring damping-ratio=0.8 stiffness=1000 epsilon=0.001
+  }
+
+  window-resize {
+    spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+  }
+
+  horizontal-view-movement {
+    spring damping-ratio=0.8 stiffness=1000 epsilon=0.001
+  }
+
+  overview-open-close {
+    spring damping-ratio=0.7 stiffness=1000 epsilon=0.001
+  }
 }
 
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+window-rule {
+  opacity 0.97
+}
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
@@ -342,20 +360,19 @@ window-rule {
     open-floating true
 }
 
-window-rule {
-  // match is-active-in-column=true
-  match is-active=true
-    shadow {
-        on
-        // draw-behind-window true
-        softness 20
-        spread 3
-        offset x=-1 y=-3
-        color "#7fc8ff"
-        // color "#ff5555"
-        // color "#222222"
-    }
-}
+// window-rule {
+//   match is-active=true
+//     shadow {
+//         on
+//         // draw-behind-window true
+//         softness 20
+//         spread 3
+//         offset x=-1 y=-3
+//         color "#7fc8ff"
+//         // color "#ff5555"
+//         // color "#222222"
+//     }
+// }
 
 window-rule {
     match at-startup=true app-id="Alacritty"

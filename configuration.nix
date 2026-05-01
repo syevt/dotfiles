@@ -45,6 +45,7 @@ in {
           ".config/fuzzel/fuzzel.ini"
           ".config/ghostty/config.ghostty"
           ".config/hypr"
+          ".config/kitty/kitty.conf"
           ".config/mako/config"
           ".config/niri"
           ".config/nvim"
@@ -322,6 +323,7 @@ in {
     delta
     dig
     ecryptfs
+    elastic
     jq
     kdePackages.falkon
     fd
@@ -333,15 +335,12 @@ in {
     google-chrome
     gparted
     grim
-    gvfs
-    jmtpfs
     kdePackages.gwenview
     hypridle
     hyprlock
     hyprpaper
     kdePackages.kpat
     kitty
-    libmtp
     libnotify
     libreoffice
     light
@@ -350,7 +349,6 @@ in {
     lua54Packages.luacheck
     mako
     mpv
-    mtpfs
     neofetch
     neovim
     networkmanagerapplet
