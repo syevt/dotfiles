@@ -56,6 +56,7 @@
     },
     "custom/tomat": {
       "exec": "tomat start -w 45 -b 10 -s 4 && tomat stop; exec tomat watch",
+      // "exec": "tomat start -w 45 -b 10 -s 4 && tomat stop; exec tomat watch | jq -rcM '.text |= ( sub(\"🍅\"; \"\") | sub(\"☕\"; \"\") | gsub(\"🏖️\"; \"\") )'",
       "return-type": "json",
       "format": "{}",
       "on-click": "tomat toggle",

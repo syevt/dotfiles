@@ -45,6 +45,7 @@ in {
           ".config/fuzzel/fuzzel.ini"
           ".config/ghostty/config.ghostty"
           ".config/hypr"
+          ".config/inputactions/config.yaml"
           ".config/kitty/kitty.conf"
           ".config/mako/config"
           ".config/niri"
@@ -133,10 +134,34 @@ in {
           source ${dotfilesDir}/.zshrc
         '';
       };
+      mpv = {
+        enable = true;
+
+        scripts = with pkgs.mpvScripts; [
+          uosc
+        ];
+      };
     };
     services = {
       mako.enable = true;
       tomat.enable = true;
+    };
+
+    systemd.user.services.inputactions-client = {
+      Unit = {
+        Description = "InputActions client";
+        After = ["graphical-session.target"];
+      };
+
+      Service = {
+        ExecStart = "${config.home.homeDirectory}/.local/bin/inputactions-client";
+        Restart = "always";
+        RestartSec = 3;
+      };
+
+      Install = {
+        WantedBy = ["default.target"];
+      };
     };
   };
 
@@ -295,13 +320,24 @@ in {
   ];
 
   systemd = {
-    services.battery-charge-limit = {
-      description = "Set battery charge limit";
-      wantedBy = ["multi-user.target"];
-      serviceConfig.Type = "oneshot";
-      script = ''
-        echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
-      '';
+    services = {
+      battery-charge-limit = {
+        description = "Set battery charge limit";
+        wantedBy = ["multi-user.target"];
+        serviceConfig.Type = "oneshot";
+        script = ''
+          echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+        '';
+      };
+      inputactionsd = {
+        description = "InputActions daemon";
+        wantedBy = ["multi-user.target"];
+        serviceConfig = {
+          ExecStart = "/home/syevt/.local/bin/inputactionsd";
+          Restart = "always";
+          RestartSec = 3;
+        };
+      };
     };
   };
 
@@ -324,7 +360,6 @@ in {
     dig
     ecryptfs
     elastic
-    jq
     kdePackages.falkon
     fd
     fuzzel
@@ -339,6 +374,7 @@ in {
     hypridle
     hyprlock
     hyprpaper
+    jq
     kdePackages.kpat
     kitty
     libnotify
@@ -348,7 +384,6 @@ in {
     lm_sensors
     lua54Packages.luacheck
     mako
-    mpv
     neofetch
     neovim
     networkmanagerapplet
@@ -357,7 +392,9 @@ in {
     oh-my-zsh
     pcmanfm
     qbittorrent
+    recoll
     ripgrep
+    ripgrep-all
     signal-desktop
     slurp
     smplayer

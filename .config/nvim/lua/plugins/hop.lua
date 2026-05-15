@@ -1,7 +1,9 @@
 return {
   "smoka7/hop.nvim",
   version = "*",
-  opts = {}, -- use defaults
+  opts = {
+    quiet = true,
+  },
   config = function(_, opts)
     local hop = require("hop")
     hop.setup(opts)

@@ -10,7 +10,9 @@ return {
           duration = 15,
         }),
       },
-      symbol = "│", -- the character used for guides
+      -- symbol = "│", -- the character used for guides
+      symbol = "▏", -- the character used for guides
+      -- symbol = "", -- the character used for guides
       options = {
         border = "both", -- show guides only inside the scope
         indent_at_cursor = true,

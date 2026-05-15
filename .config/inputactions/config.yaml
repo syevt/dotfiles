@@ -1,0 +1,84 @@
+mouse:
+  gestures:
+    - type: stroke
+      # left
+      strokes: [ 'ADEAAGQyZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action focus-column-left
+
+    - type: stroke
+      # right
+      strokes: [ 'ZDIAnQAxZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action focus-column-right
+
+    - type: stroke
+      # up
+      strokes: [ 'OWQAyioAZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action focus-window-or-workspace-down
+
+    - type: stroke
+      # down
+      strokes: [ 'MAAAMDNkZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action focus-window-or-workspace-up
+
+    - type: stroke
+      # left-then-up
+      strokes: [ 'VWMAYw5kKdMXKEzOFgBkAA==' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action open-overview
+
+    - type: stroke
+      # right-then-down
+      strokes: [ 'AA4ALQhRKQFkVWFkYFVkAA==' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action close-window
+
+    - type: stroke
+      # from-top-right-to-bottom-left
+      strokes: [ 'ZBEAVC4tMk4AUmQA' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action switch-preset-column-width
+
+    - type: stroke
+      # from-bottom-left-to-top-right
+      strokes: [ 'AFgA7GQLZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action maximize-column
+
+    - type: stroke
+      # tilde
+      strokes: [ 'ADUA6xAoEfkbJRsWNz05AkM+QvZYN1TlZClkAA==' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: niri msg action toggle-window-floating
+
+    - type: stroke
+      # letter `e`
+      strokes: [ 'Bi4AADwvEOVPGhnNTQgeni0GKFYXEDBMBh83OQA9QBcYU0oIPl1WAExdWutkS2QA' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: pcmanfm
+
+    - type: stroke
+      # letter `f` like
+      strokes: [ 'ECAAADwfE+hTCSGnNwAvUykHNj4kFTwhQktYNT9kZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: firefox
+
+    - type: stroke
+      strokes: [ 'GE4A61AhGN9YEh2dABA7FxIgQxNJRlkOZFNjxGNTZAA=' ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: kpat
