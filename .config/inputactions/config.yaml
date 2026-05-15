@@ -12,8 +12,12 @@ anchors:
 
   - &tilde 'ADUA6xAoEfkbJRsWNz05AkM+QvZYN1TlZClkAA=='
 
+  - &letter_a 'Uy8A2VkdBcVXFQixQgQPpC8AFWMfABlUDwkfNwojJyYXRjEVJFA2AC9QOelJOETSTBdNMU1PXShUZGQA'
   - &letter_e 'Bi4AADwvEOVPGhnNTQgeni0GKFYXEDBMBh83OQA9QBcYU0oIPl1WAExdWutkS2QA'
   - &letter_f 'ECAAADwfE+hTCSGnNwAvUykHNj4kFTwhQktYNT9kZAA='
+  - &letter_o 'KxgA+EASBxJjKhYxZDwcQldRJVFNVyljMFczqxJJP7YANkjNAClN3QYdUfAZEln5NQxj5zUMZAA='
+  - &letter_s 'SBkAwkQPA6cqBgyeHAYRORkRFSEmKB0MZEEzSExdP50xXUitGE1StAA3XNwELmADEC9kAA=='
+  - &letter_w 'ABwA0AAZAR8GIwYkHVMb2jMVNSs6NEEhRUhK2Ug+TuNdIVzaZBBkAA=='
 
   - &kpat_shape 'GE4A61AhGN9YEh2dABA7FxIgQxNJRlkOZFNjxGNTZAA='
 
@@ -74,6 +78,12 @@ mouse:
         - command: niri msg action toggle-window-floating
 
     - type: stroke
+      strokes: [ *letter_a ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: audacious
+
+    - type: stroke
       strokes: [ *letter_e ]
       mouse_buttons: [ right ]
       actions:
@@ -90,3 +100,21 @@ mouse:
       mouse_buttons: [ right ]
       actions:
         - command: kpat
+
+    - type: stroke
+      strokes: [ *letter_o ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: okular
+
+    - type: stroke
+      strokes: [ *letter_s ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: signal-desktop --use-tray-icon --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-features=WaylandWindowDecorations
+
+    - type: stroke
+      strokes: [ *letter_w ]
+      mouse_buttons: [ right ]
+      actions:
+        - command: chromium --app=https://web.whatsapp.com --user-data-dir=/home/syevt/.config/chromium-whatsapp --ozone-platform=wayland --enable-features=UseOzonePlatform
