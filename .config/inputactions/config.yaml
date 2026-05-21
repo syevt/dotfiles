@@ -4,13 +4,16 @@ anchors:
   - &up 'OWQAyioAZAA='
   - &down 'MAAAMDNkZAA='
 
+  - &right_then_down 'ZBYAnQAUPjEBT2QA'
   - &left_then_up 'VWMAYw5kKdMXKEzOFgBkAA=='
-  - &right_then_down 'AA4ALQhRKQFkVWFkYFVkAA=='
+  - &left_then_down 'VwAAYw8AKTMMNkgqF2RkAA=='
+  - &down_then_right 'AA4ALQhRKQFkVWFkYFVkAA=='
 
   - &top_right_to_bottom_left 'ZBEAVC4tMk4AUmQA'
+  - &bottom_right_to_top_left 'ZFkArCk5Mr4ZHkqyAApkAA=='
   - &bottom_left_to_top_right 'AFgA7GQLZAA='
 
-  - &tilde 'ADUA6xAoEfkbJRsWNz05AkM+QvZYN1TlZClkAA=='
+  - &tilde 'ADUA6xAoEfkbJRsWNz05AkM+QvZYNTlZClkAA=='
 
   - &letter_a 'Uy8A2VkdBcVXFQixQgQPpC8AFWMfABlUDwkfNwojJyYXRjEVJFA2AC9QOelJOETSTBdNMU1PXShUZGQA'
   - &letter_e 'Bi4AADwvEOVPGhnNTQgeni0GKFYXEDBMBh83OQA9QBcYU0oIPl1WAExdWutkS2QA'
@@ -54,7 +57,7 @@ mouse:
         - command: niri msg action open-overview
 
     - type: stroke
-      strokes: [ *right_then_down ]
+      strokes: [ *down_then_right ]
       mouse_buttons: [ right ]
       actions:
         - command: niri msg action close-window
@@ -118,3 +121,27 @@ mouse:
       mouse_buttons: [ right ]
       actions:
         - command: chromium --app=https://web.whatsapp.com --user-data-dir=/home/syevt/.config/chromium-whatsapp --ozone-platform=wayland --enable-features=UseOzonePlatform
+
+    - type: stroke
+      strokes: [ *bottom_right_to_top_left ]
+      mouse_buttons: [ right ]
+      actions:
+        - input:
+          # in DVORAK it means `Ctrl+W`: close browser tab
+          - keyboard: [ leftctrl+comma ]
+
+    - type: stroke
+      strokes: [ *left_then_down ]
+      mouse_buttons: [ right ]
+      actions:
+        - input:
+          # in DVORAK it means `Ctrl+Z`: undo
+          - keyboard: [ leftctrl+slash ]
+
+    - type: stroke
+      strokes: [ *right_then_down ]
+      mouse_buttons: [ right ]
+      actions:
+        - input:
+          # in DVORAK it means `Ctrl+Shift+Z`: redo
+          - keyboard: [ leftctrl+leftshift+slash ]
