@@ -366,19 +366,25 @@ window-rule {
     open-floating true
 }
 
-// window-rule {
-//   match is-active=true
-//     shadow {
-//         on
-//         // draw-behind-window true
-//         softness 20
-//         spread 3
-//         offset x=-1 y=-3
-//         color "#7fc8ff"
-//         // color "#ff5555"
-//         // color "#222222"
-//     }
-// }
+window-rule {
+  match is-active=true app-id="kitty|org.kde.okular"
+  // match app-id="kitty"
+  // opacity 0.5
+  // clip-to-geometry true
+  // geometry-corner-radius 24
+    shadow {
+        on
+        // draw-behind-window true
+        softness 10
+        spread 7
+        // offset x=-1 y=-3
+        offset x=0 y=0
+        // color "#7fc8ff"
+        color "#de4171"
+        // color "#ff5555"
+        // color "#222222"
+    }
+}
 
 window-rule {
     match at-startup=true app-id="Alacritty"
