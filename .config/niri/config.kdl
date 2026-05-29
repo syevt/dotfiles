@@ -554,6 +554,7 @@ binds {
     // Mod+C { spawn "/home/syevt/.config/niri/scripts/fuzzel-calculator.sh"; }
 
     // Super+Alt+L { spawn "swaylock"; }
+    Mod+Super+L { spawn "~/.config/niri/scripts/set_layout_us_and_lock.sh"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

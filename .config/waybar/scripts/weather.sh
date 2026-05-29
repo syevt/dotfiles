@@ -3,8 +3,10 @@
 # =============================================================================
 # 12th version
 
-LAT="48.4288"
-LON="35.0181"
+# LAT="48.4288"
+# LON="35.0181"
+LAT="48.0255" # Грізне
+LON="35.3511"
 
 # ---------- FETCH DATA ----------
 DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_mean,precipitation_hours,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
