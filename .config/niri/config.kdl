@@ -405,9 +405,9 @@ gestures {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-window-rule {
-  opacity 0.97
-}
+// window-rule {
+//   opacity 0.97
+// }
 
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
@@ -437,8 +437,8 @@ window-rule {
     shadow {
         on
         // draw-behind-window true
-        softness 10
-        spread 7
+        softness 25
+        spread 15
         // offset x=-1 y=-3
         offset x=0 y=0
         // color "#7fc8ff"
@@ -446,6 +446,10 @@ window-rule {
         // color "#ff5555"
         // color "#222222"
     }
+}
+window-rule {
+  match is-active=false app-id="kitty|org.kde.okular"
+  opacity 0.8
 }
 
 window-rule {

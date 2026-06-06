@@ -1,15 +1,48 @@
 #!/usr/bin/env bash
 
 # =============================================================================
-# 12th version
+# 13th version
 
-# LAT="48.4288"
-# LON="35.0181"
-LAT="48.0255" # Грізне
-LON="35.3511"
+LAT="48.4288"
+LON="35.0181"
+# LAT="48.0255" # Грізне
+# LON="35.3511"
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
+CACHE_FILE="$CACHE_DIR/weather.json"
+CACHE_TTL=600
+
+mkdir -p "$CACHE_DIR"
+
+fetch_weather() {
+  curl -sf \
+    "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_mean,precipitation_hours,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev"
+}
+
+need_refresh=false
+
+if [ ! -s "$CACHE_FILE" ]; then
+  need_refresh=true
+else
+  now=$(date +%s)
+  mtime=$(stat -c %Y "$CACHE_FILE")
+  age=$((now - mtime))
+
+  if [ "$age" -ge "$CACHE_TTL" ]; then
+    need_refresh=true
+  fi
+fi
+
+if $need_refresh; then
+  if DATA=$(fetch_weather); then
+    printf '%s\n' "$DATA" > "$CACHE_FILE"
+  fi
+fi
+
+DATA=$(cat "$CACHE_FILE" 2>/dev/null)
 
 # ---------- FETCH DATA ----------
-DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_mean,precipitation_hours,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
+# DATA=$(curl -sf "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_probability_mean,precipitation_hours,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe/Kiev")
 
 if [ $? -ne 0 ] || [ -z "$DATA" ]; then
     jq -nrcM \

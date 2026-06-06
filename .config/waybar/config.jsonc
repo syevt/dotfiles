@@ -255,7 +255,7 @@
       // "tooltip": "",
       "class": "weather-tooltip",
       "tooltip": true,
-      "interval": 600,
+      "interval": 30,
       "exec": "~/.config/waybar/scripts/weather.sh",
       "escape": false,
       "return-type": "json"

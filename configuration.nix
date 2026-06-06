@@ -391,6 +391,7 @@ in {
     noto-fonts-color-emoji
     oh-my-zsh
     pcmanfm
+    postman
     qbittorrent
     recoll
     ripgrep

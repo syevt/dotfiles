@@ -30,6 +30,14 @@ return {
         find_files = {
           hidden = true, -- for fd
           follow = true, -- optional, follows symlinks
+          find_command = {
+            "fd",
+            "--type",
+            "f",
+            "--hidden",
+            "--exclude",
+            ".git",
+          },
         },
       },
     })
