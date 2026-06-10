@@ -42,15 +42,22 @@ size = 21
 
 [font.italic]
 # family = "Operator Mono"
-family = "Rec Mono Casual"
+# family = "Rec Mono Casual"
+family = "Iosevka Custom"
 
 [font.normal]
 # family = "Operator Mono"
-family = "Rec Mono Casual"
+# family = "Rec Mono Casual"
+family = "Iosevka Custom"
 
-[font.offset]
-x = -3
-y = 0
+[font.bold]
+# family = "Operator Mono"
+# family = "Rec Mono Casual"
+family = "Iosevka Custom"
+
+# [font.offset]
+# x = -3
+# y = 0
 
 [window]
 opacity = 0.95

@@ -123,7 +123,10 @@ map("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols", opts)
 map(
   "n",
   "<leader>ws",
-  vim.lsp.buf.workspace_symbol,
+  -- vim.lsp.buf.workspace_symbol,
+  function()
+    require("telescope.builtin").lsp_workspace_symbols({ show_line = true })
+  end,
   { desc = "Workspace Symbols" }
 )
 -- map("n", "K", vim.lsp.buf.hover, opts)
