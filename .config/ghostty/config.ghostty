@@ -22,12 +22,15 @@ palette = 15=#ebdbb2
 
 
 # --- Cursor ---
-cursor-style = bar
+shell-integration-features = no-cursor
+cursor-style-blink = false
+cursor-style = block
 cursor-opacity = 1.0
 
 
 # --- Font ---
-font-family = "Rec Mono Casual"
+# font-family = "Rec Mono Casual"
+font-family = "Iosevka Custom"
 font-size = 21
 
 # Ghostty handles italic automatically if font supports it
@@ -52,5 +55,8 @@ window-padding-balance = true
 window-padding-color = extend
 class = terminal
 
-custom-shader = /home/syevt/data/projects/ghostty-shader-playground/public/shaders/cursor_blaze.glsl
-custom-shader = /home/syevt/data/projects/ghostty-shader-playground/public/shaders/blaze_sparks.glsl
+# custom-shader = /home/syevt/data/projects/ghostty-shader-playground/public/shaders/cursor_blaze.glsl
+# custom-shader = /home/syevt/data/projects/ghostty-shader-playground/public/shaders/blaze_sparks.glsl
+# custom-shader = /home/syevt/data/projects/ghostty-shader-playground/public/shaders/simple_trail.glsl
+# custom-shader = /home/syevt/data/projects/ghostty-cursor-shaders/cursor_tail.glsl
+# custom-shader = /home/syevt/data/projects/ghostty-cursor-shaders/cursor_sweep.glsl
