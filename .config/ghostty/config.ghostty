@@ -31,6 +31,7 @@ cursor-opacity = 1.0
 # --- Font ---
 # font-family = "Rec Mono Casual"
 font-family = "Iosevka Custom"
+# font-family = "Operator Mono"
 font-size = 21
 
 # Ghostty handles italic automatically if font supports it

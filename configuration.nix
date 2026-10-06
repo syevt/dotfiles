@@ -384,6 +384,7 @@ in {
     lm_sensors
     lua54Packages.luacheck
     mako
+    mpvpaper
     neofetch
     neovim
     networkmanagerapplet

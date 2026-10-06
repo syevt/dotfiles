@@ -7,8 +7,10 @@
 # LON="35.0181"
 # LAT="48.0255" # Грізне
 # LON="35.3511"
-LAT="48.5042" # Павлік
-LON="35.8879"
+# LAT="48.5042" # Павлік
+# LON="35.8879"
+LAT="50.0024" # Харків
+LON="36.2258"
 
 CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}"
 CACHE_FILE="$CACHE_DIR/weather.json"

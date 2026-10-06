@@ -335,62 +335,80 @@ animations {
 
   window-open {
     duration-ms 350
-    curve "linear"
+    // curve "linear"
+    curve "ease-out-expo"
 
     custom-shader r"
-      // Ported from gl-transitions/ripple.glsl (MIT, gre)
-
+      vec4 door_rise(vec3 coords_geo, vec3 size_geo) {
+        float progress = niri_clamped_progress;
+        
+        // Tilt from 90 degrees (flat) to 0 degrees (upright)
+        float tilt = (1.0 - progress) * 1.57079632;
+        
+        // Pivot point at bottom edge
+        vec2 coords = coords_geo.xy * size_geo.xy;
+        coords.y = size_geo.y - coords.y;
+        
+        // Distance from pivot (bottom edge)
+        float dist_from_pivot = coords.y;
+        
+        // Calculate 3D position
+        // Negative z_offset so it goes away from viewer (backward)
+        float z_offset = -dist_from_pivot * sin(tilt);
+        float y_compressed = dist_from_pivot * cos(tilt);
+        
+        // Apply perspective based on depth
+        float perspective = 600.0;
+        float perspective_scale = perspective / (perspective + z_offset);
+        
+        // Scale everything by perspective
+        coords.x = (coords.x - size_geo.x * 0.5) * perspective_scale + size_geo.x * 0.5;
+        coords.y = y_compressed * perspective_scale;
+        
+        // Flip Y back to normal coordinates
+        coords.y = size_geo.y - coords.y;
+        
+        coords_geo = vec3(coords / size_geo.xy, 1.0);
+        
+        vec3 coords_tex = niri_geo_to_tex * coords_geo;
+        vec4 color = texture2D(niri_tex, coords_tex.st);
+        
+        // Brighten as it rises
+        float brightness = 0.4 + 0.6 * progress;
+        color.rgb *= brightness;
+        
+        return color * progress;
+      }
       vec4 open_color(vec3 coords_geo, vec3 size_geo) {
-          float p = niri_clamped_progress;
-          vec2 uv = coords_geo.xy;
-          float seed = niri_random_seed * 6.28318;
-
-          float amplitude = 100.0;
-          float speed = 50.0;
-
-          vec2 dir = uv - vec2(0.5);
-          float dist = length(dir);
-
-          float intensity = (1.0 - p) * (1.0 - p);
-          vec2 offset = dir * (sin(p * dist * amplitude - p * speed + seed) + 0.5) / 30.0;
-
-          vec2 wuv = uv + offset * intensity;
-          vec3 tc = niri_geo_to_tex * vec3(wuv, 1.0);
-          vec4 color = texture2D(niri_tex, tc.st);
-
-          float alpha = smoothstep(0.0, 0.3, p);
-          return color * alpha;
+          return door_rise(coords_geo, size_geo);
       }
     "
   }
 
   window-close {
-    duration-ms 350
+    duration-ms 400
     curve "linear"
 
     custom-shader r"
-      // Ported from gl-transitions/ripple.glsl (MIT, gre)
+      vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
+        float progress = niri_clamped_progress * niri_clamped_progress;
+        vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
+        coords.y -= progress * 1440.0;
+        float random = (niri_random_seed - 0.5) / 2.0;
+        random = sign(random) - random;
+        float max_angle = 0.5 * random;
+        float angle = progress * max_angle;
+        mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+        coords = rotate * coords;
+        coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 1.0), 1.0);
+        vec3 coords_tex = niri_geo_to_tex * coords_geo;
+        vec4 color = texture2D(niri_tex, coords_tex.st);
+        color.a *= (1.0 - progress);
 
+        return color;
+      }
       vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-          float p = niri_clamped_progress;
-          vec2 uv = coords_geo.xy;
-          float seed = niri_random_seed * 6.28318;
-
-          float amplitude = 100.0;
-          float speed = 50.0;
-
-          vec2 dir = uv - vec2(0.5);
-          float dist = length(dir);
-
-          float intensity = p * p;
-          vec2 offset = dir * (sin(p * dist * amplitude - p * speed + seed) + 0.5) / 30.0;
-
-          vec2 wuv = uv + offset * intensity;
-          vec3 tc = niri_geo_to_tex * vec3(wuv, 1.0);
-          vec4 color = texture2D(niri_tex, tc.st);
-
-          float alpha = smoothstep(1.0, 0.5, p);
-          return color * alpha;
+        return fall_and_rotate(coords_geo, size_geo);
       }
     "
   }
@@ -429,27 +447,14 @@ window-rule {
 }
 
 window-rule {
-  match is-active=true app-id="kitty|org.kde.okular"
-  // match app-id="kitty"
-  // opacity 0.5
-  // clip-to-geometry true
-  // geometry-corner-radius 24
-    shadow {
-        on
-        // draw-behind-window true
-        softness 25
-        spread 15
-        // offset x=-1 y=-3
-        offset x=0 y=0
-        // color "#7fc8ff"
-        color "#de4171"
-        // color "#ff5555"
-        // color "#222222"
-    }
-}
-window-rule {
-  match is-active=false app-id="kitty|org.kde.okular"
-  opacity 0.8
+  // match is-active=true app-id="kitty|org.kde.okular"
+  match app-id="kitty|org.kde.okular"
+  border {
+    on
+    width 4
+    active-color "#de4171"
+    inactive-color "#222222"
+  }
 }
 
 window-rule {

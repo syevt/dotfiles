@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Select area with slurp
-area=$(slurp)
+area=$(slurp -d)
 [ -z "$area" ] && exit 1  # User hit escape or cancelled
 
 # Pipe grim output directly into wl-copy
