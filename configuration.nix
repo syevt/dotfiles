@@ -397,7 +397,9 @@ in {
     recoll
     ripgrep
     ripgrep-all
+    satty
     signal-desktop
+    sioyek
     slurp
     smplayer
     statix

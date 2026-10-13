@@ -448,7 +448,7 @@ window-rule {
 
 window-rule {
   // match is-active=true app-id="kitty|org.kde.okular"
-  match app-id="kitty|org.kde.okular"
+  match app-id="kitty|org.kde.okular|sioyek"
   border {
     on
     width 4
