@@ -13,7 +13,7 @@
 }: let
   userName = "syevt"; # my user names are the same, both for the system and on github, change appropriately
   dotfilesDir = "/home/${userName}/.dotfiles";
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz;
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -171,7 +171,6 @@ in {
     loader.efi.canTouchEfiVariables = true;
     # Use latest kernel.
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = pkgs.lib.mkAfter ["ecryptfs"];
   };
 
   networking = {
@@ -182,7 +181,6 @@ in {
     # Enable networking
     networkmanager.enable = true;
     networkmanager.unmanaged = [];
-    wireless.enable = false; # Enables wireless support via wpa_supplicant.
     nameservers = ["1.1.1.1" "8.8.8.8"];
     # Open ports in the firewall.
     # firewall.allowedTCPPorts = [ ... ];
@@ -358,7 +356,6 @@ in {
     deadnix
     delta
     dig
-    ecryptfs
     elastic
     kdePackages.falkon
     fd
@@ -367,6 +364,7 @@ in {
     ghostty
     gimp
     git
+    gocryptfs
     google-chrome
     gparted
     grim
@@ -379,13 +377,11 @@ in {
     kitty
     libnotify
     libreoffice
-    light
     llvmPackages.clang
     lm_sensors
     lua54Packages.luacheck
     mako
     mpvpaper
-    neofetch
     neovim
     networkmanagerapplet
     niri
@@ -410,6 +406,7 @@ in {
     tor
     translate-shell
     tree
+    tree-sitter
     unzip
     usb-modeswitch
     usbutils
