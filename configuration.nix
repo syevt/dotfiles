@@ -44,14 +44,11 @@ in {
           ".bash_aliases"
           ".config/fuzzel/fuzzel.ini"
           ".config/ghostty/config.ghostty"
-          ".config/hypr"
           ".config/inputactions/config.yaml"
           ".config/kitty/kitty.conf"
-          ".config/mako/config"
           ".config/niri"
+          ".config/noctalia"
           ".config/nvim"
-          ".config/waybar"
-          ".config/wlogout"
           ".gitconfig"
           ".tmux/gruvbox-dark.sh"
           ".tmux/segments/"
@@ -70,8 +67,6 @@ in {
     };
 
     programs = {
-      waybar.enable = true;
-
       fzf = {
         enable = true;
         enableZshIntegration = true;
@@ -142,10 +137,6 @@ in {
         ];
       };
     };
-    services = {
-      mako.enable = true;
-      tomat.enable = true;
-    };
 
     systemd.user.services.inputactions-client = {
       Unit = {
@@ -174,23 +165,13 @@ in {
   };
 
   networking = {
-    hostName = "nixos"; # Define your hostname.
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    # Enable networking
+    hostName = "nixos";
     networkmanager.enable = true;
     networkmanager.unmanaged = [];
     nameservers = ["1.1.1.1" "8.8.8.8"];
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # firewall.enable = false;
   };
 
   hardware = {
-    # Bluetooth
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -204,10 +185,8 @@ in {
     graphics.enable = true;
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/Kyiv";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -223,23 +202,16 @@ in {
   };
 
   security.rtkit.enable = true;
-  # Configure console keymap
   console.keyMap = "dvorak";
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services = {
-    # services.systembus-notify.enable = true;
     xserver = {
       enable = true;
       videoDrivers = ["amdgpu"];
-      # Configure keymap in X11
       xkb = {
         layout = "us";
         variant = "dvorak";
       };
-      # Enable the OpenSSH daemon.
-      # services.openssh.enable = true;
     };
 
     # Enable the KDE Plasma Desktop Environment.
@@ -256,12 +228,6 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
     };
 
     tor = {
@@ -269,23 +235,20 @@ in {
       client.enable = true;
     };
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    # libinput.enable = true;
+    tuned.enable = true;
+    upower.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userName} = {
     isNormalUser = true;
     description = "syevt";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-      #  thunderbird
     ];
     shell = pkgs.zsh;
   };
 
-  # fonts
   fonts.packages = with pkgs; [
     font-awesome
     material-icons
@@ -299,17 +262,8 @@ in {
     # that's the hack to make things like `nodenv` work
     nix-ld.enable = true;
     niri.enable = true;
-    nm-applet.enable = true;
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # mtr.enable = true;
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
@@ -339,10 +293,7 @@ in {
     };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     alacritty
     alejandra
     anki
@@ -369,9 +320,6 @@ in {
     gparted
     grim
     kdePackages.gwenview
-    hypridle
-    hyprlock
-    hyprpaper
     jq
     kdePackages.kpat
     kitty
@@ -380,11 +328,10 @@ in {
     llvmPackages.clang
     lm_sensors
     lua54Packages.luacheck
-    mako
     mpvpaper
     neovim
-    networkmanagerapplet
     niri
+    noctalia
     noto-fonts-color-emoji
     oh-my-zsh
     pcmanfm
@@ -400,7 +347,6 @@ in {
     smplayer
     statix
     stow
-    swaynotificationcenter
     tesseract
     tmux
     tor
@@ -413,9 +359,7 @@ in {
     viber
     vlc
     vscode
-    waybar
     wl-clipboard
-    wlogout
     xclip
     xsensors
     zsh

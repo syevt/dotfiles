@@ -1,0 +1,28 @@
+[shell]
+font_family = "PT Sans Narrow"
+
+[theme]
+mode = "dark"
+
+[bar.default]
+position = "top"
+
+[shell.keyboard_layout.custom_labels]
+"English (Dvorak)" = "🏴󠁧󠁢󠁥󠁮󠁧󠁿"
+"Ukrainian" = "🇺🇦"
+
+[widget.keyboard_layout]
+show_glyph = false
+show_label = true
+display = "full"
+hide_when_single_layout = false
+
+[osd.kinds]
+keyboard_layout = false
+
+[location]
+auto_locate = false
+address = "Kharkiv, UA"
+
+[shell.mpris]
+blacklist = [ "firefox", "chromium", "chrome" ]
